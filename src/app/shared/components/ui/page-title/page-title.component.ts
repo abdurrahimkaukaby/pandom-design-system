@@ -9,6 +9,7 @@ export class PageTitleComponent {
   @Input() title: string;
   @Input() iconLeft: string;
   @Input() subtitle: string;
+  @Input() imageUrl: string = ''
   @Input() border: boolean = true;
   @Input() buttonContent: string;
   @Input() buttonColor: 'primary' | 'secondary' | 'ghost' | 'danger' = 'primary';
