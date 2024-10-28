@@ -1,13 +1,12 @@
 
-# ETMA (Equipment Monitoring Apps)
+# PANDOM (Design System)
 
-ETMA is equipment monitoring web apps that track equipment status and performance, offering alerts, and predictive maintenance(soon) to optimize efficiency and reduce downtime.
+Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability.
 
 
 ## Overview
 
-ETMA is a web-based equipment monitoring app designed to streamline asset management. It provides comprehensive features, including real-time equipment status, performance metrics, runtime tracking, and detailed activity logs. The platform also offers robust master data management and user management functionalities, allowing for secure, organized data storage and efficient oversight of all equipment operations.
-
+Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
 
 ## System Requirements
 
@@ -71,22 +70,9 @@ npx compodoc -s
 This will analyze your project's code, generate documentation, and start a local server. You can then access the documentation by opening your web browser and navigating to the provided address.
 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-
 ## 🚀 Contributor
 
 FE : Hilmy Abdurrahim Kaukaby[![instagram](https://img.shields.io/badge/instagram-D50C3F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/abdurrahimhilmy/)
-
-BE : Antonio Saiful Islam [![instagram](https://img.shields.io/badge/instagram-D50C3F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/antoniosai/)
-
-BE : Mochamad Dimas Editya  [![instagram](https://img.shields.io/badge/instagram-D50C3F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/dimaseditiya/)
 
 
 
