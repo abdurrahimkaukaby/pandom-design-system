@@ -1,0 +1,187 @@
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Avatar"
+                imageUrl="../../../../assets/images/avatar-illu.png"
+                subtitle="An avatar is a digital icon that represents a user’s identity.">
+            </app-page-title>
+        </div>
+    </div>
+    <div class="flex w-full items-center justify-center border-b sticky top-14 z-20 bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guideline']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            An avatar is a component that used as a visual identifier for a user or entity in digital spaces, often used in profiles, games, and forums to embody identity.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+        
+        <span class="text-text-text-secondary text-sm">Use square avatars to represent entities, such as projects, repositories, or spaces. If no image or icon is available, use initials as an identifier.</span>
+
+        <div class="bg-[#272822] rounded-md border mt-4">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-avatar title="HA" mode="normal"></app-avatar>
+                        <app-avatar title="H" mode="compact"></app-avatar>
+                        <app-avatar title="H" mode="compact" textSize="xxs"></app-avatar>
+    
+                    </div>
+                    <span class="text-text-text-caption text-sm">
+                        Default initial avatar
+                    </span>
+                </div>
+    
+                <div class="flex flex-col gap-2">
+                    <button (blur)="onBlurButton()" class="relative">
+                        <app-dropdown-card
+                            (click)="onToggle()"
+                            class="cursor-pointer"
+                            title="Hilmy"
+                            [isActive]="isExpand"
+                            icon="ph-regular:caret-up-down"
+                            iconStyle="secondary"
+                            activeStyle="secondary"
+                            cardStyle="full-header"
+                            avatarStyle="compact"
+                            avatarTextSize="sm"
+                            [border]="true"
+                            [iconButton]="false"
+                        >
+                        </app-dropdown-card>
+                        <div @accordion *ngIf="isExpand" class="absolute rounded-md border shadow-sm z-50 top-10 left-[-28px] bg-white w-[232px] divide-y-2 overflow-hidden">
+                            <app-dropdown-card
+                                    class=""
+                                    title="Hilmy"
+                                    subtitle="hilmyabdurrrahim@gmail.com"
+                                    cardStyle="normal"
+                                    avatarTextSize="sm"
+                                    [border]="false"
+                                    [iconButton]="false"
+                                >
+                            </app-dropdown-card>
+                            <div 
+                                class="flex cursor-pointer p-2 px-3 text-etma-danger-500 hover:text-etma-danger-600 hover:bg-[#E4E4E7] gap-2 duration-150">
+                                <div class="flex h-4 w-4">
+        
+                                    <mat-icon class="" svgIcon="ph-duotone:sign-out"></mat-icon>
+                                </div>
+                                Log out
+                            </div>
+                        </div>
+                    </button>
+                    <span class="text-text-text-caption text-sm">
+                        Example usage on detail account
+                    </span>
+                </div>
+            </div>
+            <div class=" duration-200" [ngClass]="isExpandDefault? '' : 'hidden h-0'">
+                <pre><code class="language-html">{{ yourCode }}</code></pre>
+            </div>
+            <div (click)="onToggleDefault()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
+                <span class="absolute z-20">
+                    {{isExpandDefault? 'Hide code' : 'Show code'}}
+                </span>
+                <div *ngIf="!isExpandDefault" class="arrow invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div *ngIf="isExpandDefault" class="arrow-reverse invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <span class="text-2xl font-medium mt-6">Icon Color </span>
+
+        <span class="text-text-text-secondary text-sm">You can adjust the color of the avatars to provide additional information about the entity, such as its status or whether it is disabled.</span>
+
+        <div class="bg-[#272822] rounded-md border mt-4">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-avatar color="error" title="H" mode="normal" icon="ph-regular:codepen-logo"></app-avatar>
+                        <app-avatar color="warning" title="H" mode="compact" textSize="xs" icon="ph-regular:codepen-logo"></app-avatar>
+                        <app-avatar color="success" title="H" mode="compact" textSize="xxs" icon="ph-regular:codepen-logo"></app-avatar>
+    
+                    </div>
+                    <span class="text-text-text-caption text-sm">
+                        Colored icon avatar
+                    </span>
+                </div>
+
+            </div>
+            <div class=" duration-200" [ngClass]="isExpandIcon? '' : 'hidden h-0'">
+                <pre><code class="language-html">{{ yourCodeIcon }}</code></pre>
+            </div>
+            <div (click)="onToggleIcon()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
+                <span class="absolute z-20">
+                    {{isExpandIcon? 'Hide code' : 'Show code'}}
+                </span>
+                <div *ngIf="!isExpandIcon" class="arrow invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div *ngIf="isExpandIcon" class="arrow-reverse invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <span class="text-2xl font-medium mt-6">Image Rounded </span>
+
+        <span class="text-text-text-secondary text-sm">Use a circle avatar to represent a person.</span>
+
+        <div class="bg-[#272822] rounded-md border mt-4">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+                        <app-avatar title="H" mode="compact" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+    
+                    </div>
+                    <span class="text-text-text-caption text-sm">
+                        Image avatar
+                    </span>
+                </div>
+    
+            </div>
+            <div class=" duration-200" [ngClass]="isExpandImage? '' : 'hidden h-0'">
+                <pre><code class="language-html">{{ yourCodeImage }}</code></pre>
+            </div>
+            <div (click)="onToggleImage()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
+                <span class="absolute z-20">
+                    {{isExpandImage? 'Hide code' : 'Show code'}}
+                </span>
+                <div *ngIf="!isExpandImage" class="arrow invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div *ngIf="isExpandImage" class="arrow-reverse invisible group-hover:visible ">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

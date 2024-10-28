@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AvatarComponent } from './avatar.component';
+import { AvatarPageComponent } from './avatar-page.component';
 
-describe('AvatarComponent', () => {
-  let component: AvatarComponent;
-  let fixture: ComponentFixture<AvatarComponent>;
+describe('AvatarPageComponent', () => {
+  let component: AvatarPageComponent;
+  let fixture: ComponentFixture<AvatarPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AvatarComponent]
+      declarations: [AvatarPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AvatarComponent);
+    fixture = TestBed.createComponent(AvatarPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

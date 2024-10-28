@@ -1,0 +1,9 @@
+<div class="text-sm font-medium text-center text-text-text-secondary border-b border-border-border-divider px-6">
+    <ul class="flex flex-wrap -mb-px">
+        <li (click)="onSelectTab(tab)" *ngFor="let tab of tabs" class=" cursor-pointer">
+            <span 
+                [ngClass]="selectedTab === tab? 'text-text-text-brand-blue border-text-text-brand-blue active' : 'border-transparent hover:text-etma-neutral-400 hover:border-etma-neutral-300'" 
+                class="inline-block p-4 border-b-2 rounded-t-lg duration-200 capitalize">{{tab}}</span>
+        </li>
+    </ul>
+</div>

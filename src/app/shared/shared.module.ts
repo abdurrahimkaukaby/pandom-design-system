@@ -44,6 +44,7 @@ import { TransformSummaryRunningHourPipe } from "./pipes/transform-summary-runni
 import { MonthPickerComponent } from './components/ui/month-picker/month-picker.component';
 import { CheckArrayDuplicatePipe } from "./pipes/transform-check-array-duplilcate.pipe";
 import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pipe";
+import { TabComponent } from './components/ui/tab/tab.component';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
       MonthPickerComponent,
       CheckArrayDuplicatePipe,
       CompareDateStringPipe,
+      TabComponent,
     ],
     imports: [
       RouterModule,
@@ -134,6 +136,7 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
       MonthPickerComponent,
       CheckArrayDuplicatePipe,
       CompareDateStringPipe,
+      TabComponent,
     ],
     providers: [
       UploadFileService,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,10 +12,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpBaseApiHeader } from './providers/interceptor/http-api.interceptor';
 import { AuthInterceptor } from './providers/interceptor/http-authorization.interceptor';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { HIGHLIGHT_OPTIONS, HighlightModule, provideHighlightOptions } from 'ngx-highlightjs';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +26,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     SharedModule,
     HttpClientModule,
     NgApexchartsModule,
+    HighlightModule,
   ],
   providers: [
+      provideHighlightOptions({
+        fullLibraryLoader: () => import('highlight.js'),
+        themePath: 'assets/styles/solarized-dark.css'
+      })
+    ,
     provideAnimationsAsync(),
     SidebarService,
     {
@@ -40,6 +47,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
       multi: true 
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

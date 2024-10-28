@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComponentComponent } from './component.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
+import { AvatarPageComponent } from './components/avatar/avatar-page.component';
 import { BadgeComponent } from './components/badge/badge.component';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
 {
     path: '',
     children: [
-        { path: 'avatar', component: AvatarComponent },
+        { path: 'avatar', component: AvatarPageComponent },
     ],
     data: {
         breadcrumb: {
