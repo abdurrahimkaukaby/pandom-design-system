@@ -19,8 +19,8 @@ import { AuthService } from "../services/auth.service";
       } else {
         console.log('not suthenticated');
         // If not authenticated, redirect to login page with returnUrl
-        if (state.url !== '/login') {
-          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        if (state.url !== '/home') {
+          this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
         }
 
         return false;  // Block access

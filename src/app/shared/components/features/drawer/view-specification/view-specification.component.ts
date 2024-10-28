@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { ConfirmationService } from '../../confirmation-modal/confirmation-modal.service';
 import { ToasterService } from '../../toaster/toaster.service';
 import { take } from 'rxjs';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { SpecificationDTO } from '../../../../../api/specification/models/specification.dto';
 import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../../../../core/const/animation.const';
 
 @Component({
@@ -17,7 +15,7 @@ import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../..
   ],
 })
 export class ViewSpecificationComponent {
-  @Input() selectedEquipment : SpecificationDTO
+  @Input() selectedEquipment : any
   @Output() onCancelEmit = new EventEmitter<void>();
   @Output() onRefreshEmit = new EventEmitter<void>();
 

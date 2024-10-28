@@ -1,0 +1,30 @@
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center">
+    <div class="flex w-full items-center justify-center border-b">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                [border]="false"
+                title="Avatar"
+                subtitle="A graphical representation of an object or entity."
+            </app-page-title>
+        </div>
+    </div>
+    <div class="flex w-[1000px] items-center">
+        <div class="text-sm font-medium text-center text-text-text-secondary border-b border-border-border-divider px-6">
+            <ul class="flex flex-wrap -mb-px">
+                <li class=" cursor-pointer">
+                    <span 
+                        [ngClass]="true? 'text-text-text-brand-blue border-text-text-brand-blue active' : 'border-transparent hover:text-etma-neutral-400 hover:border-etma-neutral-300'" 
+                        class="inline-block p-4 border-b-2 rounded-t-lg duration-200">Actual data</span>
+                </li>
+                <li class=" cursor-pointer">
+                    <span 
+                        [ngClass]="true? 'text-text-text-brand-blue border-text-text-brand-blue active' : 'border-transparent hover:text-etma-neutral-400 hover:border-etma-neutral-300'" 
+                        class="inline-block p-4  border-b-2  rounded-t-lg duration-200" aria-current="page">Forcast data</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

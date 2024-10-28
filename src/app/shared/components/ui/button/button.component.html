@@ -2,10 +2,10 @@
     (blur)="onBlur()"
     [disabled]="disableTerm"
     [ngClass]="{
-        'bg-etma-blue-600 text-white hover:bg-etma-blue-800 focus:ring-2 focus:ring-[#B9E1FE] disabled:opacity-75' : color === 'primary',
-        'bg-[#ffffff] text-[#303036] hover:bg-[#E4E4E7] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB] border-[1px] border-[#E4E4E7]' : color === 'secondary',
-        'bg-white text-slate-600 hover:bg-[#F4F4F5] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB]' : color === 'ghost',
-        'bg-etma-danger-500 hover:bg-etma-danger-600 focus:ring-2 text-etma-neutral-50 disabled:bg-[#F4F4F5] disabled:text-[#D6D6DB]' : color === 'danger',
+        'bg-etma-blue-600 active:bg-etma-blue-900 text-white hover:bg-etma-blue-800 focus:ring-2 focus:ring-[#B9E1FE] disabled:opacity-75' : color === 'primary',
+        'bg-[#ffffff] active:bg-[#d3d3d6] text-[#303036] hover:bg-[#E4E4E7] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB] border-[1px] border-[#E4E4E7]' : color === 'secondary',
+        'bg-white active:bg-[#e0e0e0] text-slate-600 hover:bg-[#F4F4F5] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB]' : color === 'ghost',
+        'bg-etma-danger-500 active:bg-etma-danger-700 hover:bg-etma-danger-600 focus:ring-2 text-etma-neutral-50 disabled:bg-[#F4F4F5] disabled:text-[#D6D6DB]' : color === 'danger',
         'px-6 py-2 rounded-[6px] text-sm h-8' : mode === 'wide' ,
         'px-3 py-2 rounded-md text-sm h-8' : mode === 'normal' ,
         'px-2 py-1 text-xs rounded-[4px]' : mode === 'compact',

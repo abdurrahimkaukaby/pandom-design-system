@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, signal, Simp
 import { take } from 'rxjs';
 import { ConfirmationService } from '../../confirmation-modal/confirmation-modal.service';
 import { ToasterService } from '../../toaster/toaster.service';
-import { DetailRunningHourDTO } from '../../../../../api/running-hour/models/running-hour.dto';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../../../../core/const/animation.const';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FormGroupOf } from '../../../../../core/dto/form-group-of.dto';
@@ -26,7 +24,7 @@ interface formEditDTO {
   ],
 })
 export class DetailRunningHourComponent implements OnChanges, OnInit {
-  @Input() selectedRunningHour : DetailRunningHourDTO = {
+  @Input() selectedRunningHour : any = {
     equipmentName: 'POTABLE WATER PUMP B',
     workcenterName: 'SKG BERINGIN',
     parentName: 'mechanical',

@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SidebarService } from '../layout/sidebar/sidebar.service';
 import { distinctUntilChanged, lastValueFrom, Subject, take, takeUntil, tap } from 'rxjs';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { ConfirmationService } from '../confirmation-modal/confirmation-modal.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-headerbar',
@@ -111,7 +111,7 @@ export class HeaderbarComponent implements OnInit, OnDestroy {
         console.log('logout confirmaed');
         this.authService.logout()
         this.confirmationService.onCloseModal()
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       } else {
         console.log('logout cancelled');
       }

@@ -7,11 +7,8 @@ import { LocalStorageServiceInterface } from '../../../../../core/interfaces/loc
 import { environment } from '../../../../../environments/environment';
 import { LocalstorageService } from '../../../../../core/services/localstorage.service';
 import { Location } from '@angular/common';
-import { animate, style, transition, trigger } from '@angular/animations';
-import { SiteDTO } from '../../../../../api/master-data/models/site.dto';
-import IManageSites from '../../../../../api/master-data/ports/i-manage-sites';
-import { manageSitesProvider } from '../../../../../api/main-providers.const';
 import { ToasterService } from '../../toaster/toaster.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-sidebar',
@@ -53,34 +50,34 @@ export class SidebarComponent implements AfterViewChecked {
 
   _sidebarMenu = [
     {
-      route: 'specification',
+      route: 'component/avatar',
       icon: 'ph-duotone:file-text',
-      name: 'Specification',
+      name: 'Avatar',
+    },
+    {
+      route: 'component/badge',
+      icon: 'ph-duotone:pulse',
+      name: 'Badge'
     },
     {
       route: 'running-hour',
       icon: 'ph-duotone:clock-countdown',
-      name: 'Running hour'
+      name: 'Breadcrumb'
     },
     {
       route: 'history-card',
       icon: 'ph-duotone:clock-counter-clockwise',
-      name: 'History card'
-    },
-    {
-      route: 'activity-log',
-      icon: 'ph-duotone:pulse',
-      name: 'Activity log'
+      name: 'Buttons'
     },
     {
       route: 'maintenance',
       icon: 'ph-duotone:wrench',
-      name: 'Maintenance'
+      name: 'Card'
     },
     {
       route: 'monitoring',
       icon: 'ph-duotone:gauge',
-      name: 'Monitoring'
+      name: 'Date-picker'
     },
   ]
 
@@ -88,12 +85,7 @@ export class SidebarComponent implements AfterViewChecked {
     {
       route: 'master-data',
       icon: 'ph-duotone:folders',
-      name: 'Master data',
-    },
-    {
-      route: 'manage-users',
-      icon: 'ph-duotone:users',
-      name: 'Manage user'
+      name: 'About Pandom',
     },
   ]
   
@@ -113,7 +105,7 @@ export class SidebarComponent implements AfterViewChecked {
   isMasterData : boolean = false;
   selectedSubMasterData : string;
   subMasterDataSelect : string[] = ['Sites', 'Equipment sub-category', 'Equipment brand & type', 'Maintenance type', 'Classification system']
-  sitesData = signal<SiteDTO[]>([])
+  sitesData = signal<any[]>([])
 
   routeActive : string
 

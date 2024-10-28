@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
           const currentUrl = this.router.url;
 
           // Redirect to login page and pass the current URL as a query parameter
-          this.router.navigate(['/login'], { queryParams: { returnUrl: currentUrl } });
+          this.router.navigate(['/home'], { queryParams: { returnUrl: currentUrl } });
         }
         return throwError(() => error);
       })

@@ -10,16 +10,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    title: 'RAGAMAPAN | Home',
+    title: 'PANDOM | Home',
     data: {
       breadcrumb: {
         label: 'Home',
         parents: []
       }
     },
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import('./domains/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'component',
+    title: 'PANDOM | component',
+    data: {
+      breadcrumb: {
+        label: 'Component',
+      }
+    },
+    loadChildren: () =>
+      import('./domains/component/component.module').then((m) => m.ComponentModule),
   },
 ];
 

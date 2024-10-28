@@ -1,14 +1,12 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Inject, Input, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { catchError, distinctUntilChanged, EMPTY, Subject, takeUntil, tap } from 'rxjs';
-import { SiteDTO } from '../../../../api/master-data/models/site.dto';
-import IManageSites, { ManageSitesApi } from '../../../../api/master-data/ports/i-manage-sites';
 import { LocalServiceConst } from '../../../../core/const/local-storage.const';
 import { SearchPaginationDTO } from '../../../../core/dto/pagination.dto';
 import { LocalstorageService } from '../../../../core/services/localstorage.service';
 import { ToasterService } from '../toaster/toaster.service';
 import { SidebarService } from '../layout/sidebar/sidebar.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 interface siteDTO {site:string, location:string}
 @Component({
@@ -56,11 +54,10 @@ export class DropdownSiteComponent implements OnInit, OnDestroy {
   searchForm = new FormControl('')
   isSearchFocus : boolean
   isExpand : boolean = false
-  sitesData = signal<SiteDTO[]>([])
-  selectedSitesData = signal<SiteDTO>(null)
+  sitesData = signal<any[]>([])
+  selectedSitesData = signal<any>(null)
 
   constructor(
-    @Inject(ManageSitesApi) private _sitesManager: IManageSites,
     private toasterService: ToasterService,
     private localStorageService: LocalstorageService,
     private sidebarService: SidebarService,
@@ -70,13 +67,11 @@ export class DropdownSiteComponent implements OnInit, OnDestroy {
         distinctUntilChanged(),
         takeUntil(this._onDestroy$),
         tap(value => {
-          this.fetchSite()
         })
       ).subscribe()
   }
 
   ngOnInit(): void {
-    this.fetchSite()
 
     // Subscribe to changes in the site key
     this.localStorageService.getDataObservable(LocalServiceConst.SITE_INFO)
@@ -86,24 +81,6 @@ export class DropdownSiteComponent implements OnInit, OnDestroy {
         this.selectedSitesData.set(JSON?.parse(data));
       }
     });
-  }
-
-  fetchSite(){
-    const search : SearchPaginationDTO = {
-      searchTerm: this.searchForm.value
-    }
-    this._sitesManager.getSites(search)
-      .pipe(
-        catchError((err) => {
-          this.toasterService.error('Failed to get Sites data.', 3000);
-          return EMPTY
-        }),
-        tap(siteResult => {
-          this.sitesData.set(siteResult?.data?.list)
-          // save sites data to service so it can be called by others components
-          this.sidebarService.setSites(this.sitesData())
-        })
-      ).subscribe()
   }
 
   onToggle(){
@@ -129,7 +106,7 @@ export class DropdownSiteComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSelectSite(site : SiteDTO){
+  onSelectSite(site : any){
     this.localStorageService.saveData(LocalServiceConst.SITE_INFO, JSON.stringify(site))
     this.isExpand = false;
   }

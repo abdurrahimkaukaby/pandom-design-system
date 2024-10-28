@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SiteDTO } from '../../../../../api/master-data/models/site.dto';
 
 export type ShowHideType = 'show' | 'hide';
 
@@ -11,7 +10,7 @@ export type ShowHideType = 'show' | 'hide';
 export class SidebarService {
 
   sidebarState: ShowHideType = 'show';
-  public siteData$ = new BehaviorSubject<SiteDTO[]>([]);
+  public siteData$ = new BehaviorSubject<any[]>([]);
   public sidebarState$ = new BehaviorSubject<ShowHideType>('show');
   public isMasterData$ = new BehaviorSubject<boolean>(false);
   public subMasterData$ = new BehaviorSubject<string>('Sites');
@@ -24,7 +23,7 @@ export class SidebarService {
     return this.siteData$.asObservable();
   }
 
-  setSites(sites : SiteDTO[]) {
+  setSites(sites : any[]) {
     return this.siteData$.next(sites);
   }
 

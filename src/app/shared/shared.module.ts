@@ -27,19 +27,13 @@ import { DropdownMenuComponent } from './components/ui/dropdown-menu/dropdown-me
 import { ConfirmationModalComponent } from './components/features/confirmation-modal/confirmation-modal.component';
 import { ConfirmationWrapperComponent } from "./components/features/confirmation-modal/confirmation-wrapper/confirmation-wrapper.component";
 import { SidebarService } from "./components/features/layout/sidebar/sidebar.service";
-import { AddSiteComponent } from './components/features/drawer/add-site/add-site.component';
-import { AddMachineSubCategoryComponent } from './components/features/drawer/add-machine-sub-category/add-machine-sub-category.component';
-import { AddBrandTypeComponent } from './components/features/drawer/add-brand-type/add-brand-type.component';
 import { NoDataIlluComponent } from './components/ui/no-data-illu/no-data-illu.component';
 import { FooterPaginationComponent } from './components/ui/footer-pagination/footer-pagination.component';
 import { ToasterComponent } from './components/features/toaster/toaster.component';
 import { ToasterWrapperComponent } from './components/features/toaster/toaster-wrapper/toaster-wrapper.component';
 import { DatePickerComponent } from './components/ui/date-picker/date-picker.component';
-import { AddUserComponent } from './components/features/drawer/add-user/add-user.component';
 import { DropdownSearchComponent } from './components/ui/dropdown-search/dropdown-search.component';
 import { ViewSpecificationComponent } from './components/features/drawer/view-specification/view-specification.component';
-import { dummyManageBrandsProvider, dummyManageSitesProvider, dummyManageSubCategoryProvider, manageBrandsProvider, manageSitesProvider, manageSubCategoryProvider } from "../api/main-providers.const";
-import { DummyManageSitesAdapterService } from "../api/master-data/adapters/local/dummy-manage-sites-adapter.service";
 import { DropdownDescriptionComponent } from './components/ui/dropdown-description/dropdown-description.component';
 import { UploadFileService } from "../core/services/upload-file.service";
 import { SearchAutoSuggestComponent } from './components/ui/search-auto-suggest/search-auto-suggest.component';
@@ -76,15 +70,11 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
       DropdownMenuComponent,
       ConfirmationModalComponent,
       ConfirmationWrapperComponent,
-      AddSiteComponent,
-      AddMachineSubCategoryComponent,
-      AddBrandTypeComponent,
       NoDataIlluComponent,
       FooterPaginationComponent,
       ToasterComponent,
       ToasterWrapperComponent,
       DatePickerComponent,
-      AddUserComponent,
       DropdownSearchComponent,
       ViewSpecificationComponent,
       DropdownDescriptionComponent,
@@ -128,15 +118,11 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
       DropdownMenuComponent,
       ConfirmationModalComponent,
       ConfirmationWrapperComponent,
-      AddSiteComponent,
-      AddMachineSubCategoryComponent,
-      AddBrandTypeComponent,
       NoDataIlluComponent,
       FooterPaginationComponent,
       ToasterComponent,
       ToasterWrapperComponent,
       DatePickerComponent,
-      AddUserComponent,
       DropdownSearchComponent,
       ViewSpecificationComponent,
       DropdownDescriptionComponent,
@@ -150,9 +136,6 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
       CompareDateStringPipe,
     ],
     providers: [
-      manageSitesProvider,
-      manageSubCategoryProvider,
-      manageBrandsProvider,
       UploadFileService,
       // dummyManageSitesProvider,
       // dummyManageSubCategoryProvider,
