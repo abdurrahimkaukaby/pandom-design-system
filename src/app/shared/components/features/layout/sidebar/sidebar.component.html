@@ -1,0 +1,191 @@
+<aside
+  class="relative justify-between z-30 transition-all border-r bg-surface-surface-accent h-full"
+  [ngClass]="{ 
+    'w-[264px]' : isSidebarActive,
+    'w-[72px]' : !isSidebarActive && !isMasterData,
+  }"
+>
+    <div class="flex-col flex justify-between bg-dbx-neutral-50 rounded-xl h-full overflow-auto no-scrollbar">
+        <div class="flex flex-col items-center">
+            <!-- <div
+                [ngClass]="!isSidebarActive ? 'px-2' : 'w-64 px-3'"
+                class="absolute top-4 transition-all z-50 pb-2 pt-2 inline-flex items-end justify-end  text-sm font-bold rounded-lg bg-white ">
+                <button
+                    (click)="toggleSidebar()"
+                    type="button"
+                    [ngClass]="!isSidebarActive ? '' : ''"
+                    class="transition-all pb-2 pt-2 inline-flex items-center justify-end px-3 text-sm font-bold rounded-lg bg-white hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                    <div class="flex h-4 w-4">
+                        <mat-icon class="text-slate-400" svgIcon="ph-regular:map-pin-line"></mat-icon>
+                    </div>
+                </button>
+            </div> -->
+
+            <!-- start of logo -->
+            <div
+                [ngClass]="{
+                    'pl-4 justify-between' : isSidebarActive,
+                    'justify-center' : !isSidebarActive,
+                    'hidden' : isMasterData,
+                    }"
+                class="flex items-center w-full border-b-[1px] border-[#E4E4E7] h-[61px]">
+                
+                <img
+                    [src]="isSidebarActive?'../../../../assets/images/logo-pertamina-ep.png':'../../../../assets/images/logo-pertamina-EP-simple.png'"
+                    [class]="isSidebarActive?'w-[118px] h-6':'w-[32px] h-6 mx-3'"
+                    alt=""
+                    class="transition-all"
+                />
+                <button
+                    (click)="toggleSidebar()"
+                    type="button"
+                    [ngClass]="!isSidebarActive ? 'hidden' : ''"
+                    class="transition-all inline-flex items-center justify-end text-sm font-bold rounded-lg dark:text-gray-400 dark:hover:bg-gray-700 hover:text-etma-blue-600 duration-150 text-slate-400 px-4 h-full"
+                    >
+                    <!-- <span class="sr-only">Open sidebar</span> -->
+                    <div class="flex h-6 w-6 text-text-text-secondary">
+                        <mat-icon class="" svgIcon="ph-regular:sidebar-simple"></mat-icon>
+                    </div>
+                </button>
+                
+            </div>
+            <div 
+                @accordion
+                *ngIf="isMasterData"
+                class="flex items-center gap-1 h-[78px] w-full px-5 border-b border-border-border-divider">
+                <div
+                    class="cursor-pointer hover:opacity-70 duration-150"
+                    (click)="goBackFromMasterDataOrHome()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.62219 8.28941L9.78859 12.38C9.84686 12.4373 9.92112 12.4763 10.002 12.4921C10.0829 12.5079 10.1667 12.4998 10.2428 12.4688C10.319 12.4379 10.3841 12.3854 10.4299 12.318C10.4757 12.2507 10.5001 12.1716 10.5 12.0906V3.90938C10.5001 3.82843 10.4757 3.74928 10.4299 3.68195C10.3841 3.61462 10.319 3.56214 10.2428 3.53116C10.1667 3.50017 10.0829 3.49207 10.002 3.50788C9.92112 3.52369 9.84686 3.5627 9.78859 3.61997L5.62219 7.71059C5.58346 7.74858 5.55273 7.79369 5.53176 7.84335C5.51079 7.89301 5.5 7.94624 5.5 8C5.5 8.05376 5.51079 8.10699 5.53176 8.15665C5.55273 8.20631 5.58346 8.25142 5.62219 8.28941Z"/>
+                    </svg>
+                </div>
+                <span class="text-xs font-medium">Master data</span>
+            </div>
+            <!-- end of logo -->
+
+            <ul 
+                [ngClass]="{
+                    'px-4': isSidebarActive,
+                    'px-2': !isSidebarActive,
+                    'hidden': isMasterData,
+                    }" 
+                class="space-y-2 font-medium w-full pt-4 gap-0">
+                <li>
+                    <div
+                        data-hover="home"
+                        data-top=""
+                        class="text-text-text-secondary mb-4"
+                        [ngClass]="!isSidebarActive?'hovertext':''"
+                    >
+                    <!-- (isActiveChange)="isHomeActiveCheck($event)" -->
+                        <a
+                            [routerLink]="'home'"
+                            routerLinkActive="border hover:border-[#DCEBEF] border-etma-neutral-200 bg-white text-etma-blue-600"
+                            [ngClass]="!isSidebarActive?'justify-center':''"
+                            class="cursor-pointer flex items-center p-2 hover:text-secondary rounded-md hover:bg-[#DCEBEF] hover:transition-all grou duration-150"
+                        >
+                            <div class="flex h-5 w-5 mb-[4px] text-text-text-secondary">
+                                <mat-icon svgIcon="ph-duotone:house-line"></mat-icon>
+                            </div>
+                            <span *ngIf="isSidebarActive" class="ml-3 ">Home</span>
+                        </a>
+                    </div>
+                </li>
+
+                <div [ngClass]="isSidebarActive? 'text-sm pl-2 ' : 'text-[11px] text-center'" class="text-text-text-secondary">Menu</div>
+
+                <li *ngFor="let menu of _sidebarMenu">
+                    <div
+                        [attr.data-hover]="menu.name"
+                        data-top=""
+                        class="text-text-text-secondary"
+                        [ngClass]="!isSidebarActive?'hovertext flex items-center justify-center':''"
+                    >
+                    <!-- (isActiveChange)="isNotHomeActiveCheck($event)" -->
+                        <a
+                            [routerLink]="menu.route"
+                            routerLinkActive="border hover:border-[#DCEBEF] border-etma-neutral-200 bg-white text-etma-blue-600"
+                            [ngClass]="{
+                                'justify-center' : !isSidebarActive,
+                                'pointer-events-none cursor-default text-[#D6D6DB] justify-between': menu.route === 'maintenance' || menu.route === 'monitoring'}"
+                            class="cursor-pointer flex items-center p-2 hover:text-secondary rounded-md hover:bg-[#DCEBEF] hover:transition-all group duration-150"
+                        >
+                            <div class="flex">
+                                <div class="flex h-5 w-5 mb-[4px] text-text-text-secondary">
+                                    <mat-icon [svgIcon]="menu.icon"></mat-icon>
+                                </div>
+                                <span *ngIf="isSidebarActive" class="ml-3 ">{{menu.name}}</span>
+                            </div>
+                            <span *ngIf="(menu.route === 'maintenance' || menu.route === 'monitoring') && isSidebarActive" class=" bg-[#FAFAFA] border-[1px] border-[#E4E4E7] text-text-text-secondary text-xs font-medium rounded-md px-1">
+                                Soon
+                            </span>
+                        </a>
+                    </div>
+                
+                </li>
+            </ul>
+
+            <ul @accordion *ngIf="isMasterData" class="flex flex-col w-full h-full px-4 pt-6">
+                <li *ngFor="let subMasterDataSelect of subMasterDataSelect">
+                    <button
+                        (click)="onSelectSubMasterData(subMasterDataSelect)"
+                        [ngClass]="selectedSubMasterData === subMasterDataSelect ? 'bg-background-background-base-default text-text-text-brand-blue border border-border-border-base' : 'text-text-text-secondary'"
+                        class="flex px-3 py-2 rounded-md w-full focus:border-border-border-base">
+                        {{subMasterDataSelect}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div 
+            [ngClass]="isSidebarActive? 'px-4':'px-2'"
+            class="flex flex-col justify-center mt-auto pt-2 gap-1">
+                <div 
+                    [ngClass]="{ 
+                        'text-sm pl-2 ' : isSidebarActive, 
+                        'text-[11px] text-center': !isSidebarActive,
+                        'hidden' : isMasterData
+                        }" 
+                    class="text-text-text-secondary">Setting</div>
+                <ul 
+                    [ngClass]="{
+                        'pt-2' : isSidebarActive,
+                        'hidden' : isMasterData,
+                        }" 
+                    class="space-y-2 font-medium w-full gap-0">
+                    <li *ngFor="let menu of _settingMenu">
+                        <div
+                            class="text-text-text-secondary"
+                            [attr.data-hover]="menu.name"
+                            [ngClass]="!isSidebarActive?'hovertext':''"
+                        >
+                        <a
+                                [routerLink]="menu.route"
+                                (isActiveChange)="menu.route === 'master-data'? onActiveMasterDataCheck($event) : null"
+                                routerLinkActive="border hover:border-[#DCEBEF] border-etma-neutral-200 bg-white text-etma-blue-600"
+                                [ngClass]="{
+                                    'justify-center' : !isSidebarActive,
+                                    'pointer-events-none cursor-default text-[#D6D6DB]': menu.route === 'maintenance' || menu.route === 'monitoring'}"
+                                class="cursor-pointer flex items-center p-2 hover:text-secondary rounded-md hover:bg-[#DCEBEF] hover:transition-all grou duration-150"
+                            >
+                                <div class="flex">
+                                    <div class="flex h-5 w-5 mb-[4px] text-text-text-secondary">
+                                        <mat-icon [svgIcon]="menu.icon"></mat-icon>
+                                    </div>
+                                    <span *ngIf="isSidebarActive" class="ml-3">{{menu.name}}</span>
+                                </div>
+                            </a>
+                        </div>
+                    
+                    </li>
+                </ul>
+                <div *ngIf="!isMasterData" [ngClass]="isSidebarActive? 'text-sm pl-2 ' : 'text-[11px] text-center'" class="text-text-text-secondary">{{isSidebarActive? 'Current site' : 'Current...'}}</div>
+                <app-dropdown-site *ngIf="!isMasterData" [isSidebarActive]="isSidebarActive" ></app-dropdown-site>
+                <span [ngClass]="isSidebarActive? 'gap-1' : 'flex-col text-center'" class="text-sm text-text-text-secondary w-full flex pb-4 pt-3 ">
+                    {{'RAGAMAPAN '}}
+                    <span>{{'v.' +version}}</span>
+                </span>
+        </div>
+    </div>
+</aside>

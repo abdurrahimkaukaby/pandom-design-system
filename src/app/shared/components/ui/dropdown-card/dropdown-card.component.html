@@ -1,0 +1,92 @@
+<div
+    [ngClass]="{
+        'ring-etma-blue-200 ring-2 border-blue-500' : isActive && activeStyle === 'primary' ,
+        'ring-border-border-base bg-background-background-base-hover ring-0 border-border-border-base' : isActive && activeStyle === 'secondary' ,
+        'border-2' : border,     
+        'w-[124px] py-1 px-[6px] gap-1' : cardStyle === 'compact',     
+        'w-[232px] py-2 px-2 gap-2' : cardStyle === 'normal',
+        'w-full py-2 px-2 gap-2' : cardStyle === 'full',
+        'w-full py-1 pl-1 pr-2 gap-2' : cardStyle === 'full-header',
+        'bg-background-background-base-default hover:bg-background-background-base-hover' : !isActive && activeStyle !== 'none',
+        'bg-white' : activeStyle === 'none' && !isBackgroundTransparent,
+        'bg-transparent' : isBackgroundTransparent,
+        }"
+    class="relative flex items-center justify-between rounded-md duration-150 group transition-all">
+    
+    <div
+        [ngClass]="{
+            'gap-0' : cardStyle === 'compact' || ((cardStyle === 'normal' || cardStyle === 'full') && isTitleHide),   
+            'gap-1' : cardStyle === 'full-header',
+            'gap-3' : (cardStyle === 'normal' || cardStyle === 'full') && !isTitleHide,
+        }"
+        class="flex items-center"
+    
+    >
+        <div *ngIf="isExpandFeature" (click)="onToggleExpandList()" class="cursor-pointer hover:opacity-75">
+
+            <div *ngIf="isExpandList" >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.38 6.21141L8.28941 10.3778C8.25142 10.4165 8.20631 10.4473 8.15665 10.4682C8.10699 10.4892 8.05376 10.5 8 10.5C7.94624 10.5 7.89301 10.4892 7.84335 10.4682C7.79369 10.4473 7.74858 10.4165 7.71059 10.3778L3.61997 6.21141C3.5627 6.15314 3.52369 6.07888 3.50788 5.99801C3.49207 5.91715 3.50017 5.83333 3.53116 5.75715C3.56214 5.68098 3.61462 5.61589 3.68195 5.57011C3.74928 5.52434 3.82843 5.49994 3.90938 5.5H12.0906C12.1716 5.49994 12.2507 5.52434 12.318 5.57011C12.3854 5.61589 12.4379 5.68098 12.4688 5.75715C12.4998 5.83333 12.5079 5.91715 12.4921 5.99801C12.4763 6.07888 12.4373 6.15314 12.38 6.21141Z"/>
+                </svg>
+            </div>
+            <div *ngIf="!isExpandList">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                </svg>
+            </div>
+        </div>
+        <app-avatar 
+            [ngClass]="{   
+                'pl-3 py-2' : cardStyle === 'normal',
+                'hidden' : avatarStyle === 'none',
+            }"
+            [title]="title?.length > 0? title[0] : ''"
+            [textSize]="avatarTextSize"
+            [mode]="avatarStyle" >
+        </app-avatar>
+
+        <div 
+            [ngClass]="{
+                'w-[68px]' : cardStyle === 'compact',     
+                'w-[146px]' : cardStyle === 'normal',
+            }"
+            class="flex flex-col text-left">
+            <span 
+                *ngIf="!isTitleHide" 
+                [ngClass]="{
+                    'font-medium' : avatarStyle !== 'none',
+                    'uppercase' : isUppercase,
+                    'capitalize' : !isUppercase,
+                    }" 
+                class="text-sm ">{{title}}
+            </span>
+            <span *ngIf="subtitle" class="text-xs gap-1 text-text-text-secondary">     
+                {{subtitle}}
+            </span>
+                
+        </div>
+    </div>
+    <div
+        class="flex justify-center cursor-pointer">
+        <button 
+            (click)="iconButton ? onExpand() : null"
+            (blur)="onBlur()"
+            [ngClass]="{
+                'text-etma-blue-600': iconStyle === 'primary',
+                'text-icon-icon-subtle group hover:text-etma-blue-600 cursor-pointer': iconStyle === 'primary-hover',
+                'text-slate-400': iconStyle === 'secondary',
+                'bg-white group-hover:bg-[#E4E4E7]' : cardStyle === 'compact',     
+                'bg-white hover:bg-background-background-base-hover' : iconButton,     
+                'mr-2' : cardStyle === 'normal',
+            }"
+            class="flex px-1 items-center rounded-[4px] duration-150">
+            <div class="flex h-4 w-4 mb-2">
+                <mat-icon 
+                    *ngIf="icon"
+                    class="h-4 w-4" 
+                    [svgIcon]="icon">
+                </mat-icon>
+            </div>
+        </button>
+    </div>
+</div>

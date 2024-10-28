@@ -1,0 +1,15 @@
+<span 
+    class="flex pl-[6px] pr-2 py-[2px] rounded-md bg-white border-[1px] gap-1">
+    <span
+        [ngClass]="
+            color === 'blue'? 'bg-blue-600' : 
+            color === 'success'? 'bg-green-600' :
+            color === 'error'? 'bg-red-600' :
+            color === 'warning'? 'bg-orange-600' :
+            'bg-slate-500'"
+        class="m-auto h-2 w-2 rounded-sm">
+    </span>
+    <span class="text-xs">
+        {{text}}
+    </span>
+</span>

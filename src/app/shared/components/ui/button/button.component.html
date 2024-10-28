@@ -1,0 +1,44 @@
+<button 
+    (blur)="onBlur()"
+    [disabled]="disableTerm"
+    [ngClass]="{
+        'bg-etma-blue-600 text-white hover:bg-etma-blue-800 focus:ring-2 focus:ring-[#B9E1FE] disabled:opacity-75' : color === 'primary',
+        'bg-[#ffffff] text-[#303036] hover:bg-[#E4E4E7] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB] border-[1px] border-[#E4E4E7]' : color === 'secondary',
+        'bg-white text-slate-600 hover:bg-[#F4F4F5] focus:ring-2 focus:ring-[#B9E1FE] focus:bg-[#e5e5e5] disabled:text-[#D6D6DB]' : color === 'ghost',
+        'bg-etma-danger-500 hover:bg-etma-danger-600 focus:ring-2 text-etma-neutral-50 disabled:bg-[#F4F4F5] disabled:text-[#D6D6DB]' : color === 'danger',
+        'px-6 py-2 rounded-[6px] text-sm h-8' : mode === 'wide' ,
+        'px-3 py-2 rounded-md text-sm h-8' : mode === 'normal' ,
+        'px-2 py-1 text-xs rounded-[4px]' : mode === 'compact',
+    }"
+    class="flex gap-[6px] justify-center disabled:pointer-events-none items-center shadow-sm focus:outline-none duration-150"
+>
+    <div 
+        *ngIf="iconLeft"
+        [ngClass]="{
+            'h-4 w-4' : mode === 'normal' || mode === 'wide',
+            'h-[14px] w-[14px]' : mode === 'compact',
+            'text-icon-icon-subtle' : color === 'secondary',
+        }"
+        class="flex items-center">
+        <mat-icon [svgIcon]="iconLeft"></mat-icon>
+        <!-- <hero-icon 
+        class=""
+        [name]="icon">
+        </hero-icon> -->
+    </div> 
+        <ng-content></ng-content>
+
+    <div 
+        *ngIf="iconRight"
+        [ngClass]="{
+            'h-4 w-4' : mode === 'normal' || mode === 'wide',
+            'h-[14px] w-[14px]' : mode === 'compact'
+        }"
+        class="flex items-center">
+        <mat-icon [svgIcon]="iconRight"></mat-icon>
+        <!-- <hero-icon 
+        class=""
+        [name]="icon">
+        </hero-icon> -->
+    </div> 
+</button>

@@ -1,0 +1,6 @@
+<div class="flex flex-col w-[456px] rounded-md border shadow bg-white p-1">
+    <div (click)="onSelectDropdown(dropdown)" *ngFor="let dropdown of dropdowns" class="flex flex-col items-start gap-2 p-2 rounded-[6px] cursor-pointer hover:bg-background-background-base-hover">
+        <span class="text-text-text-primary text-sm capitalize font-medium">{{dropdown.value}}</span>
+        <span class="flex items-start text-left text-text-text-secondary text-xs capitalize">{{dropdown.description}}</span>   
+    </div>
+</div>

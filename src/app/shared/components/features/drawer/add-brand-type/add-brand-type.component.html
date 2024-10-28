@@ -1,0 +1,89 @@
+<div 
+    (click)="onCancel()"
+    class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-black bg-opacity-50 backdrop-blur-sm justify-end items-center flex">
+        <!-- Modal content -->
+        <div (click)="doNothing($event)" class="relative flex flex-col justify-between bg-background-background-base-default shadow w-1/3 min-w-[504px] h-full">
+            <!-- Modal body -->
+             <div class="flex flex-col">
+                 <div class="relative flex items-start px-6 py-4 justify-between w-full border-b border-border-border-divider">
+                     <div class="flex flex-col gap-1">
+                         <span class="font-medium text-base">{{selectedBrand? 'Edit machine brand & type' : 'Add machine brand & type'}}</span>
+                     </div>
+                     <div 
+                         (click)="onCancel()"
+                         class="flex h-4 w-4 hover:text-etma-danger-500 cursor-pointer">
+                         <mat-icon class="" svgIcon="ph-regular:x"></mat-icon>
+                     </div>
+                 </div>
+     
+                 <div class="flex flex-col w-full p-6 mb-auto h-auto bg-background-background-base-default border-t border-border-border-divider gap-4">
+                    <span class="text-sm text-[#6C6C79] ">Please fill in the following data:</span>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium">Machine brand name<span class="text-text-text-danger">*</span></span>
+                            <div *ngIf="!selectedBrand" class="flex gap-1 items-center">
+                                <span class="ml-3 text-sm text-text-text-secondary">Existing brand?</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" [formControl]="isExistingBrand" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-1 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <app-input [isUppercase]="true" *ngIf="!isExistingBrand.value" placeholder="Enter machine brand name" [isRequired]="true" [border]="true" [control]="machineBrandForm"></app-input>
+                        <app-dropdown 
+                            *ngIf="isExistingBrand.value"
+                            [options]="brandOption"
+                            [control]="machineBrandForm"
+                            placeholder="All machine categories">
+                        </app-dropdown>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-medium">Equipment type<span class="text-text-text-danger">*</span></span>
+                        <div @accordion *ngFor="let type of equipmentTypeArrayForm.controls; index as indexType" class="relative">
+                            <app-input [isUppercase]="true" [isError]="duplicateArrayIndex().includes(indexType) && type.value.model !== ''" placeholder="Enter machine type" [isRequired]="true" [border]="true" [control]="type.controls.model"></app-input>
+                            <div (click)="onDeleteType(indexType)" *ngIf="equipmentTypeArrayForm.controls.length > 1 && !type.controls.id.value" class="absolute right-2 top-2 flex items-center text-text-text-secondary hover:text-etma-danger-700 justify-center h-4 w-4 duration-150 cursor-pointer">
+                                <mat-icon class="" svgIcon="ph-regular:x"></mat-icon>
+                            </div>
+                            <span *ngIf="duplicateArrayIndex().includes(indexType) && type.value.model !== ''" class="text-xs text-text-text-danger">Data has already been input before</span>
+                        </div>
+
+                        <button (click)="onAddType()" [disabled]="equipmentTypeArrayForm.controls.length === 3" class="flex items-center justify-center font-medium w-full py-1 mt-1 px-4 border border-border-border-bold border-dashed bg-surface-surface-subtle rounded-md gap-[6px] disabled:text-text-text-disabled disabled:cursor-not-allowed">
+                            <div class="flex items-center justify-center h-4 w-4 duration-150 cursor-pointer">
+                                <mat-icon class="" svgIcon="ph-regular:plus"></mat-icon>
+                            </div>
+                            Add type
+                        </button>
+                    </div>
+
+                </div>
+             </div>
+            <!-- Modal footer -->
+            <div class="flex justify-end gap-2 px-6 py-4 bg-background-background-subtle border-t border-border-border-base w-full items-end">
+                <button 
+                    (click)="onCancel()"
+                    type="button" 
+                    class="text-text-text-primary bg-background-background-base-default hover:bg-background-background-base-hover border-border-border-base border px-3 py-2 rounded-md"
+                >
+                    Cancel
+                </button>
+                <button 
+                    (click)="onSubmit()"
+                    [ngClass]="{
+                        'opacity-50 pointer-events-none' : isLoading || machineBrandForm.invalid || equipmentTypeArrayForm.invalid || (duplicatedCheckArray.concat(duplicatedCheckArrayApi) | checkArrayDuplicatePipe)
+                    }"
+                    type="button" 
+                    class="flex items-center text-text-text-inverse border-border-border-base border pl-3 pr-2 py-2 rounded-md bg-background-background-brand-default hover:bg-background-background-brand-hover"
+                >
+                    <div *ngIf="isLoading" class="flex pr-2 pt-1">
+                        <app-loading-ring></app-loading-ring>
+                    </div>
+                    Submit
+                    <div class="pl-1">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+</div> 

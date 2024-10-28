@@ -1,0 +1,27 @@
+.hovertext {
+    position: relative;
+  }
+  .hovertext:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    background-color: #5E5E5E;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition: opacity 0.3s ease-in-out;
+  
+    position: fixed;
+    z-index: 50;
+    left: 70px;
+    margin-top: 5px;
+    /* top:50px; */
+    /* font-family: "Plus Jakarta Sans", "sans-serif"; */
+    font-size:small;
+  }
+  .hovertext:hover:before {
+    opacity: 1;
+    visibility: visible;
+  }

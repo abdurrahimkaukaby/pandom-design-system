@@ -1,0 +1,10 @@
+<div 
+    [ngClass]="{'h-[35px] w-[35px]' : mode === 'normal',
+                'h-[22px] w-[22px]' : mode === 'compact',
+                'text-[10px]' : textSize === 'xxs',
+                'text-xs' : textSize === 'xs',
+                'text-sm' : textSize === 'sm',
+                }"
+    class="flex items-center justify-center bg-color-blue-500 text-white rounded-[4px] uppercase">
+    {{title}}
+</div>

@@ -1,0 +1,38 @@
+<div class="flex justify-between px-6 py-4 w-full">
+    <div class="flex">
+        <div *ngFor="let step of stepperData; index as stepperIndex" class="flex">
+            <div 
+                [ngClass]="{'pointer-events-none':activeStepIndex === stepperIndex}"
+                class="flex items-center gap-2">
+                <button 
+                    (click)="!step.isDisable? onClickStep(stepperIndex) : null"
+                    [ngClass]="{
+                        'bg-[#F4F4F5] ': activeStepIndex === stepperIndex && !step?.isCompleted,
+                        'bg-[#006CB7] border-etma-blue-400 text-white': step?.isCompleted,
+                        'cursor-pointer': !step.isDisable,
+                        'cursor-default pointer-events-none': step.isDisable,
+                    }"
+                    class="flex items-center justify-center h-6 w-6 rounded-md border pt-[1px] text-sm focus:border-[#006CB7] focus:shadow-sm focus:shadow-[#B9E1FE]">
+                    <mat-icon *ngIf="step?.isCompleted" class="p-1 mb-[2px]" svgIcon="ph-bold:check"></mat-icon>
+                    
+                    {{!step?.isCompleted ? stepperIndex + 1 : ''}}
+                </button>
+                <span 
+                    (click)="!step.isDisable? onClickStep(stepperIndex) : null"
+                    [ngClass]="{
+                        'font-medium': activeStepIndex === stepperIndex,
+                        'cursor-pointer': !step.isDisable,
+                        }"
+                    class="flex items-center rounded-md text-sm">
+                    {{step.title}}
+                </span>
+            </div>
+            <div *ngIf="stepperIndex + 1 !== stepperData?.length" class="flex justify-center flex-col divide-y-2 w-8 p-2">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <ng-content></ng-content>
+</div>

@@ -1,0 +1,292 @@
+<div 
+    (click)="onCancel()"
+    class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-black bg-opacity-50 backdrop-blur-sm justify-end items-center flex">
+    <!-- Modal content -->
+    <div (click)="doNothing($event)" class="relative flex flex-col bg-background-background-base-default shadow w-1/3 min-w-[696px] h-full">
+        <!-- Modal body -->
+        <div class="flex flex-col relative">
+            <div class="sticky z-[51] flex items-start px-6 py-4 justify-between w-full border-b border-border-border-divider bg-background-background-base-default">
+                <div class="flex flex-col gap-1">
+                    <span class="font-medium text-base">Day-to-day running hour details</span>
+                </div>
+                <div 
+                    (click)="onCancel()"
+                    class="flex h-4 w-4 hover:text-etma-danger-500 cursor-pointer">
+                    <mat-icon class="" svgIcon="ph-regular:x"></mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col pt-6 pl-6 pr-4 gap-4 divide-y-2 divide-dashed h-auto bg-background-background-base-default">
+            <div class="flex flex-col gap-4">
+                <span class="font-semibold text-2xl text-text-text-primary" >{{selectedRunningHour.equipmentName}}</span>
+                <div class="flex items-center">
+                    <span (click)="onToggleGeneral($event)" class="cursor-pointer text-text-text-primary font-semibold">General</span>
+                    <div (click)="onToggleGeneral($event)" class="cursor-pointer">
+                        <div *ngIf="isExpandGeneral" >
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.38 6.21141L8.28941 10.3778C8.25142 10.4165 8.20631 10.4473 8.15665 10.4682C8.10699 10.4892 8.05376 10.5 8 10.5C7.94624 10.5 7.89301 10.4892 7.84335 10.4682C7.79369 10.4473 7.74858 10.4165 7.71059 10.3778L3.61997 6.21141C3.5627 6.15314 3.52369 6.07888 3.50788 5.99801C3.49207 5.91715 3.50017 5.83333 3.53116 5.75715C3.56214 5.68098 3.61462 5.61589 3.68195 5.57011C3.74928 5.52434 3.82843 5.49994 3.90938 5.5H12.0906C12.1716 5.49994 12.2507 5.52434 12.318 5.57011C12.3854 5.61589 12.4379 5.68098 12.4688 5.75715C12.4998 5.83333 12.5079 5.91715 12.4921 5.99801C12.4763 6.07888 12.4373 6.15314 12.38 6.21141Z"/>
+                            </svg>
+                        </div>
+                        <div *ngIf="!isExpandGeneral">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div @accordion *ngIf="isExpandGeneral" class="">
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Location</span>
+                        <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedRunningHour?.workcenterName}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Category</span>
+                        <span class="text-text-text-secondary text-sm font-medium">{{selectedRunningHour?.parentName}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Sub-category</span>
+                        <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedRunningHour?.categoryName}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Brand name</span>
+                        <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedRunningHour?.manufactureName}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Brand type</span>
+                        <span class="text-text-text-secondary text-sm font-medium">{{selectedRunningHour?.manufactureModel}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Serial number</span>
+                        <span class="text-text-text-secondary text-sm font-medium">{{selectedRunningHour?.serialNumber}}</span>
+                    </div>
+                    <div class="flex py-2 justify-between border-b">
+                        <span class="text-text-text-secondary text-sm ">Tag number</span>
+                        <span class="text-text-text-secondary text-sm font-medium">-</span>
+                    </div>
+                    <div class="flex py-2 justify-between ">
+                        <span class="text-text-text-secondary text-sm ">Manufacture year</span>
+                        <span class="text-text-text-secondary text-sm font-medium">{{selectedRunningHour?.manufactureYear}}</span>
+                    </div>
+                </div>
+            </div>
+            <div 
+                class="flex pt-4 flex-col gap-4 bg-background-background-base-default ">
+                <div class="flex gap-1">
+                    <div class="flex text-xs items-center capitalize rounded-md border border-border-border-brand-subtle bg-background-background-brand-accent text-text-text-brand-blue gap-1 px-1">
+                        MTBF: {{selectedRunningHour.mtbf}} Hours
+                    </div>
+                    <div class="flex text-xs items-center capitalize rounded-md border border-border-border-brand-subtle bg-background-background-brand-accent text-text-text-brand-blue gap-1 px-1">
+                        MTTR: {{selectedRunningHour.mttr}} Hours
+                    </div>
+                </div>
+                <!-- [ngClass]="isExpandGeneral? 'max-h-[10%]' : 'max-h-[25%]'" -->
+                <!-- [ngClass]="isExpandGeneral? 'max-h-[688px]' : 'max-h-[828px]'" -->
+                <div 
+                [ngClass]="isExpandGeneral? 'max-h-[158px]' : 'max-h-[458px]'"
+                    class="flex overflow-auto rounded-md border">
+                    <table 
+                        class="overflow-auto bg-background-background-base-default table-auto w-full text-center rounded-md">
+                        <thead
+                          class="sticky top-0 z-10 bg-surface-surface-subtle border-neutral-200 rounded-t-md h-12"
+                        >
+                          <tr class=" rounded-t-md">
+                            <th
+                              scope="col"
+                              class="items-start whitespace-nowrap border-r border-b border-neutral-200 px-3 rounded-tl-md"
+                            >
+                                <div class="flex font-medium items-center w-full text-sm text-text-text-secondary">
+                                    Date
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                            </th>
+                            <th
+                              scope="col"
+                              class="items-start border-r border-b whitespace-nowrap border-neutral-200 px-3"
+                            >
+                                <div class="flex font-medium justify-between items-center w-full text-sm text-text-text-secondary">
+                                    OPR
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                                <span class="flex w-full text-xs text-text-text-caption font-normal">hrs</span>
+                            </th>
+                            <th
+                              scope="col"
+                              class="items-start border-r border-b whitespace-nowrap border-neutral-200 px-3"
+                            >
+                                <div class="flex font-medium justify-between items-center w-full text-sm text-text-text-secondary">
+                                    SBT
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                                <span class="flex w-full text-xs text-text-text-caption font-normal">hrs</span>
+                            </th>
+                            <th
+                              scope="col"
+                              class="items-start border-r border-b whitespace-nowrap border-neutral-200 px-3"
+                            >
+                                <div class="flex font-medium justify-between items-center w-full text-sm text-text-text-secondary">
+                                    SDT
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                                <span class="flex w-full text-xs text-text-text-caption font-normal">hrs</span>
+                            </th>
+                            <th
+                              scope="col"
+                              class="items-start border-r border-b whitespace-nowrap border-neutral-200 px-3"
+                            >
+                                <div class="flex font-medium justify-between items-center w-full text-sm text-text-text-secondary">
+                                    USDT
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                                <span class="flex w-full text-xs text-text-text-caption font-normal">hrs</span>
+                            </th>
+                            <th
+                              scope="col"
+                              class="items-start border-b whitespace-nowrap border-neutral-200 px-3"
+                            >
+                                <div class="flex font-medium justify-between items-center w-full text-sm text-text-text-secondary">
+                                    Last update
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.9792 9.15437C10.9586 9.10868 10.9236 9.06963 10.8788 9.04216C10.8339 9.01468 10.7812 9.00001 10.7273 9H5.27293C5.21896 8.99996 5.16619 9.0146 5.12131 9.04207C5.07642 9.06953 5.04143 9.10859 5.02077 9.15429C5.00011 9.2 4.99471 9.25029 5.00525 9.29881C5.01579 9.34733 5.0418 9.39189 5.07998 9.42685L7.80715 11.9267C7.83248 11.9499 7.86255 11.9684 7.89566 11.9809C7.92877 11.9935 7.96426 12 8.0001 12C8.03593 12 8.07142 11.9935 8.10453 11.9809C8.13764 11.9684 8.16771 11.9499 8.19304 11.9267L10.9202 9.42685C10.9583 9.39187 10.9843 9.34731 10.9948 9.29881C11.0053 9.2503 10.9999 9.20004 10.9792 9.15437Z" fill="#4D4D57"/>
+                                        <path d="M10.9792 6.84563C10.9586 6.89132 10.9236 6.93037 10.8788 6.95784C10.8339 6.98532 10.7812 6.99999 10.7273 7H5.27293C5.21896 7.00004 5.16619 6.9854 5.12131 6.95793C5.07642 6.93047 5.04143 6.89141 5.02077 6.84571C5.00011 6.8 4.99471 6.74971 5.00525 6.70119C5.01579 6.65267 5.0418 6.60811 5.07998 6.57315L7.80715 4.07332C7.83248 4.05007 7.86255 4.03164 7.89566 4.01906C7.92877 4.00648 7.96426 4 8.0001 4C8.03593 4 8.07142 4.00648 8.10453 4.01906C8.13764 4.03164 8.16771 4.05007 8.19304 4.07332L10.9202 6.57315C10.9583 6.60813 10.9843 6.65269 10.9948 6.70119C11.0053 6.7497 10.9999 6.79996 10.9792 6.84563Z" fill="#4D4D57"/>
+                                    </svg>
+                                </div>
+                                <span class="flex w-full text-xs text-text-text-caption font-normal">hrs</span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <!-- <tbody class="border" *ngIf="mechanicalData()?.length === 0">
+                          
+                          <tr>
+                              <td colspan="12" class="h-16 font-bold">
+                                  No Data
+                              </td>
+                          </tr>
+                        </tbody> -->
+                        <tbody>
+                            <!-- [ngClass]="{
+                              'opacity-50 pointer-events-none': 
+                              ,
+                              'opacity-100': 
+                            }" -->
+                          <tr
+                            [@fadeInOut]
+                            *ngFor="
+                              let item of selectedRunningHour.detailData;
+                              index as indexData
+                            "
+                            [ngClass]="(formArray.at(indexData).controls.opr.value + formArray.at(indexData).controls.sbt.value + formArray.at(indexData).controls.sdt.value + formArray.at(indexData).controls.usdt.value) !== 24 ? 'bg-background-background-warning' : 'bg-white'"
+                          >
+                            <td class="border-r border-b whitespace-nowrap p-3">
+                                <span class="flex w-full justify-end">
+                                    {{ item.date || '-' }}
+                                </span>
+                            </td>
+                            <td [ngClass]="selectedColumn === 'opr' && (selectedEditIndex() === indexData)? 'border-2 border-color-blue-200 rounded-md ':'border-r border-b'" class=" p-3 whitespace-nowrap group hover:bg-background-background-base-hover duration-75">
+                                <div *ngIf="!(selectedColumn === 'opr' && (selectedEditIndex() === indexData))" class="flex justify-between">
+                                    <div (click)="onSelectEditIndex('opr', indexData)" class="flex p-1 border rounded-[4px]  group-hover:visible invisible hover:cursor-pointer duration-75">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.13" d="M13.8538 5.64624L12 7.49999L8.5 3.99999L10.3538 2.14624C10.4475 2.05254 10.5746 1.99991 10.7072 1.99991C10.8397 1.99991 10.9669 2.05254 11.0606 2.14624L13.8538 4.93749C13.9004 4.98395 13.9375 5.03917 13.9627 5.09999C13.988 5.1608 14.001 5.22601 14.001 5.29186C14.001 5.35772 13.988 5.42293 13.9627 5.48374C13.9375 5.54456 13.9004 5.59978 13.8538 5.64624Z" />
+                                            <path d="M14.2075 4.58563L11.4144 1.79313C11.3215 1.70024 11.2113 1.62656 11.0899 1.57629C10.9686 1.52603 10.8385 1.50015 10.7072 1.50015C10.5759 1.50015 10.4458 1.52603 10.3245 1.57629C10.2031 1.62656 10.0929 1.70024 10 1.79313L2.29313 9.5C2.19987 9.59252 2.12593 9.70266 2.0756 9.82401C2.02528 9.94536 1.99959 10.0755 2.00001 10.2069V13C2.00001 13.2652 2.10536 13.5196 2.2929 13.7071C2.48043 13.8946 2.73479 14 3.00001 14H13.5C13.6326 14 13.7598 13.9473 13.8536 13.8536C13.9473 13.7598 14 13.6326 14 13.5C14 13.3674 13.9473 13.2402 13.8536 13.1464C13.7598 13.0527 13.6326 13 13.5 13H7.20751L14.2075 6C14.3004 5.90714 14.3741 5.79689 14.4243 5.67555C14.4746 5.55421 14.5005 5.42415 14.5005 5.29281C14.5005 5.16147 14.4746 5.03142 14.4243 4.91008C14.3741 4.78874 14.3004 4.67849 14.2075 4.58563ZM3.00001 10.2069L8.50001 4.70688L11.2931 7.5L5.79313 13H3.00001V10.2069ZM12 6.79313L9.20751 4L10.7075 2.5L13.5 5.29313L12 6.79313Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="">
+                                        {{ item.opr || 0 }}
+                                    </span>
+                                </div>
+                                <input 
+                                    (keydown.enter)="(formArray.at(indexData).controls.opr.value + formArray.at(indexData).controls.sbt.value + formArray.at(indexData).controls.sdt.value + formArray.at(indexData).controls.usdt.value) === 24 ? onSubmit('opr',indexData) : null" 
+                                    type="number" 
+                                    [id]="'opr'+ indexData" 
+                                    *ngIf="selectedColumn === 'opr' && (selectedEditIndex() === indexData)" 
+                                    [formControl]="formArray.at(indexData).controls.opr" 
+                                    class="w-[46px] bg-transparent text-right focus:outline-0 focus:border-0 focus:ring-0 outline-0 border-0 ring-0 p-0" />
+                            </td>
+                            <td [ngClass]="selectedColumn === 'sbt' && (selectedEditIndex() === indexData)? 'border-2 border-color-blue-200 rounded-md ':'border-r border-b'" class=" p-3 whitespace-nowrap group hover:bg-background-background-base-hover duration-75">
+                                <div *ngIf="!(selectedColumn === 'sbt' && selectedEditIndex() === indexData)" class="flex justify-between">
+                                    <div (click)="onSelectEditIndex('sbt', indexData)" class="flex p-1 border rounded-[4px]  group-hover:visible invisible hover:cursor-pointer duration-75">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.13" d="M13.8538 5.64624L12 7.49999L8.5 3.99999L10.3538 2.14624C10.4475 2.05254 10.5746 1.99991 10.7072 1.99991C10.8397 1.99991 10.9669 2.05254 11.0606 2.14624L13.8538 4.93749C13.9004 4.98395 13.9375 5.03917 13.9627 5.09999C13.988 5.1608 14.001 5.22601 14.001 5.29186C14.001 5.35772 13.988 5.42293 13.9627 5.48374C13.9375 5.54456 13.9004 5.59978 13.8538 5.64624Z" />
+                                            <path d="M14.2075 4.58563L11.4144 1.79313C11.3215 1.70024 11.2113 1.62656 11.0899 1.57629C10.9686 1.52603 10.8385 1.50015 10.7072 1.50015C10.5759 1.50015 10.4458 1.52603 10.3245 1.57629C10.2031 1.62656 10.0929 1.70024 10 1.79313L2.29313 9.5C2.19987 9.59252 2.12593 9.70266 2.0756 9.82401C2.02528 9.94536 1.99959 10.0755 2.00001 10.2069V13C2.00001 13.2652 2.10536 13.5196 2.2929 13.7071C2.48043 13.8946 2.73479 14 3.00001 14H13.5C13.6326 14 13.7598 13.9473 13.8536 13.8536C13.9473 13.7598 14 13.6326 14 13.5C14 13.3674 13.9473 13.2402 13.8536 13.1464C13.7598 13.0527 13.6326 13 13.5 13H7.20751L14.2075 6C14.3004 5.90714 14.3741 5.79689 14.4243 5.67555C14.4746 5.55421 14.5005 5.42415 14.5005 5.29281C14.5005 5.16147 14.4746 5.03142 14.4243 4.91008C14.3741 4.78874 14.3004 4.67849 14.2075 4.58563ZM3.00001 10.2069L8.50001 4.70688L11.2931 7.5L5.79313 13H3.00001V10.2069ZM12 6.79313L9.20751 4L10.7075 2.5L13.5 5.29313L12 6.79313Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="">
+                                        {{ item.sbt || 0 }}
+                                    </span>
+                                </div>
+                                <input 
+                                    (keydown.enter)="(formArray.at(indexData).controls.opr.value + formArray.at(indexData).controls.sbt.value + formArray.at(indexData).controls.sdt.value + formArray.at(indexData).controls.usdt.value) === 24 ? onSubmit('sbt',indexData) : null" 
+                                    type="number" [id]="'sbt'+ indexData" 
+                                    *ngIf="selectedColumn === 'sbt' && selectedEditIndex() === indexData" 
+                                    [formControl]="formArray.at(indexData).controls.sbt" 
+                                    class="w-[46px] bg-transparent text-right focus:outline-0 focus:border-0 focus:ring-0 outline-0 border-0 ring-0 p-0" />
+                            </td>
+                            <td [ngClass]="selectedColumn === 'sdt' && (selectedEditIndex() === indexData)? 'border-2 border-color-blue-200 rounded-md ':'border-r border-b'" class=" p-3 whitespace-nowrap group hover:bg-background-background-base-hover duration-75">
+                                <div *ngIf="!(selectedColumn === 'sdt' && selectedEditIndex() === indexData)" class="flex justify-between">
+                                    <div (click)="onSelectEditIndex('sdt', indexData)" class="flex p-1 border rounded-[4px]  group-hover:visible invisible hover:cursor-pointer duration-75">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.13" d="M13.8538 5.64624L12 7.49999L8.5 3.99999L10.3538 2.14624C10.4475 2.05254 10.5746 1.99991 10.7072 1.99991C10.8397 1.99991 10.9669 2.05254 11.0606 2.14624L13.8538 4.93749C13.9004 4.98395 13.9375 5.03917 13.9627 5.09999C13.988 5.1608 14.001 5.22601 14.001 5.29186C14.001 5.35772 13.988 5.42293 13.9627 5.48374C13.9375 5.54456 13.9004 5.59978 13.8538 5.64624Z" />
+                                            <path d="M14.2075 4.58563L11.4144 1.79313C11.3215 1.70024 11.2113 1.62656 11.0899 1.57629C10.9686 1.52603 10.8385 1.50015 10.7072 1.50015C10.5759 1.50015 10.4458 1.52603 10.3245 1.57629C10.2031 1.62656 10.0929 1.70024 10 1.79313L2.29313 9.5C2.19987 9.59252 2.12593 9.70266 2.0756 9.82401C2.02528 9.94536 1.99959 10.0755 2.00001 10.2069V13C2.00001 13.2652 2.10536 13.5196 2.2929 13.7071C2.48043 13.8946 2.73479 14 3.00001 14H13.5C13.6326 14 13.7598 13.9473 13.8536 13.8536C13.9473 13.7598 14 13.6326 14 13.5C14 13.3674 13.9473 13.2402 13.8536 13.1464C13.7598 13.0527 13.6326 13 13.5 13H7.20751L14.2075 6C14.3004 5.90714 14.3741 5.79689 14.4243 5.67555C14.4746 5.55421 14.5005 5.42415 14.5005 5.29281C14.5005 5.16147 14.4746 5.03142 14.4243 4.91008C14.3741 4.78874 14.3004 4.67849 14.2075 4.58563ZM3.00001 10.2069L8.50001 4.70688L11.2931 7.5L5.79313 13H3.00001V10.2069ZM12 6.79313L9.20751 4L10.7075 2.5L13.5 5.29313L12 6.79313Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="">
+                                        {{ item.sdt || 0 }}
+                                    </span>
+                                </div>
+                                <input 
+                                    (keydown.enter)="(formArray.at(indexData).controls.opr.value + formArray.at(indexData).controls.sbt.value + formArray.at(indexData).controls.sdt.value + formArray.at(indexData).controls.usdt.value) === 24 ? onSubmit('sdt',indexData) : null" 
+                                    type="number" 
+                                    [id]="'sdt'+ indexData" 
+                                    *ngIf="selectedColumn === 'sdt' && selectedEditIndex() === indexData" 
+                                    class="w-[46px] bg-transparent text-right focus:outline-0 focus:border-0 focus:ring-0 outline-0 border-0 ring-0 p-0" />
+                            </td>
+                            <td [ngClass]="selectedColumn === 'usdt' && (selectedEditIndex() === indexData)? 'border-2 border-color-blue-200 rounded-md ':'border-r border-b'" class=" p-3 whitespace-nowrap group hover:bg-background-background-base-hover duration-75">
+                                <div *ngIf="!(selectedColumn === 'usdt' && selectedEditIndex() === indexData)" class="flex justify-between">
+                                    <div (click)="onSelectEditIndex('usdt', indexData)" class="flex p-1 border rounded-[4px]  group-hover:visible invisible hover:cursor-pointer duration-75">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.13" d="M13.8538 5.64624L12 7.49999L8.5 3.99999L10.3538 2.14624C10.4475 2.05254 10.5746 1.99991 10.7072 1.99991C10.8397 1.99991 10.9669 2.05254 11.0606 2.14624L13.8538 4.93749C13.9004 4.98395 13.9375 5.03917 13.9627 5.09999C13.988 5.1608 14.001 5.22601 14.001 5.29186C14.001 5.35772 13.988 5.42293 13.9627 5.48374C13.9375 5.54456 13.9004 5.59978 13.8538 5.64624Z" />
+                                            <path d="M14.2075 4.58563L11.4144 1.79313C11.3215 1.70024 11.2113 1.62656 11.0899 1.57629C10.9686 1.52603 10.8385 1.50015 10.7072 1.50015C10.5759 1.50015 10.4458 1.52603 10.3245 1.57629C10.2031 1.62656 10.0929 1.70024 10 1.79313L2.29313 9.5C2.19987 9.59252 2.12593 9.70266 2.0756 9.82401C2.02528 9.94536 1.99959 10.0755 2.00001 10.2069V13C2.00001 13.2652 2.10536 13.5196 2.2929 13.7071C2.48043 13.8946 2.73479 14 3.00001 14H13.5C13.6326 14 13.7598 13.9473 13.8536 13.8536C13.9473 13.7598 14 13.6326 14 13.5C14 13.3674 13.9473 13.2402 13.8536 13.1464C13.7598 13.0527 13.6326 13 13.5 13H7.20751L14.2075 6C14.3004 5.90714 14.3741 5.79689 14.4243 5.67555C14.4746 5.55421 14.5005 5.42415 14.5005 5.29281C14.5005 5.16147 14.4746 5.03142 14.4243 4.91008C14.3741 4.78874 14.3004 4.67849 14.2075 4.58563ZM3.00001 10.2069L8.50001 4.70688L11.2931 7.5L5.79313 13H3.00001V10.2069ZM12 6.79313L9.20751 4L10.7075 2.5L13.5 5.29313L12 6.79313Z" />
+                                        </svg>
+                                    </div>
+                                    <span class="">
+                                        {{ item.usdt || 0 }}
+                                    </span>
+                                </div>
+                                <input 
+                                    (keydown.enter)="(formArray.at(indexData).controls.opr.value + formArray.at(indexData).controls.sbt.value + formArray.at(indexData).controls.sdt.value + formArray.at(indexData).controls.usdt.value) === 24 ? onSubmit('usdt',indexData) : null" 
+                                    type="number" [id]="'usdt'+ indexData" 
+                                    *ngIf="selectedColumn === 'usdt' && selectedEditIndex() === indexData" 
+                                    [formControl]="formArray.at(indexData).controls.usdt" 
+                                    class="w-[46px] bg-transparent text-right focus:outline-0 focus:border-0 focus:ring-0 outline-0 border-0 ring-0 p-0" />
+                            </td>
+                            <td class=" border-b whitespace-nowrap p-3">
+                                <div class="flex flex-col items-start justify-start">
+                                    <span class="text-sm text-text-text-primary">{{item.updatedAt | date : 'MMM d, y'}}</span>
+                                    <span class="text-xs text-text-text-secondary">{{item.updatedAt | date : 'HH:mm'}}</span>
+                                </div>
+                            </td>
+                            <!-- Add more columns as needed -->
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+                
+    </div>
+</div>

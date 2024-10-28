@@ -1,0 +1,6 @@
+export enum LocalServiceConst {
+    USER_INFO = 'jh07863UI76b9ijbILUGouh976l2weJIYU8y9ashd',
+    ROLE_INFO = 'lkj86109245Y378hYGI879u2h349s8yasdoH089U0IN',
+    SITE_INFO = '978AHSashjd89u0a7012638JPavcuiojUADHU',
+    AUTHENTICATION_TOKEN = '9HU7UHuij989uhf978hijh498h98HuhHIOJH8798j',
+} 

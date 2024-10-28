@@ -1,0 +1,88 @@
+<div
+    @slide
+    *ngIf="!isExpand"
+    [ngClass]="{'ring-etma-blue-200 ring-2 border-blue-500 items-start' : isExpand,
+                'items-center' : !isExpand}"
+    class="flex w-[360px] justify-between py-2 px-3 gap-2 rounded-md border-[1px] duration-150 transition-all">
+    <app-avatar></app-avatar>
+    
+    <div
+        class="flex"
+        
+        >
+
+        <div 
+            class="flex flex-col w-[266px]">
+            <span class="text-base font-medium">{{site}}</span>
+            <span class="text-sm gap-1">
+                
+                {{location}}</span>
+                
+        </div>
+        <div 
+            (click)="onExpand()"
+            class="flex items-center justify-center cursor-pointer">
+            <mat-icon class="text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-regular:dots-three"></mat-icon>
+        </div>
+    </div>
+
+</div>
+
+<!-- <app-dropdown-card
+    [title]="site"
+    [subtitle]="location"
+    [isActive]="isExpand"
+    icon="ph-duotone:check-circle"
+    iconStyle="primary-hover"
+    activeStyle="secondary"
+    cardStyle="normal"
+    [border]="false"
+    [iconButton]="false"
+>
+</app-dropdown-card> -->
+
+<div
+    @slide
+    *ngIf="isExpand"
+    [ngClass]="{'ring-etma-blue-200 ring-2 border-blue-500 items-start' : isExpand,
+                'items-center' : !isExpand}"
+    class="flex w-[360px] justify-between p-2 gap-2 rounded-md border-[1px] duration-150 transition-all">
+    <app-avatar></app-avatar>
+
+    <div
+        class="flex gap-1"
+        
+    >
+        <div  
+            class="flex flex-col gap-[4px] w-[242px]">
+            <app-input [border]="true" [control]="masterDataSiteForm.controls.site"></app-input>
+            <app-input [border]="true" [control]="masterDataSiteForm.controls.location"></app-input>
+            <!-- <input [formControl]="masterDataSiteForm.controls.site" type="text" class="w-full border-[1px] px-3 py-[6px] rounded-md">
+            <input [formControl]="masterDataSiteForm.controls.location" type="text" class="w-full border-[1px] px-3 py-[6px] rounded-md"> -->
+        </div>
+        <div
+            class="flex gap-1"
+        >
+            <div 
+                (click)="onCancel()"
+                class="cursor-pointer flex h-6 w-6 border-[1px] hover:border-etma-blue-600 rounded-[4px] items-center justify-center duration-150">
+                <mat-icon class="text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-regular:x"></mat-icon>
+            </div>
+            <div 
+                (click)="onCancel()"
+                class="cursor-pointer flex h-6 w-6 border-[1px] hover:border-etma-blue-600 rounded-[4px] items-center justify-center duration-150">
+                <mat-icon class="text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-duotone:floppy-disk"></mat-icon>
+            </div>
+            <!-- <hero-icon
+                class="h-6 w-6 border-[1px] rounded-[4px]"
+                name="x">
+            </hero-icon>
+            <hero-icon
+                (click)="onSave()"
+                class="h-6 w-6 border-[1px] rounded-[4px]"
+                name="save">
+            </hero-icon> -->
+        </div>
+    </div>
+
+</div>

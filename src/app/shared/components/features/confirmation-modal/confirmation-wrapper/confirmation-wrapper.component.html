@@ -1,0 +1,13 @@
+<app-confirmation-modal
+  *ngIf="showModal"
+  [title]="options.title"
+  [message]="options.message"
+  [confirmButtonText]="options.confirmButtonText"
+  [cancelButtonText]="options.cancelButtonText"
+  [confirmButtonColor]="options.confirmButtonColor"
+  [backgroundColor]="options.backgroundColor"
+  [positionX]="options.positionX"
+  [isLoading]="isLoading"
+  (confirmed)="onConfirm()"
+  (canceled)="onCancel()"
+></app-confirmation-modal>

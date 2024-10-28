@@ -1,0 +1,45 @@
+<div
+    [ngClass]="{'ring-etma-blue-200 border-etma-blue-600 ring-2' : isExpand}"
+    class="flex w-full items-center justify-between p-2 pl-3 gap-2 rounded-md border-[1px] duration-150">
+    <!-- class="flex w-[360px] items-center justify-between p-2 gap-2 rounded-md border-[1px] duration-150"> -->
+    
+    <div 
+        *ngIf="!isExpand"
+        class="gap-[3px] w-full">
+        <!-- class="gap-[3px] w-[270px]"> -->
+        <span class="text-base text-text-text-primary">{{dataName}}</span>
+    </div>
+    <div 
+        *ngIf="!isExpand"
+        (click)="onExpand()"
+        class="flex items-center justify-center cursor-pointer">
+        <mat-icon class="text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-regular:dots-three"></mat-icon>
+    </div>
+    <!-- <hero-icon
+        (click)="onExpand()"
+        *ngIf="!isExpand"
+        class="h-6 w-6"
+        name="map">
+    </hero-icon> -->
+
+    <div 
+        *ngIf="isExpand"
+        class="gap-[4px] w-full">
+        <app-input autofocus [id]="'masterDataBasic' +dataName" [placeholder]="placeholder" [border]="true" [control]="dataNameForm"></app-input>
+        <!-- <input [formControl]="dataNameForm" type="text" class="w-full border-[1px] px-3 py-[6px] rounded-md"> -->
+    </div>
+    <div
+        class="flex gap-1"
+        *ngIf="isExpand">
+        <div 
+            (click)="onCancel()"
+            class="cursor-pointer flex h-7 w-7 p-1 border-[1px] hover:border-etma-blue-600 rounded-[4px] items-center justify-center duration-150">
+            <mat-icon class=" text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-regular:x"></mat-icon>
+        </div>
+        <div 
+            (click)="onSave()"
+            class="cursor-pointer flex h-7 w-7 p-1 border-[1px] hover:opacity-80 bg-background-background-brand-default rounded-[4px] items-center justify-center duration-150">
+            <mat-icon class=" text-icon-icon-inverse group" svgIcon="ph-duotone:floppy-disk"></mat-icon>
+        </div>
+    </div>
+</div>

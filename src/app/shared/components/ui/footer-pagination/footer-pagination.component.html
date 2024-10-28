@@ -1,0 +1,57 @@
+<div class="flex w-full px-3 py-4 items-center justify-between">
+    <div class="flex text-sm text-[#374151] gap-1">
+        <span>Showing</span>
+        <span class="font-semibold">{{!paginationData?.hasNext ? (paginationData?.totalItems - paginationData?.totalItemsPerPage + 1) || 0 : ((paginationData?.currentPage - 1)*paginationData?.totalItemsPerPage) + 1 || 0}}</span>
+        <span>to</span>
+        <span class="font-medium">{{!paginationData?.hasNext ? (paginationData?.totalItems) || 0 : ((paginationData?.currentPage)*paginationData?.totalItemsPerPage) || 0}}</span>
+        <span>of</span>
+        <span class="font-medium">{{paginationData?.totalItems || 0}}</span>
+        <span>Entries</span>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="inline-flex -space-x-px text-sm">
+          <li>
+            <button 
+                (click)="goToPage(paginationData?.currentPage - 1)"
+                [ngClass]="paginationData?.hasPrev ? 'bg-white text-text-text-secondary hover:bg-background-background-base-hover hover:text-text-text-brand-blue' : 'bg-background-background-disabled text-text-text-disabled pointer-events-none cursor-default' " 
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight border border-gray-300 rounded-s-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</button>
+          </li>
+          <li
+            *ngIf="paginationData?.currentPage > 3">
+            <button
+                (click)="goToPage(1)"
+                class="flex items-center justify-center px-3 h-8 leading-tight bg-white border text-text-text-secondary hover:bg-background-background-base-hover hover:text-text-text-brand-blue border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</button>
+          </li>
+          <li
+            *ngIf="paginationData?.currentPage > 4">
+            <span 
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</span>
+          </li>
+          <li
+            *ngFor="let page of getPages()">
+            <button
+                (click)="goToPage(page)"
+                [ngClass]="page === paginationData?.currentPage? 'text-text-text-brand-blue bg-etma-blue-100 hover:bg-etma-blue-200 ' : 'bg-white text-text-text-secondary hover:bg-background-background-base-hover hover:text-text-text-brand-blue'"
+                aria-current="page" 
+                class="flex items-center justify-center px-3 h-8 border border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{page}}</button>
+          </li>
+          <li
+            *ngIf="paginationData?.currentPage < paginationData?.lastPage - 3">
+            <span 
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</span>
+          </li>
+          <li
+            *ngIf="paginationData?.currentPage < paginationData?.lastPage - 2">
+            <button 
+                (click)="goToPage(paginationData?.lastPage)"
+                class="flex items-center justify-center px-3 h-8 leading-tight bg-white border text-text-text-secondary hover:bg-background-background-base-hover hover:text-text-text-brand-blue border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{paginationData?.lastPage}}</button>
+          </li>
+          <li>
+            <button 
+                (click)="goToPage(paginationData?.currentPage + 1)"
+                [ngClass]="paginationData?.hasNext ? 'bg-white text-text-text-secondary hover:bg-background-background-base-hover hover:text-text-text-brand-blue' : 'bg-background-background-disabled text-text-text-disabled pointer-events-none cursor-default' " 
+                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight border border-gray-300 rounded-e-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</button>
+          </li>
+        </ul>
+    </nav>
+</div>

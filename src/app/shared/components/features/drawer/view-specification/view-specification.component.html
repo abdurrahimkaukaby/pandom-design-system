@@ -1,0 +1,209 @@
+<div 
+    (click)="onCancel()"
+    class="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-black bg-opacity-50 backdrop-blur-sm justify-end items-center flex">
+    <!-- Modal content -->
+    <div (click)="doNothing($event)" class="relative flex flex-col justify-between bg-background-background-base-default shadow w-1/3 min-w-[504px] h-full">
+        <!-- Modal body -->
+        <div class="flex flex-col bg-background-background-base-default justify-between">
+            <div>
+                <div class="relative flex items-start px-6 py-4 justify-between w-full border-b border-border-border-divider">
+                    <div class="flex flex-col gap-1">
+                        <span class="font-medium text-base">View specification</span>
+                    </div>
+                    <div 
+                        (click)="onCancel()"
+                        class="flex h-4 w-4 hover:text-etma-danger-500 cursor-pointer">
+                        <mat-icon class="" svgIcon="ph-regular:x"></mat-icon>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 p-6 h-full bg-background-background-base-default">
+                    <span class="text-text-text-primary font-semibold text-2xl uppercase">{{selectedEquipment.equipmentName}}</span>
+                    <div class="flex justify-center items-center w-full">
+                        <img class="flex w-auto max-h-[280px] rounded-md" [src]=" selectedEquipment?.imageUrl || '../../../../../../assets/images/image-dummy.png'" alt="alt">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center">
+                            <span (click)="onToggleGeneral($event)" class="cursor-pointer text-text-text-primary font-semibold">General</span>
+                            <div (click)="onToggleGeneral($event)" class="cursor-pointer">
+                                <div *ngIf="isExpandGeneral" >
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.38 6.21141L8.28941 10.3778C8.25142 10.4165 8.20631 10.4473 8.15665 10.4682C8.10699 10.4892 8.05376 10.5 8 10.5C7.94624 10.5 7.89301 10.4892 7.84335 10.4682C7.79369 10.4473 7.74858 10.4165 7.71059 10.3778L3.61997 6.21141C3.5627 6.15314 3.52369 6.07888 3.50788 5.99801C3.49207 5.91715 3.50017 5.83333 3.53116 5.75715C3.56214 5.68098 3.61462 5.61589 3.68195 5.57011C3.74928 5.52434 3.82843 5.49994 3.90938 5.5H12.0906C12.1716 5.49994 12.2507 5.52434 12.318 5.57011C12.3854 5.61589 12.4379 5.68098 12.4688 5.75715C12.4998 5.83333 12.5079 5.91715 12.4921 5.99801C12.4763 6.07888 12.4373 6.15314 12.38 6.21141Z"/>
+                                    </svg>
+                                </div>
+                                <div *ngIf="!isExpandGeneral">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div @accordion *ngIf="isExpandGeneral" class="">
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Location</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.workcenterName}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Category</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.parentName}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Sub-category</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.categoryName}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Brand name</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.manufactureName}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Brand type</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.manufactureModel}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Serial number</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.serialNumber}}</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Tag number</span>
+                                <span class="text-text-text-secondary text-sm font-medium">-</span>
+                            </div>
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Manufacture year</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.manufactureYear}}</span>
+                            </div>
+                            <div *ngFor="let other of selectedEquipment?.others?.general" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">{{other?.key}}</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{other?.value}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center">
+                            <span (click)="onToggleTechnical($event)" class="cursor-pointer text-text-text-primary font-semibold">Technical specification</span>
+                            <div (click)="onToggleTechnical($event)" class="cursor-pointer">
+                                <div *ngIf="isExpandTechnical" >
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.38 6.21141L8.28941 10.3778C8.25142 10.4165 8.20631 10.4473 8.15665 10.4682C8.10699 10.4892 8.05376 10.5 8 10.5C7.94624 10.5 7.89301 10.4892 7.84335 10.4682C7.79369 10.4473 7.74858 10.4165 7.71059 10.3778L3.61997 6.21141C3.5627 6.15314 3.52369 6.07888 3.50788 5.99801C3.49207 5.91715 3.50017 5.83333 3.53116 5.75715C3.56214 5.68098 3.61462 5.61589 3.68195 5.57011C3.74928 5.52434 3.82843 5.49994 3.90938 5.5H12.0906C12.1716 5.49994 12.2507 5.52434 12.318 5.57011C12.3854 5.61589 12.4379 5.68098 12.4688 5.75715C12.4998 5.83333 12.5079 5.91715 12.4921 5.99801C12.4763 6.07888 12.4373 6.15314 12.38 6.21141Z"/>
+                                    </svg>
+                                </div>
+                                <div *ngIf="!isExpandTechnical">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div @accordion *ngIf="isExpandTechnical" class="">
+                            <div class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Capacity</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.others?.technical?.capacity}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.rpm" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">RPM</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.rpm}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.type" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Type</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.others?.technical?.type}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.compressionRatio" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Compression ratio</span>
+                                <span class="text-text-text-secondary text-sm font-medium uppercase">{{selectedEquipment?.others?.technical?.compressionRatio}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.suctionPressure" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Suction pressure</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.suctionPressure}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.dischargePressure" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Discharge pressure</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.dischargePressure}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.outputPower" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Output power</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.outputPower}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.lastCalibrationDate" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Last Calibration</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.lastCalibrationDate}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.typeOfLubricant" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Lubricant type</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.typeOfLubricant}}</span>
+                            </div>
+                            <div *ngIf="selectedEquipment?.others?.technical?.horsePower" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">Horse power</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{selectedEquipment?.others?.technical?.horsePower}}</span>
+                            </div>
+                            <div *ngFor="let other of selectedEquipment?.others?.technical?.others" class="flex py-2 justify-between border-b">
+                                <span class="text-text-text-secondary text-sm ">{{other?.key}}</span>
+                                <span class="text-text-text-secondary text-sm font-medium">{{other?.value}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-auto">
+                        <div class="flex items-center">
+                            <span (click)="onToggleQrCode($event)" class="cursor-pointer text-text-text-primary font-semibold">QR-code</span>
+                            <div (click)="onToggleQrCode($event)" class="cursor-pointer">
+                                <div *ngIf="isExpandQrCode" >
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.38 6.21141L8.28941 10.3778C8.25142 10.4165 8.20631 10.4473 8.15665 10.4682C8.10699 10.4892 8.05376 10.5 8 10.5C7.94624 10.5 7.89301 10.4892 7.84335 10.4682C7.79369 10.4473 7.74858 10.4165 7.71059 10.3778L3.61997 6.21141C3.5627 6.15314 3.52369 6.07888 3.50788 5.99801C3.49207 5.91715 3.50017 5.83333 3.53116 5.75715C3.56214 5.68098 3.61462 5.61589 3.68195 5.57011C3.74928 5.52434 3.82843 5.49994 3.90938 5.5H12.0906C12.1716 5.49994 12.2507 5.52434 12.318 5.57011C12.3854 5.61589 12.4379 5.68098 12.4688 5.75715C12.4998 5.83333 12.5079 5.91715 12.4921 5.99801C12.4763 6.07888 12.4373 6.15314 12.38 6.21141Z"/>
+                                    </svg>
+                                </div>
+                                <div *ngIf="!isExpandQrCode">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div @accordion *ngIf="isExpandQrCode" class="flex p-3 gap-2 rounded-md bg-background-background-base-default border border-border-border-base">
+                            <div class="flex h-[40px] w-[40px] bg-surface-surface-subtle border items-center justify-center">
+                                <img src="../../../../../../assets/images/card-qr.png" class="flex h-[26.67px] w-[20.67px]" alt="">
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <span class="text-text-text-primary font-medium text-sm">{{selectedEquipment.equipmentName}} QR-code</span>
+                                <div class="flex">
+                                    <span class="flex flex-row p-1 pr-[6px] border rounded-md bg-background-background-subtle text-xs text-text-text-secondary gap-1">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.13" d="M7 3.5V6.5C7 6.63261 6.94732 6.75979 6.85355 6.85355C6.75979 6.94732 6.63261 7 6.5 7H3.5C3.36739 7 3.24021 6.94732 3.14645 6.85355C3.05268 6.75979 3 6.63261 3 6.5V3.5C3 3.36739 3.05268 3.24021 3.14645 3.14645C3.24021 3.05268 3.36739 3 3.5 3H6.5C6.63261 3 6.75979 3.05268 6.85355 3.14645C6.94732 3.24021 7 3.36739 7 3.5ZM6.5 9H3.5C3.36739 9 3.24021 9.05268 3.14645 9.14645C3.05268 9.24021 3 9.36739 3 9.5V12.5C3 12.6326 3.05268 12.7598 3.14645 12.8536C3.24021 12.9473 3.36739 13 3.5 13H6.5C6.63261 13 6.75979 12.9473 6.85355 12.8536C6.94732 12.7598 7 12.6326 7 12.5V9.5C7 9.36739 6.94732 9.24021 6.85355 9.14645C6.75979 9.05268 6.63261 9 6.5 9ZM12.5 3H9.5C9.36739 3 9.24021 3.05268 9.14645 3.14645C9.05268 3.24021 9 3.36739 9 3.5V6.5C9 6.63261 9.05268 6.75979 9.14645 6.85355C9.24021 6.94732 9.36739 7 9.5 7H12.5C12.6326 7 12.7598 6.94732 12.8536 6.85355C12.9473 6.75979 13 6.63261 13 6.5V3.5C13 3.36739 12.9473 3.24021 12.8536 3.14645C12.7598 3.05268 12.6326 3 12.5 3Z"/>
+                                            <path d="M6.5 2.5H3.5C3.23478 2.5 2.98043 2.60536 2.79289 2.79289C2.60536 2.98043 2.5 3.23478 2.5 3.5V6.5C2.5 6.76522 2.60536 7.01957 2.79289 7.20711C2.98043 7.39464 3.23478 7.5 3.5 7.5H6.5C6.76522 7.5 7.01957 7.39464 7.20711 7.20711C7.39464 7.01957 7.5 6.76522 7.5 6.5V3.5C7.5 3.23478 7.39464 2.98043 7.20711 2.79289C7.01957 2.60536 6.76522 2.5 6.5 2.5ZM6.5 6.5H3.5V3.5H6.5V6.5ZM6.5 8.5H3.5C3.23478 8.5 2.98043 8.60536 2.79289 8.79289C2.60536 8.98043 2.5 9.23478 2.5 9.5V12.5C2.5 12.7652 2.60536 13.0196 2.79289 13.2071C2.98043 13.3946 3.23478 13.5 3.5 13.5H6.5C6.76522 13.5 7.01957 13.3946 7.20711 13.2071C7.39464 13.0196 7.5 12.7652 7.5 12.5V9.5C7.5 9.23478 7.39464 8.98043 7.20711 8.79289C7.01957 8.60536 6.76522 8.5 6.5 8.5ZM6.5 12.5H3.5V9.5H6.5V12.5ZM12.5 2.5H9.5C9.23478 2.5 8.98043 2.60536 8.79289 2.79289C8.60536 2.98043 8.5 3.23478 8.5 3.5V6.5C8.5 6.76522 8.60536 7.01957 8.79289 7.20711C8.98043 7.39464 9.23478 7.5 9.5 7.5H12.5C12.7652 7.5 13.0196 7.39464 13.2071 7.20711C13.3946 7.01957 13.5 6.76522 13.5 6.5V3.5C13.5 3.23478 13.3946 2.98043 13.2071 2.79289C13.0196 2.60536 12.7652 2.5 12.5 2.5ZM12.5 6.5H9.5V3.5H12.5V6.5ZM8.5 11V9C8.5 8.86739 8.55268 8.74021 8.64645 8.64645C8.74021 8.55268 8.86739 8.5 9 8.5C9.13261 8.5 9.25979 8.55268 9.35355 8.64645C9.44732 8.74021 9.5 8.86739 9.5 9V11C9.5 11.1326 9.44732 11.2598 9.35355 11.3536C9.25979 11.4473 9.13261 11.5 9 11.5C8.86739 11.5 8.74021 11.4473 8.64645 11.3536C8.55268 11.2598 8.5 11.1326 8.5 11ZM13.5 10C13.5 10.1326 13.4473 10.2598 13.3536 10.3536C13.2598 10.4473 13.1326 10.5 13 10.5H11.5V13C11.5 13.1326 11.4473 13.2598 11.3536 13.3536C11.2598 13.4473 11.1326 13.5 11 13.5H9C8.86739 13.5 8.74021 13.4473 8.64645 13.3536C8.55268 13.2598 8.5 13.1326 8.5 13C8.5 12.8674 8.55268 12.7402 8.64645 12.6464C8.74021 12.5527 8.86739 12.5 9 12.5H10.5V9C10.5 8.86739 10.5527 8.74021 10.6464 8.64645C10.7402 8.55268 10.8674 8.5 11 8.5C11.1326 8.5 11.2598 8.55268 11.3536 8.64645C11.4473 8.74021 11.5 8.86739 11.5 9V9.5H13C13.1326 9.5 13.2598 9.55268 13.3536 9.64645C13.4473 9.74021 13.5 9.86739 13.5 10ZM13.5 12V13C13.5 13.1326 13.4473 13.2598 13.3536 13.3536C13.2598 13.4473 13.1326 13.5 13 13.5C12.8674 13.5 12.7402 13.4473 12.6464 13.3536C12.5527 13.2598 12.5 13.1326 12.5 13V12C12.5 11.8674 12.5527 11.7402 12.6464 11.6464C12.7402 11.5527 12.8674 11.5 13 11.5C13.1326 11.5 13.2598 11.5527 13.3536 11.6464C13.4473 11.7402 13.5 11.8674 13.5 12Z"/>
+                                        </svg>
+                                        NSAHG783
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="cursor-pointer hover:bg-background-background-base-hover flex p-1 border shadow-sm items-center justify-center my-auto w-6 bg-background-background-base-default rounded-sm duration-150">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="#4D4D57" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.13" d="M14.5 8.5V12.5C14.5 12.6326 14.4473 12.7598 14.3536 12.8536C14.2598 12.9473 14.1326 13 14 13H2C1.86739 13 1.74021 12.9473 1.64645 12.8536C1.55268 12.7598 1.5 12.6326 1.5 12.5V8.5C1.5 8.36739 1.55268 8.24021 1.64645 8.14645C1.74021 8.05268 1.86739 8 2 8H14C14.1326 8 14.2598 8.05268 14.3536 8.14645C14.4473 8.24021 14.5 8.36739 14.5 8.5Z"/>
+                                    <path d="M15 8.5V12.5C15 12.7652 14.8946 13.0196 14.7071 13.2071C14.5196 13.3946 14.2652 13.5 14 13.5H2C1.73478 13.5 1.48043 13.3946 1.29289 13.2071C1.10536 13.0196 1 12.7652 1 12.5V8.5C1 8.23478 1.10536 7.98043 1.29289 7.79289C1.48043 7.60536 1.73478 7.5 2 7.5H4.5C4.63261 7.5 4.75979 7.55268 4.85355 7.64645C4.94732 7.74021 5 7.86739 5 8C5 8.13261 4.94732 8.25979 4.85355 8.35355C4.75979 8.44732 4.63261 8.5 4.5 8.5H2V12.5H14V8.5H11.5C11.3674 8.5 11.2402 8.44732 11.1464 8.35355C11.0527 8.25979 11 8.13261 11 8C11 7.86739 11.0527 7.74021 11.1464 7.64645C11.2402 7.55268 11.3674 7.5 11.5 7.5H14C14.2652 7.5 14.5196 7.60536 14.7071 7.79289C14.8946 7.98043 15 8.23478 15 8.5ZM7.64625 8.35375C7.69269 8.40024 7.74783 8.43712 7.80853 8.46228C7.86923 8.48744 7.93429 8.50039 8 8.50039C8.06571 8.50039 8.13077 8.48744 8.19147 8.46228C8.25217 8.43712 8.30731 8.40024 8.35375 8.35375L11.3538 5.35375C11.4476 5.25993 11.5003 5.13268 11.5003 5C11.5003 4.86732 11.4476 4.74007 11.3538 4.64625C11.2599 4.55243 11.1327 4.49972 11 4.49972C10.8673 4.49972 10.7401 4.55243 10.6462 4.64625L8.5 6.79313V1.5C8.5 1.36739 8.44732 1.24021 8.35355 1.14645C8.25979 1.05268 8.13261 1 8 1C7.86739 1 7.74021 1.05268 7.64645 1.14645C7.55268 1.24021 7.5 1.36739 7.5 1.5V6.79313L5.35375 4.64625C5.25993 4.55243 5.13268 4.49972 5 4.49972C4.86732 4.49972 4.74007 4.55243 4.64625 4.64625C4.55243 4.74007 4.49972 4.86732 4.49972 5C4.49972 5.13268 4.55243 5.25993 4.64625 5.35375L7.64625 8.35375ZM12.5 10.5C12.5 10.3517 12.456 10.2067 12.3736 10.0833C12.2912 9.95999 12.1741 9.86386 12.037 9.80709C11.9 9.75033 11.7492 9.73547 11.6037 9.76441C11.4582 9.79335 11.3246 9.86478 11.2197 9.96967C11.1148 10.0746 11.0434 10.2082 11.0144 10.3537C10.9855 10.4992 11.0003 10.65 11.0571 10.787C11.1139 10.9241 11.21 11.0412 11.3333 11.1236C11.4567 11.206 11.6017 11.25 11.75 11.25C11.9489 11.25 12.1397 11.171 12.2803 11.0303C12.421 10.8897 12.5 10.6989 12.5 10.5Z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <div class="flex justify-end gap-2 px-6 py-4 bg-background-background-subtle border-t border-border-border-base w-full items-end mt-auto">
+            <button 
+                (click)="onCancel()"
+                type="button" 
+                class="text-text-text-primary bg-background-background-base-default hover:bg-background-background-base-hover border-border-border-base border px-3 py-2 rounded-md"
+            >
+                Cancel
+            </button>
+            <button 
+                (click)="onSubmit($event)"
+                [ngClass]="{
+                    'opacity-50' : isLoading
+                }"
+                type="button" 
+                class="flex text-text-text-inverse border-border-border-base border px-3 py-2 rounded-md bg-background-background-brand-default hover:bg-background-background-brand-hover"
+            >
+                <div *ngIf="isLoading" class="flex pr-2 pt-1">
+                    <app-loading-ring></app-loading-ring>
+                </div>
+                Submit
+            </button>
+        </div>
+    </div>
+</div> 

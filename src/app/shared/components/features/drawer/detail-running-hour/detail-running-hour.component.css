@@ -1,0 +1,31 @@
+/* * SCROLLBAR STYLE */
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #FFFFFF;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: #D6D6DB;
+    border-radius: 8px;
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 18px;
+    background-color: #ffffff;
+    border: 1px solid #D6D6DB;
+}
+
+/* Hide the arrows (spinners) for webkit browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove spinner arrows */
+input[type="number"] {
+    appearance: textfield;           /* Standard property */
+    -webkit-appearance: none;        /* Webkit browsers (Chrome, Safari) */
+    -moz-appearance: textfield;      /* Firefox */
+  }

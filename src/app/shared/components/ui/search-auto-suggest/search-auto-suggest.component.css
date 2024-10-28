@@ -1,0 +1,24 @@
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid red; /* Temporary for debugging */
+  }
+
+/* * SCROLLBAR STYLE */
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #FFFFFF;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: #E4E4E7;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 18px;
+    background-color: #ffffff;
+}

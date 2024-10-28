@@ -1,0 +1,15 @@
+<main class="flex flex-row h-full relative">
+    <!-- Main page -->
+    <app-sidebar *ngIf="!(router.url | getBaseUrlPipe).includes('login')" (extendSidebar)="setMargin($event)" class="h-full fixed z-50"></app-sidebar>
+    
+    <!-- h-[123vh]  -->
+    <div [ngClass]="{
+      'ml-[264px]': (isExtend && !(router.url | getBaseUrlPipe).includes('login')),
+      'ml-[72px]': (!isExtend && !(router.url | getBaseUrlPipe).includes('login')),
+      }" class=" bg-surface-surface-base flex-auto grow h-full transition-all">
+      <router-outlet></router-outlet>
+      <app-confirmation-wrapper></app-confirmation-wrapper>
+      <app-toaster-wrapper></app-toaster-wrapper>
+    </div>
+  </main>
+  

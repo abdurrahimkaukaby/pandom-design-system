@@ -1,0 +1,15 @@
+<div [ngClass]="border ? 'border-b-[1px]' : ''" class="flex items-center justify-between mt-[60px] p-6 bg-surface-surface-base">
+    <div class="flex flex-col gap-2">
+        <span class="text-2xl font-medium text-[#333333]">{{title}}</span>
+        <span class="text-sm text-[#717171]">{{subtitle}}</span>
+    </div>
+    <!-- iconRight="ph-regular:arrow-right" -->
+    <app-button
+        (click)="onButtonClicked()"
+        *ngIf="buttonContent"
+        [color]="buttonColor"
+        [iconLeft]="iconLeft"
+    >
+        {{buttonContent}}
+    </app-button>
+</div>

@@ -1,0 +1,100 @@
+<!-- <div
+    [ngClass]="{'ring-etma-blue-200 ring-2 border-blue-500 items-start' : isExpand,
+                'items-center' : !isExpand}"
+    class="relative flex w-[360px] justify-between p-2 gap-2 rounded-md border-[1px] duration-150 transition-all">
+    <app-avatar></app-avatar>
+    
+    <div
+        class="flex"
+        
+        >
+
+        <div 
+            class="flex flex-col w-[270px]">
+            <span class="text-base font-semibold">{{selectedSite.site}}</span>
+            <span class="text-sm gap-1">
+                
+                {{selectedSite.location}}</span>
+                
+        </div>
+        <div 
+            class="flex items-center justify-center cursor-pointer">
+            <mat-icon class="text-slate-400 group hover:text-etma-blue-600" svgIcon="ph-regular:dots-three"></mat-icon>
+        </div>
+    </div>
+    <div class="absolute rounded-md border shadow-sm">
+
+    </div>
+</div> -->
+<div class="relative">
+    <div 
+        @slide 
+        *ngIf="isExpand"
+        [ngClass]="isSidebarActive? 'absolute' : 'fixed left-[76px] bottom-[73px]'"
+        class="rounded-md border shadow-sm z-50 pb-1 bottom-[48px] bg-white w-[232px] overflow-x-hidden "
+    >
+        <div class="border-b-[1px]">
+            <app-dropdown-card
+                [title]="selectedSitesData()?.name"
+                icon="ph-duotone:check-circle"
+                iconStyle="primary"
+                cardStyle="full"
+                avatarStyle="compact"
+                [border]="false"
+                [iconButton]="false"
+            >
+            </app-dropdown-card>
+        </div>
+        <div class="pl-2 pt-3 pb-1 text-caption text-xs">Switch site</div>
+        <div
+            class="px-2 pb-3"
+        >
+            <app-input
+                [control]="searchForm"
+                placeholder="Search"
+                [isSearch]="true"
+                [border]="true"
+                (isFocusEmit)="onSetSearchFocus($event)"
+            >
+            </app-input>
+        </div>
+        <div class="max-h-40 overflow-y-auto overflow-x-hidden">
+
+            <div *ngFor="let siteOption of sitesData()" class="gap-1 pl-[4px] pr-[2px]">
+                <app-dropdown-card
+                    class="cursor-pointer"
+                    [title]="siteOption.name"
+                    cardStyle="full"
+                    avatarStyle="compact"
+                    [border]="false"
+                    [iconButton]="false"
+                    (click)="onSelectSite(siteOption)"
+                >
+                </app-dropdown-card>
+            </div>
+        </div>
+
+    </div>
+    <div
+        [attr.data-hover]="selectedSitesData()?.name"
+        [ngClass]="!isSidebarActive?'hovertext':''"
+        >
+        <button (blur)="onBlurSite()" class=" flex w-full">
+                <app-dropdown-card
+                    (click)="onToggle()"
+                    class="cursor-pointer flex flex-col w-full"
+                    [title]="selectedSitesData()?.name"
+                    [isTitleHide]="!isSidebarActive"
+                    [isActive]="isExpand"
+                    icon="ph-regular:caret-up-down"
+                    iconStyle="secondary"
+                    activeStyle="secondary"
+                    cardStyle="full"
+                    avatarStyle="compact"
+                    [border]="true"
+                    [iconButton]="false"
+                >
+                </app-dropdown-card>
+        </button>
+    </div>
+</div>

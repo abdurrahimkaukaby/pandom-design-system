@@ -1,0 +1,45 @@
+<div class="grid">
+    <div class="flex gap-2 ">
+        <div 
+            [ngClass]="isSidebarActive ? 'hidden' : ''"
+            (click)="toggleSidebar()"
+            class="flex h-4 w-4 -top-1 mr-1 cursor-pointer">
+            <mat-icon class="text-text-text-caption hover:text-text-text-brand-blue duration-150" svgIcon="ph-regular:sidebar-simple"></mat-icon>
+        </div>
+        <span [ngClass]="isSidebarActive ? 'hidden' : ''" class="text-text-text-caption">|</span>
+        <a routerLink="/home">
+            <div 
+                class="flex h-4 w-4 -top-1 ">
+                <mat-icon
+                    class="text-icon-icon-subtle" 
+                    [svgIcon]="
+                        label === 'Home'? 'ph-duotone:house-line' : 
+                        label === 'Specification' ?'ph-duotone:file-text' :
+                        label === 'Add new equipment specification' ?'ph-duotone:file-text' :
+                        label === 'Edit equipment specification' ?'ph-duotone:file-text' :
+                        label === 'Running Hour' ?'ph-duotone:clock-countdown' :
+                        label === 'History Card' ?'ph-duotone:clock-counter-clockwise' :
+                        label === 'Activity Log' ?'ph-duotone:pulse' :
+                        label === 'Master Data' ?'ph-duotone:folders' :
+                        label === 'Manage Users' ?'ph-duotone:users' : ''
+                    ">
+                </mat-icon>
+            </div>
+        </a>
+        <div *ngFor="let parent of parents;" class="flex flex-row items-center place-content-center">
+            <a [routerLink]="parent.route">
+                <h1 class="text-sm mt-[3px] text-text-text-caption font-normal mr-1 hover:text-etma-blue-600 hover:underline duration-150">{{parent.label}}</h1>
+            </a>
+            <span class="px-1 text-text-text-caption">/</span>
+        </div>
+        <div>
+            <h1 
+                [ngClass]="{
+                    'text-[#333333]' : parents.length > 0,
+                    'text-text-text-caption' : parents.length === 0,
+                }"
+                class="text-sm font-normal mt-[3px]">{{label}}
+            </h1>
+        </div>
+    </div>
+</div>

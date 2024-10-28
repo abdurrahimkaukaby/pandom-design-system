@@ -1,0 +1,84 @@
+<div 
+    class="flex items-center justify-center w-full h-full">
+    <div
+        
+        [ngClass]="control.value === ''? 'cursor-pointer' : ''"
+        class="flex flex-col items-center justify-center w-full h-full border border-dashed bg-surface-surface-subtle rounded-lg p-2"
+        >
+        <label
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event)"
+            [for]="id"
+            *ngIf="control.value === ''"
+            class="flex flex-col items-center justify-center gap-[7px] h-full w-full min-h-[228px] cursor-pointer"
+        >
+            <div class="flex"
+            >
+                <mat-icon class="h-6 w-6" svgIcon="ph-duotone:upload"></mat-icon>
+            </div>
+
+            <p class="flex items-center justify-center text-sm text-text-text-secondary">
+                <span class="font-semibold text-dbx-blue-500 mr-2">
+                    Click to upload
+                </span>
+                or drag and drop
+            </p>
+            <p class="text-text-text-caption text-xs">JPG or PNG (Recommendation 800x400px)</p>
+            <p
+                [ngClass]="
+                    isValidation
+                    ? 'text-yellow-800 bg-yellow-50 animate-pulse'
+                    : 'hidden'
+                "
+                class="text-xs text-center items-center flex flex-row rounded-lg duration-150"
+                >
+                {{'JPG or PNG (MAX '+ maxAllowedFiles +'IMAGES. '+ maxFileSize +'mb/IMG)'}}
+            </p>
+        </label>
+        <div
+            *ngIf="control.value !== ''"
+            class="relative flex items-center justify-center w-full h-full"
+        >
+            <img class="h-full w-full rounded-xl shadow-5-strong" [src]="control?.value" alt="">
+            <div 
+                class="absolute backdrop-brightness-50 bg-white/30 h-full w-full flex items-center justify-center rounded-[4px]">
+                <div class="flex gap-4">
+                    <button 
+                        (click)="onDelete($event)"
+                        class="bg-transparent font-normal text-xs text-white hover:text-etma-danger-400 flex items-center justify-center gap-1">
+                        <mat-icon class="h-[14px] w-[14px]" svgIcon="ph-duotone:file-text"></mat-icon>
+                        Delete file
+                    </button>
+                    <label
+                        (click)="triggerFileInput()"
+                        [for]="id"
+                    >
+                        <app-button
+                            (click)="resetForm()"
+                            mode="compact"
+                            iconLeft="ph-regular:magnifying-glass"
+                            color="secondary">
+                            Browse file
+                        </app-button>
+                        <input
+                            #fileInput
+                            [id]="id"
+                            type="file"
+                            class="hidden"
+                            (change)="onFileSelected($event)"
+                            multiple
+                        />
+                    </label>
+                </div>
+            </div>
+        </div>
+        <input
+            *ngIf="control.value === ''"
+            [id]="id"
+            type="file"
+            class="hidden"
+            (change)="onFileSelected($event)"
+            multiple
+        />
+    </div>
+</div>
