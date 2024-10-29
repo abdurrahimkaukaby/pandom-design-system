@@ -45,6 +45,8 @@ import { MonthPickerComponent } from './components/ui/month-picker/month-picker.
 import { CheckArrayDuplicatePipe } from "./pipes/transform-check-array-duplilcate.pipe";
 import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pipe";
 import { TabComponent } from './components/ui/tab/tab.component';
+import { CodeHighlighterComponent } from './components/code-highlighter/code-highlighter.component';
+import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapper.component';
 
 @NgModule({
     declarations: [
@@ -88,6 +90,8 @@ import { TabComponent } from './components/ui/tab/tab.component';
       CheckArrayDuplicatePipe,
       CompareDateStringPipe,
       TabComponent,
+      CodeHighlighterComponent,
+      PropsWrapperComponent,
     ],
     imports: [
       RouterModule,
@@ -137,6 +141,9 @@ import { TabComponent } from './components/ui/tab/tab.component';
       CheckArrayDuplicatePipe,
       CompareDateStringPipe,
       TabComponent,
+      CodeHighlighterComponent,
+      PropsWrapperComponent,
+
     ],
     providers: [
       UploadFileService,

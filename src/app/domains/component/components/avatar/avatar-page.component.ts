@@ -34,6 +34,65 @@ export class AvatarPageComponent implements AfterViewInit {
     <app-avatar title="H" mode="compact" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
   `;
 
+  codeHtmlAvatar: string = `
+    <div 
+      [ngClass]="{'h-[35px] w-[35px]' : mode === 'normal',
+                  'h-[22px] w-[22px]' : mode === 'compact',
+                  'text-[10px]' : textSize === 'xxs',
+                  'text-xs' : textSize === 'xs',
+                  'text-sm' : textSize === 'sm',
+                  'bg-etma-blue-500' : color === 'primary',
+                  'bg-etma-red-500' : color === 'error',
+                  'bg-etma-warning-500' : color === 'warning',
+                  'bg-etma-success-500' : color === 'success',
+                  'rounded-[4px]' : rounded === 'edge',
+                  'rounded-full' : rounded === 'full',
+
+                  }"
+      class="flex items-center justify-center text-white uppercase">
+      {{icon === '' && image === ''? title : ''}}
+      <div 
+        *ngIf="icon !== ''" 
+        [ngClass]="{
+            'h-6 w-6' : textSize === 'sm',
+            'h-4 w-4 mb-2' : textSize === 'xs',
+            'h-3 w-3 mb-3' : textSize === 'xxs',
+        }" 
+        class="flex text-white">
+        <mat-icon class="" [svgIcon]="icon"></mat-icon>
+      </div>
+      <img 
+        *ngIf="image !== '' && icon === ''"
+        [ngClass]="{
+            'rounded-[4px]' : rounded === 'edge',
+            'rounded-full' : rounded === 'full',
+        }"
+        class="flex h-full" 
+        [src]="image"
+        alt=""
+      >
+    </div>
+  `;
+
+  codeTsAvatar: string = `
+    @Component({
+      standalone : true,
+      selector: 'app-avatar',
+      templateUrl: './avatar.component.html',
+      styleUrl: './avatar.component.css'
+    })
+    export class AvatarComponent {
+      @Input() title: string = 'S';
+      @Input() icon: string = '';
+      @Input() image: string = '';
+      @Input() rounded: 'full' | 'edge' = 'edge';
+      @Input() color: 'primary' | 'error' | 'success' | 'warning' = 'primary';
+      @Input() mode: 'normal' | 'compact' | 'none' = 'normal';
+      @Input() textSize: 'xxs' | 'xs' | 'sm' = 'sm';
+
+
+    }
+  `;
   ngAfterViewInit() {
     Prism.highlightAll();
   }

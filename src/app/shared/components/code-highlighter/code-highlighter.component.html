@@ -1,0 +1,48 @@
+<div class="bg-[#272822] rounded-md border mt-4">
+    <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+        <ng-content></ng-content>
+    </div>
+    <div class="relative duration-200" [ngClass]="isExpandCode? '' : 'hidden h-0'">
+        <div class="flex w-full static z-10 justify-between px-4 pt-4">
+            <div class="flex gap-1">
+                <span
+                    (click)="selectedType = 'html'"
+                    [ngClass]="selectedType === 'html'? 'text-etma-danger-800 hover:text-etma-danger-800 border-etma-danger-600 bg-etma-red-300 hover:bg-etma-red-400' : 'text-etma-neutral-400 border-etma-neutral-400 hover:bg-etma-neutral-600 '"
+                    class="px-1 rounded-md border cursor-pointer duration-150">
+                    html
+                </span>
+                <span
+                    (click)="selectedType = 'ts'"
+                    [ngClass]="selectedType === 'ts'? 'text-etma-blue-800 hover:text-etma-blue-800 border-etma-blue-600 bg-etma-blue-200 hover:bg-etma-blue-300' : 'text-etma-neutral-400 border-etma-neutral-400 hover:bg-etma-neutral-600 '"
+                    class="px-1 rounded-md border cursor-pointer duration-150">
+                    ts
+                </span>
+            </div>
+            <div 
+                class="flex items-center justify-center rounded-[4px] h-6 w-6 p-[2px] border border-etma-neutral-100 text-etma-neutral-100 hover:text-etma-neutral-200 hover:border-etma-neutral-200 cursor-pointer">
+                <mat-icon class="" svgIcon="ph-duotone:copy"></mat-icon>
+            </div>
+        </div>
+        <div [ngClass]="selectedType === 'html'? '' : 'hidden'">
+            <pre><code class="language-html">{{codeHtml}}</code></pre>
+        </div>
+        <div [ngClass]="selectedType === 'ts'? '' : 'hidden'">
+            <pre><code class="language-js">{{codeTs}}</code></pre>
+        </div>
+    </div>
+    <div *ngIf="buttonExpand" (click)="onToggleCode()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
+        <span class="absolute z-20">
+            {{isExpandCode? 'Hide code' : 'Show code'}}
+        </span>
+        <div *ngIf="!isExpandCode" class="arrow invisible group-hover:visible ">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div *ngIf="isExpandCode" class="arrow-reverse invisible group-hover:visible ">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>

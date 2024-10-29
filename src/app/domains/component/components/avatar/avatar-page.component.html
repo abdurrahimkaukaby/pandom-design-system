@@ -14,10 +14,10 @@
     </div>
     <div class="flex w-full items-center justify-center border-b sticky top-14 z-20 bg-surface-surface-subtle">
         <div class="flex w-[1000px] items-center">
-            <app-tab [tabs]="['usage','guideline']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
         </div>
     </div>
-    <div class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
         
         <span class="mt-6">
             An avatar is a component that used as a visual identifier for a user or entity in digital spaces, often used in profiles, games, and forums to embody identity.
@@ -27,7 +27,7 @@
         
         <span class="text-text-text-secondary text-sm">Use square avatars to represent entities, such as projects, repositories, or spaces. If no image or icon is available, use initials as an identifier.</span>
 
-        <div class="bg-[#272822] rounded-md border mt-4">
+        <app-code-highlighter [codeHtml]="yourCode" >
             <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2 items-center">
@@ -83,31 +83,13 @@
                     </span>
                 </div>
             </div>
-            <div class=" duration-200" [ngClass]="isExpandDefault? '' : 'hidden h-0'">
-                <pre><code class="language-html">{{ yourCode }}</code></pre>
-            </div>
-            <div (click)="onToggleDefault()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
-                <span class="absolute z-20">
-                    {{isExpandDefault? 'Hide code' : 'Show code'}}
-                </span>
-                <div *ngIf="!isExpandDefault" class="arrow invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div *ngIf="isExpandDefault" class="arrow-reverse invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
+        </app-code-highlighter>
 
         <span class="text-2xl font-medium mt-6">Icon Color </span>
 
         <span class="text-text-text-secondary text-sm">You can adjust the color of the avatars to provide additional information about the entity, such as its status or whether it is disabled.</span>
 
-        <div class="bg-[#272822] rounded-md border mt-4">
+        <app-code-highlighter [codeHtml]="yourCodeIcon">
             <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2 items-center">
@@ -120,66 +102,104 @@
                         Colored icon avatar
                     </span>
                 </div>
-
+    
             </div>
-            <div class=" duration-200" [ngClass]="isExpandIcon? '' : 'hidden h-0'">
-                <pre><code class="language-html">{{ yourCodeIcon }}</code></pre>
-            </div>
-            <div (click)="onToggleIcon()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
-                <span class="absolute z-20">
-                    {{isExpandIcon? 'Hide code' : 'Show code'}}
-                </span>
-                <div *ngIf="!isExpandIcon" class="arrow invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div *ngIf="isExpandIcon" class="arrow-reverse invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
+        </app-code-highlighter>
 
         <span class="text-2xl font-medium mt-6">Image Rounded </span>
 
         <span class="text-text-text-secondary text-sm">Use a circle avatar to represent a person.</span>
 
-        <div class="bg-[#272822] rounded-md border mt-4">
-            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
-                <div class="flex flex-col gap-2">
-                    <div class="flex gap-2 items-center">
-                        <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
-                        <app-avatar title="H" mode="compact" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+        <app-code-highlighter [codeHtml]="yourCodeImage">
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2 items-center">
+                    <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+                    <app-avatar title="H" mode="compact" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
     
-                    </div>
-                    <span class="text-text-text-caption text-sm">
-                        Image avatar
-                    </span>
                 </div>
-    
-            </div>
-            <div class=" duration-200" [ngClass]="isExpandImage? '' : 'hidden h-0'">
-                <pre><code class="language-html">{{ yourCodeImage }}</code></pre>
-            </div>
-            <div (click)="onToggleImage()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
-                <span class="absolute z-20">
-                    {{isExpandImage? 'Hide code' : 'Show code'}}
+                <span class="text-text-text-caption text-sm">
+                    Image avatar
                 </span>
-                <div *ngIf="!isExpandImage" class="arrow invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div *ngIf="isExpandImage" class="arrow-reverse invisible group-hover:visible ">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
-        </div>
+        </app-code-highlighter>
 
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the avatar component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/avatar</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlAvatar" 
+            [codeTs]="codeTsAvatar">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="title"
+            description="Used to provide custom content to screen readers. insert initial if there is no image or icon."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="icon"
+            description="An icon variable that will be showed. This example is using phosphor icon as it's package, you could adjust it by making change to mat-icon item in html."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="image"
+            description="A url to load an image from."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="rounded"
+            description="Settings to control the roundness of your avatar"
+            type="'full' | 'edge'"
+        >
+        </app-props-wrapper>
+        
+        <app-props-wrapper
+            class="mt-8"
+            title="color"
+            description="Settings to control the color of your avatar"
+            type="'primary' | 'error' | 'success' | 'warning'"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="mode"
+            description="Settings to control the size of your avatar"
+            type="'normal' | 'compact'"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="textSize"
+            description="Settings to control the size of your avatar text"
+            type="'xxs' | 'xs' | 'sm'"
+        >
+        </app-props-wrapper>
 
     </div>
 
