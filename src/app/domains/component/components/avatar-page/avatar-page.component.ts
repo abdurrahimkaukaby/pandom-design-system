@@ -93,6 +93,7 @@ export class AvatarPageComponent implements AfterViewInit {
 
     }
   `;
+  
   ngAfterViewInit() {
     Prism.highlightAll();
   }

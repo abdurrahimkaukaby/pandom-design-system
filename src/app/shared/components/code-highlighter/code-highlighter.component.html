@@ -6,12 +6,14 @@
         <div class="flex w-full static z-10 justify-between px-4 pt-4">
             <div class="flex gap-1">
                 <span
+                    *ngIf="codeHtml !== ''"
                     (click)="selectedType = 'html'"
                     [ngClass]="selectedType === 'html'? 'text-etma-danger-800 hover:text-etma-danger-800 border-etma-danger-600 bg-etma-red-300 hover:bg-etma-red-400' : 'text-etma-neutral-400 border-etma-neutral-400 hover:bg-etma-neutral-600 '"
                     class="px-1 rounded-md border cursor-pointer duration-150">
                     html
                 </span>
                 <span
+                    *ngIf="codeTs !== ''"
                     (click)="selectedType = 'ts'"
                     [ngClass]="selectedType === 'ts'? 'text-etma-blue-800 hover:text-etma-blue-800 border-etma-blue-600 bg-etma-blue-200 hover:bg-etma-blue-300' : 'text-etma-neutral-400 border-etma-neutral-400 hover:bg-etma-neutral-600 '"
                     class="px-1 rounded-md border cursor-pointer duration-150">

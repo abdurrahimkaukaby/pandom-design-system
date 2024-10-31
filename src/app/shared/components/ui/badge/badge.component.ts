@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BadgeComponent implements OnInit {
   @Input() text: string = 'Badge';
-  @Input() color: 'neutral' | 'blue' | 'success' | 'error' | 'warning' = 'neutral'
+  @Input() icon: string = '' //ph-duotone:key
+  @Input() color: 'neutral' | 'primary' | 'success' | 'error' | 'warning' = 'neutral'
 
   constructor() { }
 

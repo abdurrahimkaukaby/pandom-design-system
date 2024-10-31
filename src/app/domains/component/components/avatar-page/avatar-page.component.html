@@ -25,15 +25,17 @@
 
         <span class="text-2xl font-medium mt-6">Default </span>
         
-        <span class="text-text-text-secondary text-sm">Use square avatars to represent entities, such as projects, repositories, or spaces. If no image or icon is available, use initials as an identifier.</span>
+        <span class="text-text-text-secondary text-sm">Use square avatars to represent entities, such as projects, repositories, or spaces. If no image or icon is available, use initials as an identifier. Use a circle avatar to represent a person. </span>
 
         <app-code-highlighter [codeHtml]="yourCode" >
             <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2 items-center">
                         <app-avatar title="HA" mode="normal"></app-avatar>
+                        <app-avatar title="HA" mode="normal" rounded="full"></app-avatar>
                         <app-avatar title="H" mode="compact"></app-avatar>
                         <app-avatar title="H" mode="compact" textSize="xxs"></app-avatar>
+                        <app-avatar title="H" mode="compact" textSize="xxs" rounded="full"></app-avatar>
     
                     </div>
                     <span class="text-text-text-caption text-sm">
@@ -94,6 +96,7 @@
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2 items-center">
                         <app-avatar color="error" title="H" mode="normal" icon="ph-regular:codepen-logo"></app-avatar>
+                        <app-avatar color="primary" title="H" mode="normal" icon="ph-regular:codepen-logo" rounded="full"></app-avatar>
                         <app-avatar color="warning" title="H" mode="compact" textSize="xs" icon="ph-regular:codepen-logo"></app-avatar>
                         <app-avatar color="success" title="H" mode="compact" textSize="xxs" icon="ph-regular:codepen-logo"></app-avatar>
     
@@ -110,7 +113,7 @@
 
         <span class="text-text-text-secondary text-sm">Use a circle avatar to represent a person.</span>
 
-        <app-code-highlighter [codeHtml]="yourCodeImage">
+        <app-code-highlighter [codeHtml]="yourCodeImage" class="pb-[400px]">
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
                     <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>

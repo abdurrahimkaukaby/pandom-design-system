@@ -60,24 +60,24 @@ export class SidebarComponent implements AfterViewChecked {
       name: 'Badge'
     },
     {
-      route: 'running-hour',
+      route: 'component/breadcrumb',
       icon: 'ph-duotone:clock-countdown',
       name: 'Breadcrumb'
     },
     {
-      route: 'history-card',
+      route: 'component/button',
       icon: 'ph-duotone:clock-counter-clockwise',
       name: 'Buttons'
     },
     {
-      route: 'maintenance',
+      route: 'component/card',
       icon: 'ph-duotone:wrench',
       name: 'Card'
     },
     {
-      route: 'monitoring',
+      route: 'component/date-picker',
       icon: 'ph-duotone:gauge',
-      name: 'Date-picker'
+      name: 'Date Picker'
     },
   ]
 

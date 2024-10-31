@@ -6,17 +6,25 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentComponent } from './component.component';
-import { AvatarPageComponent } from './components/avatar/avatar-page.component';
-import { BadgeComponent } from './components/badge/badge.component';
+import { AvatarPageComponent } from './components/avatar-page/avatar-page.component';
+import { BadgePageComponent } from './components/badge-page/badge-page.component';
 import { ComponentRoutingModule } from './component-routing.module';
 import { HIGHLIGHT_OPTIONS, HighlightAuto, HighlightModule, provideHighlightOptions } from 'ngx-highlightjs';
 import { HighlightLineNumbers } from 'ngx-highlightjs/line-numbers';
+import { ButtonPageComponent } from './components/button-page/button-page.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { CardPageComponent } from './components/card-page/card-page.component';
+import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
 
 @NgModule({
   declarations: [
     ComponentComponent,
     AvatarPageComponent,
-    BadgeComponent
+    BadgePageComponent,
+    ButtonPageComponent,
+    BreadcrumbComponent,
+    CardPageComponent,
+    DatePickerPageComponent,
   ],
   imports: [
     CommonModule,

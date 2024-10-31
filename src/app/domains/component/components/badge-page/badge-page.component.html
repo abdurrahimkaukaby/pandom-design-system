@@ -1,0 +1,146 @@
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Badge"
+                imageUrl="../../../../assets/images/avatar-illu.png"
+                subtitle="Indicator of values such as labeling or notification.">
+            </app-page-title>
+        </div>
+    </div>
+    <div class="flex w-full items-center justify-center border-b sticky top-14 z-20 bg-surface-surface-subtle shadow-sm-light">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            Badges are indicators of static information. They can be updated when a status changes, but they should not be actionable.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+        
+        <span class="text-text-text-secondary text-sm">Use a default badge for basic information that not need attention.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeDefault" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-badge text="default"></app-badge>
+                    </div>
+                    <span class="text-text-text-caption text-sm">
+                        the default form of a badge
+                    </span>
+                </div>
+                
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Primary </span>
+        
+        <span class="text-text-text-secondary text-sm">Use a primary badge to help draw attention to new or updated information.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodePrimary" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-badge text="primary" color="primary"></app-badge>
+                    </div>
+                </div>
+                
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Icon Badge </span>
+        
+        <span class="text-text-text-secondary text-sm">Use an icon to give more information about the badge.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeIconBadge" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-badge icon="ph-fill:check-fat" color="success" text="correct"></app-badge>
+                        <app-badge text="unverified" color="warning" icon="ph-duotone:key"></app-badge>
+                    </div>
+                    <span class="text-text-text-caption text-sm">
+                        the form of an icon badge
+                    </span>
+                </div>
+                
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Status Badge </span>
+        
+        <span class="text-text-text-secondary text-sm">Use different color for each different status.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeStatusBadge" class="pb-[400px]" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-badge text="verified" color="success"></app-badge>
+                        <app-badge text="unverified" color="warning"></app-badge>
+                        <app-badge text="denied" color="error"></app-badge>
+                        <app-badge text="need application" color="primary"></app-badge>
+                        <app-badge text="not applicable"></app-badge>
+                    </div>
+                </div>
+                
+            </div>
+        </app-code-highlighter>
+
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the badge component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/badge</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlBadge" 
+            [codeTs]="codeTsBadge">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="text"
+            description="Used to provide custom content to screen readers."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="icon"
+            description="An icon variable that will be showed. This example is using phosphor icon as it's package, you could adjust it by making change to mat-icon item in html."
+            type="string"
+        >
+        </app-props-wrapper>
+        
+        <app-props-wrapper
+            class="mt-8"
+            title="color"
+            description="Settings to control the color of your badge"
+            type="'neutral' | 'primary' | 'success' | 'error' | 'warning'"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>

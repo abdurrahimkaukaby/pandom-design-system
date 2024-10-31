@@ -1,4 +1,4 @@
-<span 
+<!-- <span 
     class="flex pl-[6px] pr-2 py-[2px] rounded-md bg-white border-[1px] gap-1">
     <span
         [ngClass]="
@@ -12,4 +12,18 @@
     <span class="text-xs">
         {{text}}
     </span>
-</span>
+</span> -->
+
+<div 
+    [ngClass]="
+        color === 'primary'? 'border-border-border-brand-subtle bg-background-background-brand-accent text-text-text-brand-blue' : 
+        color === 'success'? 'border-etma-success-100 bg-etma-success-50 text-etma-success-600' :
+        color === 'error'? 'border-etma-danger-100 bg-etma-danger-50 text-etma-danger-600' :
+        color === 'warning'? 'border-etma-warning-100 bg-etma-warning-50 text-etma-warning-600' :
+        'border-etma-neutral-100 bg-etma-neutral-50 text-etma-neutral-600'"
+    class="flex items-center capitalize rounded-md border gap-1 px-1">
+    <div *ngIf="icon !== ''" class="flex h-4 w-4 mb-2">
+        <mat-icon class="" [svgIcon]="icon"></mat-icon>
+    </div>
+    {{text}}
+</div>
