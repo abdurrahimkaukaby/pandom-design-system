@@ -12,7 +12,7 @@
             </app-page-title>
         </div>
     </div>
-    <div class="flex w-full items-center justify-center border-b sticky top-14 z-20 bg-surface-surface-subtle shadow-sm-light">
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-etma-blue-100'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
         <div class="flex w-[1000px] items-center">
             <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
         </div>
@@ -105,7 +105,7 @@
             <span class="">Angular CLI</span>
             <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/badge</span>
         </div>
-        <span class="text-text-text-secondary text-sm">insert code to the component file</span>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may change the color to your desired color</span>
 
         <app-code-highlighter
             [buttonExpand]="false"
@@ -134,7 +134,7 @@
         </app-props-wrapper>
         
         <app-props-wrapper
-            class="mt-8"
+            class="mt-8 pb-[400px]"
             title="color"
             description="Settings to control the color of your badge"
             type="'neutral' | 'primary' | 'success' | 'error' | 'warning'"
