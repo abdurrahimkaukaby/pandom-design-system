@@ -15,8 +15,6 @@ export class BadgePageComponent {
   isScrolled$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   selectedTab : string = 'usage'
-  isExpand : boolean = false
-  isExpandDefault : boolean = false
 
   yourCodeDefault: string = `
     <app-badge text="default"></app-badge>
@@ -56,9 +54,17 @@ export class BadgePageComponent {
   `;
 
   codeTsBadge: string = `
-    @Input() text: string = 'Badge';
-    @Input() icon: string = '' //ph-duotone:key
-    @Input() color: 'neutral' | 'primary' | 'success' | 'error' | 'warning' = 'neutral'
+    @Component({
+        standalone : true,
+        selector: 'app-badge',
+        templateUrl: './badge.component.html',
+        styleUrl: './badge.component.css'
+    })
+    export class BadgeComponent {
+      @Input() text: string = 'Badge';
+      @Input() icon: string = '' //ph-duotone:key
+      @Input() color: 'neutral' | 'primary' | 'success' | 'error' | 'warning' = 'neutral'
+    }
   `;
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
@@ -69,7 +75,7 @@ export class BadgePageComponent {
       document.body.scrollTop ||
       0;
 
-    if (verticalOffset > 140) {
+    if (verticalOffset > 240) {
       this.isScrolled$.next(false);
     } else {
       this.isScrolled$.next(true);
@@ -78,14 +84,6 @@ export class BadgePageComponent {
 
   ngAfterViewInit() {
     Prism.highlightAll();
-  }
-
-  onToggle(){
-    this.isExpand = !this.isExpand;
-  }
-
-  onToggleDefault(){
-    this.isExpandDefault = !this.isExpandDefault;
   }
 
   onSelectedTab(tab:string){

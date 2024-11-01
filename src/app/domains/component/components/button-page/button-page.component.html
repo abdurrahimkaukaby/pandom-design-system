@@ -1,1 +1,269 @@
-<p>button-page works!</p>
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Button"
+                imageUrl="../../../../assets/images/avatar-illu.png"
+                subtitle="A button initiates an event or action, signaling to users what will happen next.">
+            </app-page-title>
+        </div>
+    </div>
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            A button is an interactive element that initiates specific actions when clicked, tapped, or activated, guiding users toward intended outcomes within an application or website. Buttons are often labeled to indicate their function—such as "Submit," "Cancel," or "Learn More"—giving users clear feedback about the action that will occur.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Primary </span>
+        
+        <span class="text-text-text-secondary text-sm">Use a primary button to call attention to a form submission or to highlight the most important call to action on a page. Primary buttons should only appear once per area, but not every screen needs a primary button. </span>
+
+        <app-code-highlighter [codeHtml]="yourCode" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button>Primary button</app-button>
+                        <app-button [disableTerm]="true">Primary button</app-button>
+                        <app-button mode="compact">Primary button</app-button>
+                        <app-button [disableTerm]="true" mode="compact">Primary button</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a primary button with disable example
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Secondary</span>
+
+        <span class="text-text-text-secondary text-sm">Use a secondary button with a primary button for secondary actions, such as “Cancel”.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeSecondary">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="secondary" >Secondary button</app-button>
+                        <app-button color="secondary" [disableTerm]="true">Secondary button</app-button>
+                        <app-button color="secondary" mode="compact">Secondary button</app-button>
+                        <app-button color="secondary" [disableTerm]="true" mode="compact">Secondary button</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a secondary button with disable example
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Danger</span>
+
+        <span class="text-text-text-secondary text-sm">A danger button is used as a final confirmation for actions that are destructive and cannot be undone, like deleting.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeDanger">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="danger" >Danger button</app-button>
+                        <app-button color="danger" [disableTerm]="true">Danger button</app-button>
+                        <app-button color="danger" mode="compact">Danger button</app-button>
+                        <app-button color="danger" [disableTerm]="true" mode="compact">Danger button</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a danger button with disable example
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Warning</span>
+
+        <span class="text-text-text-secondary text-sm">Warning buttons confirm actions that could lead to significant changes or potential data loss. They alert users of possible issues if they continue and are often used in confirmation dialogs.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeWarning">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="warning" >Warning button</app-button>
+                        <app-button color="warning" [disableTerm]="true">Warning button</app-button>
+                        <app-button color="warning" mode="compact">Warning button</app-button>
+                        <app-button color="warning" [disableTerm]="true" mode="compact">Warning button</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a warning button with disable example
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Ghost</span>
+
+        <span class="text-text-text-secondary text-sm">Use ghost buttons for most actions that aren't the main call to action for a page or area. Default buttons are less prominent than primary buttons.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeGhost">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="ghost" >Ghost button</app-button>
+                        <app-button color="ghost" [disableTerm]="true">Ghost button</app-button>
+                        <app-button color="ghost" mode="compact">Ghost button</app-button>
+                        <app-button color="ghost" [disableTerm]="true" mode="compact">Ghost button</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a ghost button with disable example
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Icon button</span>
+
+        <span class="text-text-text-secondary text-sm">Buttons may include an icon before or after the text label to give more information about the button.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeIconBefore">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button iconLeft="ph-regular:swap">Icon before</app-button>
+                        <app-button iconLeft="ph-regular:swap" [disableTerm]="true">Icon before</app-button>
+                        <app-button iconLeft="ph-regular:swap" mode="compact">Icon before</app-button>
+                        <app-button iconLeft="ph-regular:swap" [disableTerm]="true" mode="compact">Icon before</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a button with icon before the text
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <app-code-highlighter [codeHtml]="yourCodeIconAfter">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="warning" iconRight="ph-fill:eraser">Icon after</app-button>
+                        <app-button color="warning" iconRight="ph-fill:eraser" [disableTerm]="true">Icon after</app-button>
+                        <app-button color="warning" iconRight="ph-fill:eraser" mode="compact">Icon after</app-button>
+                        <app-button color="warning" iconRight="ph-fill:eraser" [disableTerm]="true" mode="compact">Icon after</app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a button with icon after the text
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <app-code-highlighter [codeHtml]="yourCodeIcon" class="pb-[400px]">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-button color="primary" iconRight="ph-fill:eraser"></app-button>
+                        <app-button color="primary" iconRight="ph-fill:eraser" [disableTerm]="true"></app-button>
+                        <app-button color="warning" iconRight="ph-fill:eraser"></app-button>
+                        <app-button color="warning" iconRight="ph-fill:eraser" [disableTerm]="true"></app-button>
+                        <app-button color="danger" iconRight="ph-fill:eraser" mode="compact"></app-button>
+                        <app-button color="danger" iconRight="ph-fill:eraser" [disableTerm]="true" mode="compact"></app-button>
+                        <app-button color="secondary" iconRight="ph-fill:eraser" mode="compact"></app-button>
+                        <app-button color="secondary" iconRight="ph-fill:eraser" [disableTerm]="true" mode="compact"></app-button>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-2">
+                        The form of a button with only icon
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the button component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/button</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlButton" 
+            [codeTs]="codeTsButton">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="color"
+            description="Used to provide custom color of the button."
+            type="'primary' | 'secondary' | 'ghost' | 'danger' | 'warning'"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="iconRight"
+            description="A custom icon right after the text to represent parents page."
+            type="string | currently use phospor icon"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="iconLeft"
+            description="A custom icon right before the text to represent parents page."
+            type="string | currently use phospor icon"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="mode"
+            description="A custom sixe of your button."
+            type="'normal' | 'compact' | 'wide'"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="disableTerm"
+            description="A variable to make the button disabled."
+            type="boolean"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8 pb-[400px]"
+            title="onBlurEmit"
+            description="An emitted value indicating the button's blur state."
+            type="EventEmitter<void>"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>

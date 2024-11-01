@@ -12,7 +12,7 @@ import { ComponentRoutingModule } from './component-routing.module';
 import { HIGHLIGHT_OPTIONS, HighlightAuto, HighlightModule, provideHighlightOptions } from 'ngx-highlightjs';
 import { HighlightLineNumbers } from 'ngx-highlightjs/line-numbers';
 import { ButtonPageComponent } from './components/button-page/button-page.component';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb-page.component';
 import { CardPageComponent } from './components/card-page/card-page.component';
 import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
 
@@ -22,7 +22,7 @@ import { DatePickerPageComponent } from './components/date-picker-page/date-pick
     AvatarPageComponent,
     BadgePageComponent,
     ButtonPageComponent,
-    BreadcrumbComponent,
+    BreadcrumbPageComponent,
     CardPageComponent,
     DatePickerPageComponent,
   ],

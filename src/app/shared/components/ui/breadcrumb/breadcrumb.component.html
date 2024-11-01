@@ -7,23 +7,38 @@
             <mat-icon class="text-text-text-caption hover:text-text-text-brand-blue duration-150" svgIcon="ph-regular:sidebar-simple"></mat-icon>
         </div>
         <span [ngClass]="isSidebarActive ? 'hidden' : ''" class="text-text-text-caption">|</span>
-        <a routerLink="/home">
+        <a [routerLink]="routeIcon">
             <div 
                 class="flex h-4 w-4 -top-1 ">
                 <mat-icon
                     class="text-icon-icon-subtle" 
                     [svgIcon]="
+                        icon !== ''? icon :
                         label === 'Home'? 'ph-duotone:house-line' : 
-                        label === 'Avatar Component' ?'ph-duotone:puzzle-piece' :
-                        label === 'About Pandom' ?'ph-duotone:users' : 'ph-duotone:puzzle-piece'
+                        label === 'Avatar Component' ? 'ph-duotone:puzzle-piece' :
+                        label === 'About Pandom' ? 'ph-duotone:users' : 'ph-duotone:puzzle-piece'
                     ">
                 </mat-icon>
             </div>
         </a>
-        <div *ngFor="let parent of parents;" class="flex flex-row items-center place-content-center">
-            <a [routerLink]="parent.route">
-                <h1 class="text-sm mt-[3px] text-text-text-caption font-normal mr-1 hover:text-etma-blue-600 hover:underline duration-150">{{parent.label}}</h1>
+        <div *ngFor="let parent of parents?.length < 9? parents : []; index as indexParent" class="flex flex-row items-center place-content-center">
+            <a *ngIf="(parents?.length <= 8 && indexParent > 0) || parents?.length > 8 && indexParent === 0" [routerLink]="parent.route">
+                <h1 class="text-sm mt-[3px] text-text-text-caption font-normal mr-1 hover:text-etma-blue-600 hover:underline duration-150">{{parent?.label}}</h1>
             </a>
+            <span *ngIf="(parents?.length <= 8 && indexParent > 0) || parents?.length > 8 && indexParent === 0" class="px-1 text-text-text-caption">/</span>
+            <span *ngIf="parents?.length > 8 && indexParent === parents?.length" class="px-1 text-text-text-caption">...</span>
+            <a *ngIf="parents?.length > 8 && indexParent === parents?.length" [routerLink]="parent.route">
+                <h1 class="text-sm mt-[3px] text-text-text-caption font-normal mr-1 hover:text-etma-blue-600 hover:underline duration-150">{{parent?.label}}</h1>
+            </a>
+            <span *ngIf="parents?.length > 8 && indexParent === parents?.length" class="px-1 text-text-text-caption">/</span>
+
+        </div>
+        <div *ngIf="parents?.length > 8" class="flex flex-row items-center place-content-center">
+            <a [routerLink]="parents[0].route">
+                <h1 class="text-sm mt-[3px] text-text-text-caption font-normal mr-1 hover:text-etma-blue-600 hover:underline duration-150">{{parents[0].label}}</h1>
+            </a>
+            <span class="px-1 text-text-text-caption">/</span>
+            <span class="px-1 text-text-text-caption">...</span>
             <span class="px-1 text-text-text-caption">/</span>
         </div>
         <div>

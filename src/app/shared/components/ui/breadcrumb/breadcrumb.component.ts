@@ -17,6 +17,9 @@ export class BreadcrumbComponent implements OnInit {
   ) {}
   
   @Input() label: string = this.activatedRoute.snapshot.data['breadcrumb']['label'];
+  @Input() icon: string = ''
+  @Input() routeIcon: string = '/home'
+  @Input() isSidebarToggle: boolean = true
   @Input() parents: {route: string, label:string}[] = this.activatedRoute.snapshot.data['breadcrumb']['parents'] || []
   
   ngOnInit(): void {

@@ -12,7 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input() iconLeft: string
   // @Input() text: string
   @Input() mode: 'normal' | 'compact' | 'wide' = 'normal'
-  @Input() color: 'primary' | 'secondary' | 'ghost' | 'danger' = 'primary';
+  @Input() color: 'primary' | 'secondary' | 'ghost' | 'danger' | 'warning' = 'primary';
 
   @Output() onBlurEmit = new EventEmitter<void>();
 

@@ -6,6 +6,7 @@ import { BadgePageComponent } from './components/badge-page/badge-page.component
 import { ButtonPageComponent } from './components/button-page/button-page.component';
 import { CardPageComponent } from './components/card-page/card-page.component';
 import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
+import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb-page.component';
 
 const routes: Routes = [
     { 
@@ -49,7 +50,7 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: 'breadcrumb', component: BadgePageComponent },
+            { path: 'breadcrumb', component: BreadcrumbPageComponent },
         ],
         data: {
             breadcrumb: {

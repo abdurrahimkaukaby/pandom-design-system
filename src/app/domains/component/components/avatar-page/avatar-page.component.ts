@@ -1,6 +1,7 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { AccordionAnimation } from '../../../../core/const/animation.const';
 import * as Prism from 'prismjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-avatar-page',
@@ -11,11 +12,9 @@ import * as Prism from 'prismjs';
   ],
 })
 export class AvatarPageComponent implements AfterViewInit {
+  isScrolled$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   selectedTab : string = 'usage'
   isExpand : boolean = false
-  isExpandDefault : boolean = false
-  isExpandIcon : boolean = false
-  isExpandImage : boolean = false
 
   yourCode: string = `
     <app-avatar title="H" mode="normal"></app-avatar>
@@ -41,10 +40,10 @@ export class AvatarPageComponent implements AfterViewInit {
                   'text-[10px]' : textSize === 'xxs',
                   'text-xs' : textSize === 'xs',
                   'text-sm' : textSize === 'sm',
-                  'bg-etma-blue-500' : color === 'primary',
-                  'bg-etma-red-500' : color === 'error',
-                  'bg-etma-warning-500' : color === 'warning',
-                  'bg-etma-success-500' : color === 'success',
+                  'bg-blue-500' : color === 'primary',
+                  'bg-red-500' : color === 'error',
+                  'bg-yellow-500' : color === 'warning',
+                  'bg-green-500' : color === 'success',
                   'rounded-[4px]' : rounded === 'edge',
                   'rounded-full' : rounded === 'full',
 
@@ -94,24 +93,27 @@ export class AvatarPageComponent implements AfterViewInit {
     }
   `;
   
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event: any) {
+    const verticalOffset =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    if (verticalOffset > 240) {
+      this.isScrolled$.next(false);
+    } else {
+      this.isScrolled$.next(true);
+    }
+  }
+  
   ngAfterViewInit() {
     Prism.highlightAll();
   }
 
   onToggle(){
     this.isExpand = !this.isExpand;
-  }
-
-  onToggleDefault(){
-    this.isExpandDefault = !this.isExpandDefault;
-  }
-
-  onToggleIcon(){
-    this.isExpandIcon = !this.isExpandIcon;
-  }
-
-  onToggleImage(){
-    this.isExpandImage = !this.isExpandImage;
   }
 
   onBlurButton(){

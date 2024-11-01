@@ -1,5 +1,5 @@
 <div [ngClass]="border ? 'border-b-[1px]' : ''" class="flex items-center justify-between mt-[60px] p-6 bg-surface-surface-subtle">
-    <div class="flex flex-col gap-2">
+    <div [ngClass]="{'w-[400px]' : imageUrl !== ''}" class="flex flex-col gap-2">
         <span class="text-3xl font-medium text-[#333333]">{{title}}</span>
         <span class=" text-[#717171]">{{subtitle}}</span>
     </div>
