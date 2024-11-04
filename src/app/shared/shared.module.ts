@@ -47,6 +47,7 @@ import { CompareDateStringPipe } from "./pipes/transform-compare-date-string.pip
 import { TabComponent } from './components/ui/tab/tab.component';
 import { CodeHighlighterComponent } from './components/code-highlighter/code-highlighter.component';
 import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapper.component';
+import { CardBasicComponent } from './components/ui/card-basic/card-basic.component';
 
 @NgModule({
     declarations: [
@@ -92,6 +93,7 @@ import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapp
       TabComponent,
       CodeHighlighterComponent,
       PropsWrapperComponent,
+      CardBasicComponent,
     ],
     imports: [
       RouterModule,
@@ -143,6 +145,7 @@ import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapp
       TabComponent,
       CodeHighlighterComponent,
       PropsWrapperComponent,
+      CardBasicComponent,
 
     ],
     providers: [

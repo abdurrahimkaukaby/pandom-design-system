@@ -1,1 +1,229 @@
-<p>card-page works!</p>
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Card"
+                imageUrl="../../../../assets/images/breadcrumb-illu.png"
+                subtitle="Display content related to a single subject.">
+            </app-page-title>
+        </div>
+    </div>
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            Cards organize information into versatile containers, allowing users to explore a set of related items and actions. They offer a glimpse of content and provide additional details through interaction.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+        
+        <span class="text-text-text-secondary text-sm">Display content or actions related to a single subject.</span>
+
+        <app-code-highlighter [codeHtml]="yourCode" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            title="Card title" 
+                            message="Card messages or subtitles to give users instructions or to request confirmation." 
+                            primaryButtonText="Primary button" 
+                            secondaryButtonText="Secondary button">
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Default card
+                    </span>
+                </div>
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            title="Delete item?" 
+                            message="Please be carefull, this action cannot be undone." 
+                            primaryButtonText="Delete item" 
+                            secondaryButtonText="Cancel" 
+                            primaryButtonColor="red">
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Example of a delete confirmation card
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Image card</span>
+
+        <span class="text-text-text-secondary text-sm">You can add image on your card to give more information.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeImage">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            primaryButtonText="Primary Button"
+                            secondaryButtonText="Secondary Button"
+                            imageUrl="../../../../../../assets/images/image-dummy.png" 
+                            title="Title of content" 
+                            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." >
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Example of a card confirmation with image
+                    </span>
+                </div>
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            [isCancelButton]="false"
+                            imageUrl="../../../../../../assets/images/image-dummy.png" 
+                            title="Title of content" 
+                            message="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." >
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Example of a card informarion with image
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Card with content</span>
+
+        <span class="text-text-text-secondary text-sm">You can add content on your card dynamicalyy.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeContent" class="pb-[400px]">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            primaryButtonText="Primary Button"
+                            secondaryButtonText="Secondary Button"
+                            title="Title of content" message="subtitle" >
+                            <div class="flex flex-col gap-4 w-full items-center justify-center mt-4">
+                                <img class="flex w-auto max-h-[260px]" src="../../../../../../assets/images/image-dummy.png" alt="alt">
+                                <span class="text-text-text-secondary text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                            </div>
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Example of a card confirmation with content
+                    </span>
+                </div>
+
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="flex gap-2 items-center">
+                        <app-card-basic 
+                            [isCancelButton]="false"
+                            title="Title of content" message="subtitle" >
+                            <div class="flex flex-col gap-4 w-full items-center justify-center mt-4">
+                                <img class="flex w-auto max-h-[260px]" src="../../../../../../assets/images/image-dummy.png" alt="alt">
+                                <span class="text-text-text-secondary text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                            </div>
+                        </app-card-basic>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Example of a card information with content
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the card component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/card</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlCard" 
+            [codeTs]="codeTsCard">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="title"
+            description="Used to provide custom title of the card."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="message"
+            description="Used to provide custom message/subtitle of the card."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="primaryButtonText"
+            description="Provide costum text on primary button"
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="secondaryButtonText"
+            description="Provide costum text on secondary button"
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="primaryButtonColor"
+            description="Provide color on primary button with red or blue color"
+            type="'red'| 'blue' : blue is the default color"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="isLoading"
+            description="A loading icon to give loading state when primary button hit."
+            type="boolean"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="isCancelButton"
+            description="Provide access to hide or show cancel button on the top."
+            type="boolean"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8 pb-[400px]"
+            title="imageUrl"
+            description="An image url to set on the top of the card."
+            type="string"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>

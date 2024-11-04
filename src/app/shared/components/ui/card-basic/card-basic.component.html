@@ -1,0 +1,47 @@
+<div 
+    class="relative bg-background-background-base-default rounded-lg shadow w-[420px] border border-border-border-base">
+    <div class="flex w-full items-center justify-center">
+        <img *ngIf="imageUrl && imageUrl !== ''" class="flex w-auto max-h-[260px]" [src]="imageUrl" alt="alt">
+    </div>
+    <div class="relative flex items-start p-6 justify-between">
+        <div class="flex flex-col gap-1">
+            <span class="font-medium text-base">{{title}}</span>
+            <span class="text-text-text-secondary text-sm">{{message}}</span>
+            <ng-content></ng-content>
+        </div>
+        <div 
+            *ngIf="isCancelButton"
+            (click)="onCancel()"
+            class="flex absolute right-4 top-3 h-4 w-4 hover:text-etma-danger-500 cursor-pointer">
+            <mat-icon class="" svgIcon="ph-regular:x"></mat-icon>
+        </div>
+    </div>
+    <div 
+        *ngIf="(secondaryButtonText && secondaryButtonText !== '') || (primaryButtonText && primaryButtonText !== '')"
+        class="flex justify-end gap-2 px-6 py-4 bg-background-background-subtle border-t border-border-border-base w-full items-end rounded-b-lg">
+        <button 
+            *ngIf="secondaryButtonText && secondaryButtonText !== ''"
+            (click)="onSecondaryConfirm($event)"
+            type="button" 
+            class="text-text-text-primary bg-background-background-base-default hover:bg-background-background-base-hover border-border-border-base border px-3 py-2 rounded-md"
+        >
+            {{secondaryButtonText}}
+        </button>
+        <button
+            *ngIf="primaryButtonText && primaryButtonText !== ''"
+            (click)="onConfirm($event)"
+            [ngClass]="{
+                'bg-background-background-brand-default hover:bg-background-background-brand-hover' : primaryButtonColor === 'blue',
+                'bg-background-background-danger-inverse hover:bg-background-background-danger-inverse-hover' : primaryButtonColor === 'red',
+                'opacity-50' : isLoading
+            }"
+            type="button" 
+            class="flex text-text-text-inverse border-border-border-base border px-3 py-2 rounded-md"
+        >
+            <div *ngIf="isLoading" class="flex pr-2 pt-1">
+                <app-loading-ring></app-loading-ring>
+            </div>
+            {{primaryButtonText}}
+        </button>
+    </div>
+</div>

@@ -9,16 +9,21 @@ import { DatePickerPageComponent } from './components/date-picker-page/date-pick
 import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb-page.component';
 
 const routes: Routes = [
-    { 
-        path: '', 
-        component: ComponentComponent,
-        data: {
-            breadcrumb: {
-            label: 'Specification',
-            parents: []
-            }
-        }
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
     },
+    // { 
+    //     path: '', 
+    //     component: ComponentComponent,
+    //     data: {
+    //         breadcrumb: {
+    //         label: 'Home',
+    //         parents: []
+    //         }
+    //     }
+    // },
     {
         path: '',
         children: [

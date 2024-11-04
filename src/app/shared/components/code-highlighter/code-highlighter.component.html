@@ -33,7 +33,7 @@
         </div>
     </div>
     <div *ngIf="buttonExpand" (click)="onToggleCode()" class="relative flex w-full items-center justify-center bg-etma-blue-100 hover:bg-etma-blue-50 h-4 group text-xs font-medium text-etma-blue-600 hover:text-etma-blue-900 cursor-pointer hover:h-8 duration-150 ease-in overflow-hidden">
-        <span class="absolute z-20">
+        <span class="absolute z-10">
             {{isExpandCode? 'Hide code' : 'Show code'}}
         </span>
         <div *ngIf="!isExpandCode" class="arrow invisible group-hover:visible ">
