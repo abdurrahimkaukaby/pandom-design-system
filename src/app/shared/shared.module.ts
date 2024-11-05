@@ -31,7 +31,6 @@ import { NoDataIlluComponent } from './components/ui/no-data-illu/no-data-illu.c
 import { FooterPaginationComponent } from './components/ui/footer-pagination/footer-pagination.component';
 import { ToasterComponent } from './components/features/toaster/toaster.component';
 import { ToasterWrapperComponent } from './components/features/toaster/toaster-wrapper/toaster-wrapper.component';
-import { DatePickerComponent } from './components/ui/date-picker/date-picker.component';
 import { DropdownSearchComponent } from './components/ui/dropdown-search/dropdown-search.component';
 import { ViewSpecificationComponent } from './components/features/drawer/view-specification/view-specification.component';
 import { DropdownDescriptionComponent } from './components/ui/dropdown-description/dropdown-description.component';
@@ -48,6 +47,8 @@ import { TabComponent } from './components/ui/tab/tab.component';
 import { CodeHighlighterComponent } from './components/code-highlighter/code-highlighter.component';
 import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapper.component';
 import { CardBasicComponent } from './components/ui/card-basic/card-basic.component';
+import { DatePickerRangeComponent } from "./components/ui/date-picker-range/date-picker-range.component";
+import { DatePickerComponent } from "./components/ui/date-picker/date-picker.component";
 
 @NgModule({
     declarations: [
@@ -78,7 +79,7 @@ import { CardBasicComponent } from './components/ui/card-basic/card-basic.compon
       FooterPaginationComponent,
       ToasterComponent,
       ToasterWrapperComponent,
-      DatePickerComponent,
+      DatePickerRangeComponent,
       DropdownSearchComponent,
       ViewSpecificationComponent,
       DropdownDescriptionComponent,
@@ -94,6 +95,7 @@ import { CardBasicComponent } from './components/ui/card-basic/card-basic.compon
       CodeHighlighterComponent,
       PropsWrapperComponent,
       CardBasicComponent,
+      DatePickerComponent,
     ],
     imports: [
       RouterModule,
@@ -130,7 +132,7 @@ import { CardBasicComponent } from './components/ui/card-basic/card-basic.compon
       FooterPaginationComponent,
       ToasterComponent,
       ToasterWrapperComponent,
-      DatePickerComponent,
+      DatePickerRangeComponent,
       DropdownSearchComponent,
       ViewSpecificationComponent,
       DropdownDescriptionComponent,
@@ -146,6 +148,7 @@ import { CardBasicComponent } from './components/ui/card-basic/card-basic.compon
       CodeHighlighterComponent,
       PropsWrapperComponent,
       CardBasicComponent,
+      DatePickerComponent,
 
     ],
     providers: [

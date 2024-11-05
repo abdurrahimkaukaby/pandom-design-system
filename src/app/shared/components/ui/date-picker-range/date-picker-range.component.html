@@ -1,0 +1,56 @@
+<!-- (blur)="isOpen.set(false)" -->
+<button
+    [ngClass]="startDateControl.value && startDateControl.value !== '' && endDateControl.value && endDateControl.value !== ''? 'text-text-text-primary' : 'text-text-text-caption'"
+    class="flex relative w-full items-center px-2 py-[6px] gap-[6px] border text-sm rounded-md focus:ring-1 focus:ring-etma-blue-200 shadow-sm bg-background-background-base-default cursor-default">
+    <div class="flex items-center gap-[6px] cursor-pointer" (click)="isOpen.set(!isOpen())">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2H11.5V1.5C11.5 1.36739 11.4473 1.24021 11.3536 1.14645C11.2598 1.05268 11.1326 1 11 1C10.8674 1 10.7402 1.05268 10.6464 1.14645C10.5527 1.24021 10.5 1.36739 10.5 1.5V2H5.5V1.5C5.5 1.36739 5.44732 1.24021 5.35355 1.14645C5.25979 1.05268 5.13261 1 5 1C4.86739 1 4.74021 1.05268 4.64645 1.14645C4.55268 1.24021 4.5 1.36739 4.5 1.5V2H3C2.73478 2 2.48043 2.10536 2.29289 2.29289C2.10536 2.48043 2 2.73478 2 3V13C2 13.2652 2.10536 13.5196 2.29289 13.7071C2.48043 13.8946 2.73478 14 3 14H13C13.2652 14 13.5196 13.8946 13.7071 13.7071C13.8946 13.5196 14 13.2652 14 13V3C14 2.73478 13.8946 2.48043 13.7071 2.29289C13.5196 2.10536 13.2652 2 13 2ZM4.5 3V3.5C4.5 3.63261 4.55268 3.75979 4.64645 3.85355C4.74021 3.94732 4.86739 4 5 4C5.13261 4 5.25979 3.94732 5.35355 3.85355C5.44732 3.75979 5.5 3.63261 5.5 3.5V3H10.5V3.5C10.5 3.63261 10.5527 3.75979 10.6464 3.85355C10.7402 3.94732 10.8674 4 11 4C11.1326 4 11.2598 3.94732 11.3536 3.85355C11.4473 3.75979 11.5 3.63261 11.5 3.5V3H13V5H3V3H4.5ZM13 13H3V6H13V13Z" />
+        </svg>
+        {{startDateControl.value && startDateControl.value !== '' && endDateControl.value && endDateControl.value !== '' ? (startDateControl.value | date : 'MMM d, y') + ' - ' + (endDateControl.value | date : 'MMM d, y') : 'Select range' }}
+        <!-- <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.61407 6.14739C5.61405 6.1474 5.61404 6.14742 5.61402 6.14744M5.61407 6.14739L5.61402 6.14744M5.61407 6.14739L5.61402 6.14744M5.61407 6.14739L5.61402 6.14744M10.3998 9.8666L10.3857 9.85249L10.0605 9.52722L10.3998 9.8666ZM10.3998 9.8666V9.8666ZM5.61408 9.85255L5.61402 9.85249C5.61404 9.85251 5.61406 9.85253 5.61408 9.85255Z" stroke="#4D4D57"/>
+        </svg> -->
+        <div class="flex h-3 w-3 items-center">
+            <mat-icon class="text-[#888895]" svgIcon="ph-regular:caret-up-down"></mat-icon>
+        </div>
+    </div>
+    
+    <div @accordion [ngClass]="isOpen()? '' : 'hidden'" class="flex flex-col absolute z-30 rounded-md border shadow top-full left-0 mt-1 bg-background-background-base-default text-text-text-primary">
+        <div class="flex divide-x-[1px]">
+            <div>
+                <span class="flex w-full items-start px-4 pt-4">Start date</span>
+                <div id="datepicker-inline-start" ></div>
+                <input class="hidden" type="text" id="start-datepicker" placeholder="Select a date" [formControl]="startDateControl">
+            </div>
+            <div class="">
+                <span class="flex w-full items-start px-4 pt-4">End date</span>
+                <div id="datepicker-inline-end" ></div>
+                <input class="hidden" type="text" id="end-datepicker" placeholder="Select a date" [formControl]="endDateControl">
+            </div>
+        </div>
+        <div class="flex justify-between px-4 py-3 bg-background-background-subtle border-t">
+            <div class="flex gap-2 items-center">
+                <app-button (click)="onApplyToday()" color="primary">Today</app-button>
+                <span 
+                    [ngClass]="
+                        (startDate.value | compareDateStringPipe : endDate.value) ? 'text-text-text-danger text-xs' : 
+                        (startDateControl.value && startDateControl.value !== '') || (endDateControl.value && endDateControl.value !== '')? '' : 
+                        'hidden'"
+                >
+                    {{(startDate.value | compareDateStringPipe : endDate.value)? 'The end date must be on or after the start date.' : 'Range: ' + (startDate.value | date : 'MMM d, y') + ' - ' + (endDate.value | date : 'MMM d, y')}}
+                </span>
+                <span 
+                    *ngIf="(startDateControl.value && startDateControl.value !== '') || (endDateControl.value && endDateControl.value !== '')" 
+                    (click)="onReset()" 
+                    class="text-text-text-secondary cursor-pointer hover:text-text-text-danger"
+                >
+                    Reset
+                </span>
+            </div>
+            <div class="flex gap-2">
+                <app-button (click)="onCancel()" color="secondary">Cancel</app-button>
+                <app-button [disableTerm]="startDate.value | compareDateStringPipe : endDate.value" (click)="onApply()" color="primary">Apply</app-button>
+            </div>
+        </div>
+    </div>
+</button>

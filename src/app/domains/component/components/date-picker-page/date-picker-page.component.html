@@ -1,1 +1,154 @@
-<p>date-picker-page works!</p>
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Breadcrumb"
+                imageUrl="../../../../assets/images/breadcrumb-illu.png"
+                subtitle="Breadcrumbs are a navigation tool that shows users their location within a website or app, allowing easy backtracking.">
+            </app-page-title>
+        </div>
+    </div>
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            Breadcrumbs are a navigational tool that displays the user's current position within a website or application, helping them understand their path and easily navigate back through previous sections.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+        
+        <span class="text-text-text-secondary text-sm">Use square avatars to represent entities, such as projects, repositories, or spaces. If no image or icon is available, use initials as an identifier. Use a circle avatar to represent a person. </span>
+
+        <app-code-highlighter [codeHtml]="yourCode" >
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-date-picker></app-date-picker>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Default breadcrumb
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Parent page</span>
+
+        <span class="text-text-text-secondary text-sm">You can adjust if there are parents pages.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeParent">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2 ">
+                        <app-breadcrumb routeIcon="/component/breadcrumb" [isSidebarToggle]="false" [parents]="[{route:'Parent page', label:'Parent page'},{route:'Parent page', label:'Parent page'}]" label="Children page" icon="ph-duotone:users"></app-breadcrumb>
+                        <app-breadcrumb routeIcon="/component/breadcrumb" [isSidebarToggle]="false" [parents]="[{route:'Parent page', label:'Parent page'},{route:'Parent page', label:'Parent page'},{route:'Other parent page', label:'Other parent page'}]" label="Children page" icon="ph-duotone:puzzle-piece"></app-breadcrumb>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Breadcrumb with parents
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Long breadcrumb</span>
+
+        <span class="text-text-text-secondary text-sm">If a breadcrumb has more than eight items, it auto-collapses, showing ellipses. The first and last items remain visible, and users can expand it by selecting the ellipsis.</span>
+
+        <app-code-highlighter [codeHtml]="yourCodeLongBreadcrumb" class="pb-[400px]">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <app-breadcrumb 
+                            [isSidebarToggle]="false"
+                            routeIcon="/component/breadcrumb"
+                            [parents]="[
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                                {route:'Parent page', label:'Parent page'},
+                            ]" 
+                            label="Children page" 
+                            icon="ph-duotone:users">
+                        </app-breadcrumb>
+    
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Breadcrumb with long parents
+                    </span>
+                </div>
+    
+            </div>
+        </app-code-highlighter>
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the breadcrumb component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/breadcrumb</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlBreadcrumb" 
+            [codeTs]="codeTsBreadcrumb">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="label"
+            description="Used to provide custom content of the page route."
+            type="string"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="parents"
+            description="Parents infomation of the current page"
+            type="{route: string, label: string}[]"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="icon"
+            description="A custom icon to represent parents page."
+            type="string | currently use phospor icon"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8 pb-[400px]"
+            title="routeIcon"
+            description="A routerLink directs users to a specified URL within the application when clicked."
+            type="string"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>
