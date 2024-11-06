@@ -12,6 +12,8 @@
             </app-page-title>
         </div>
     </div>
+
+    
     <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
         <div class="flex w-[1000px] items-center">
             <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
