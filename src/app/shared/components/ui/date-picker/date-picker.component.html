@@ -63,18 +63,26 @@
             </div>
         </div>
     </div>
-    <div *ngIf="showCalendar && !isOpen && !isSelectYear" class="absolute bg-white border z-50 top-12 p-2 rounded-md shadow w-full">
+    <div *ngIf="showCalendar && !isOpen && !isSelectYear" class="absolute bg-white border z-50 top-9 left-0 p-2 rounded-md shadow w-[224px]">
         <div class="flex w-full justify-between content-between mt-2">
-          <div class="flex items-center px-2 border hover:bg-slate-200 rounded-[4px]" (click)="previousMonth()">‹</div>
+          <div class="flex items-center px-1 py-1 border hover:bg-slate-200 rounded-[4px]" (click)="previousMonth()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.62219 8.28941L9.78859 12.38C9.84686 12.4373 9.92112 12.4763 10.002 12.4921C10.0829 12.5079 10.1667 12.4998 10.2428 12.4688C10.319 12.4379 10.3841 12.3854 10.4299 12.318C10.4757 12.2507 10.5001 12.1716 10.5 12.0906V3.90938C10.5001 3.82843 10.4757 3.74928 10.4299 3.68195C10.3841 3.61462 10.319 3.56214 10.2428 3.53116C10.1667 3.50017 10.0829 3.49207 10.002 3.50788C9.92112 3.52369 9.84686 3.5627 9.78859 3.61997L5.62219 7.71059C5.58346 7.74858 5.55273 7.79369 5.53176 7.84335C5.51079 7.89301 5.5 7.94624 5.5 8C5.5 8.05376 5.51079 8.10699 5.53176 8.15665C5.55273 8.20631 5.58346 8.25142 5.62219 8.28941Z" />
+            </svg>
+          </div>
           <div>
-            <span (click)="onOpenMonthPicker()">
+            <span (click)="onOpenMonthPicker()" class="font-semibold text-text-text-primary">
               {{ months[selectedMonth] }} 
             </span>
-            <span (click)="onSelectingYears()">
+            <span (click)="onSelectingYears()" class="font-semibold text-text-text-primary">
               {{ selectedYear }}
             </span>
           </div>
-          <div class="flex items-center px-2 border hover:bg-slate-200 rounded-[4px]" (click)="nextMonth()">›</div>
+          <div class="flex items-center px-1 py-1 border hover:bg-slate-200 rounded-[4px]" (click)="nextMonth()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="#888895" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.3778 8.28941L6.21141 12.38C6.15314 12.4373 6.07888 12.4763 5.99801 12.4921C5.91715 12.5079 5.83333 12.4998 5.75715 12.4688C5.68098 12.4379 5.61589 12.3854 5.57011 12.318C5.52434 12.2507 5.49994 12.1716 5.5 12.0906V3.90938C5.49994 3.82843 5.52434 3.74928 5.57011 3.68195C5.61589 3.61462 5.68098 3.56214 5.75715 3.53116C5.83333 3.50017 5.91715 3.49207 5.99801 3.50788C6.07888 3.52369 6.15314 3.5627 6.21141 3.61997L10.3778 7.71059C10.4165 7.74858 10.4473 7.79369 10.4682 7.84335C10.4892 7.89301 10.5 7.94624 10.5 8C10.5 8.05376 10.4892 8.10699 10.4682 8.15665C10.4473 8.20631 10.4165 8.25142 10.3778 8.28941Z"/>
+            </svg>
+          </div>
         </div>
     
         <div class="grid grid-cols-7 p-1 text-center align-middle">
@@ -83,7 +91,7 @@
     
         <div class="grid grid-cols-7 cursor-pointer p-1 text-center align-middle rounded-md">
           <span *ngFor="let date of calendarDays"
-              class="hover:bg-slate-200 rounded-md py-[2px]"
+              class="hover:bg-slate-200 rounded-md p-1"
               [ngClass]="{ 'text-black': date.isCurrentMonth, 'text-[#aaa]': !date.isCurrentMonth }"
               (click)="selectDate(date)">
             {{ date.day }}
