@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../../../core/const/animation.const';
@@ -16,6 +16,9 @@ import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../..
 export class DatePickerComponent implements OnDestroy {
   @Input() control = new FormControl<string>(null)
   private readonly unsubscribe$: Subject<void> = new Subject();
+
+  @Output() onFocusEmit = new EventEmitter<void>();
+  @Output() onBlurEmit = new EventEmitter<void>();
 
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   months = [
@@ -144,6 +147,7 @@ export class DatePickerComponent implements OnDestroy {
 
   onOpenDatePicker(){
     this.showCalendar = true;
+    this.onFocusEmit.emit();
   }
 
   onCloseDatePicker(){
@@ -151,6 +155,7 @@ export class DatePickerComponent implements OnDestroy {
       this.isSelectYear = false;
       this.showCalendar = false;
       this.isOpen = false;
+      this.onBlurEmit.emit();
     },100)
   }
 
