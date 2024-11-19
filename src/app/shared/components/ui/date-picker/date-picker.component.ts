@@ -15,6 +15,7 @@ import { SlideAnimation, AccordionAnimation, FadeInOutAnimation } from '../../..
 })
 export class DatePickerComponent implements OnDestroy {
   @Input() control = new FormControl<string>(null)
+  @Input() monthPicker : boolean = false
   private readonly unsubscribe$: Subject<void> = new Subject();
 
   @Output() onFocusEmit = new EventEmitter<void>();
@@ -124,6 +125,10 @@ export class DatePickerComponent implements OnDestroy {
     this.selectedMonth = indexMonth;
     this.generateCalendar(this.selectedMonth, this.selectedYear);
     
+    if (this.monthPicker){
+      this.control.patchValue(`${this.selectedYear}-${this.selectedMonth}`);
+    }
+
     this.isOpen = false;
   }
 
@@ -131,6 +136,10 @@ export class DatePickerComponent implements OnDestroy {
     this.selectedYear = indexYear;
     // this.generateCalendar(this.currentMonth, this.currentYear);
     this.generateCalendar(this.selectedMonth, this.selectedYear);
+
+    if (this.monthPicker){
+      this.control.patchValue(`${this.selectedYear}-${this.selectedMonth}`);
+    }
 
     this.isSelectYear = false
   }
