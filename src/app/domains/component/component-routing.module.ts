@@ -7,6 +7,7 @@ import { ButtonPageComponent } from './components/button-page/button-page.compon
 import { CardPageComponent } from './components/card-page/card-page.component';
 import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
 import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb-page.component';
+import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
 
 const routes: Routes = [
     {
@@ -104,6 +105,20 @@ const routes: Routes = [
             label: 'Date Picker Component',
             parents: [
                 {route: '/date-picker', label: 'Date Picker'}
+            ]
+            }
+        }
+    },
+    {
+        path: '',
+        children: [
+            { path: 'stepper', component: StepperPageComponent },
+        ],
+        data: {
+            breadcrumb: {
+            label: 'Stepper Component',
+            parents: [
+                {route: '/stepper', label: 'Stepper'}
             ]
             }
         }
