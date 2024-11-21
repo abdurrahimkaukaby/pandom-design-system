@@ -6,9 +6,9 @@
             <app-page-title
                 class="flex w-full"
                 [border]="false"
-                title="Stepper"
+                title="Tab"
                 imageUrl="../../../../assets/images/breadcrumb-illu.png"
-                subtitle="Option for your step by step user action">
+                subtitle="Tabs are used to organize content by grouping similar information on the same page.">
             </app-page-title>
         </div>
     </div>
@@ -20,7 +20,7 @@
     <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
         
         <span class="mt-6">
-            The Stepper component is a UI element that helps users navigate through a process or workflow by breaking it down into smaller, sequential steps.
+            The Tab Bar component is a graphical user interface element used for displaying multiple views or screens in a single window or page. It allows users to switch between different tabs, each representing a different view, with only one tab visible at a time.
         </span>
 
         <span class="text-2xl font-medium mt-6">Default </span>
@@ -29,30 +29,14 @@
             <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
                 <div class="flex flex-col gap-2 w-full">
                     <div class="flex gap-2 items-center w-full">
-                        <app-stepper 
-                            [activeStepIndex]="activeStepIndex"
-                            [stepperData]="stepperData"
-                            (onEmitStep)="onClickStepIndex($event)"
-                            class="w-full">
-                            <div class="flex gap-2">
-                                <app-button
-                                    [disableTerm]="activeStepIndex === 0"
-                                    (click)="activeStepIndex === 0? null : onChangeStep(activeStepIndex - 1)"
-                                    color="secondary">
-                                    Back
-                                </app-button>
-                                <app-button
-                                    [disableTerm]="activeStepIndex === 2"
-                                    iconRight="ph-fill:caret-right"
-                                    (click)="activeStepIndex === 2? null : onChangeStep(activeStepIndex + 1)"
-                                >
-                                    {{activeStepIndex === 2? 'Finish' : 'Next'}}
-                                </app-button>
-                            </div>
-                        </app-stepper>
+                        <app-tab 
+                            [selectedTab]="selectedTabChildren"
+                            [tabs]="['First tab','Second tab','Third tab']"
+                            (onSelectTabEmit)="onSelectedTabChildren($event)">
+                        </app-tab>
                     </div>
-                    <span class="text-text-text-caption text-xs">
-                        Default stepper
+                    <span class="text-text-text-caption text-xs mt-4">
+                        Default tab
                     </span>
                 </div>
             </div>
@@ -63,17 +47,17 @@
         
         <span class="text-2xl font-medium mt-6">Installation </span>
         
-        <span class="text-text-text-secondary text-sm">generate the stepper component</span>
+        <span class="text-text-text-secondary text-sm">generate the tab component</span>
         <div class="flex items-center gap-4 text-sm">
             <span class="">Angular CLI</span>
-            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/stepper</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/tab</span>
         </div>
         <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
 
         <app-code-highlighter
             [buttonExpand]="false"
-            [codeHtml]="codeHtmlStepper" 
-            [codeTs]="codeTsStepper">
+            [codeHtml]="codeHtmlTab" 
+            [codeTs]="codeTsTab">
         </app-code-highlighter>
 
         <hr class="mt-6">
@@ -82,25 +66,25 @@
 
         <app-props-wrapper
             class="mt-8"
-            title="stepperData"
-            description="Used to control the data of steps aand its function."
-            type="stepperDataDTO[ ] : {title:string, isCompleted : boolean, isDisable : boolean}[ ]"
+            title="tabs"
+            description="Used to set tabs data."
+            type="string[ ]"
         >
         </app-props-wrapper>
 
         <app-props-wrapper
             class="mt-8 bg-transparent p-0 border-0"
-            title="activeStepIndex"
-            description="Used to control the state of current step."
-            type="number"
+            title="selectedTab"
+            description="Used to control the selected/current tab."
+            type="string"
         >
         </app-props-wrapper>
         
         <app-props-wrapper
             class="mt-8 pb-[400px]"
-            title="onEmitStep"
-            description="Used to emit if the step clicked(if only the isDisable on stepperData is false)."
-            type="EventEmitter : number"
+            title="onSelectTabEmit"
+            description="Used to emit if the tab selected."
+            type="EventEmitter : string"
         >
         </app-props-wrapper>
 

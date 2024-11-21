@@ -1,38 +1,16 @@
 import { Component, HostListener } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as Prism from 'prismjs';
-import { stepperDataDTO } from '../../../../shared/components/ui/stepper/stepper.component';
-import { AccordionAnimation } from '../../../../core/const/animation.const';
 
 @Component({
-  selector: 'app-stepper-page',
-  templateUrl: './stepper-page.component.html',
-  styleUrl: './stepper-page.component.css',
-  animations: [
-    AccordionAnimation
-  ],
+  selector: 'app-tab-page',
+  templateUrl: './tab-page.component.html',
+  styleUrl: './tab-page.component.css'
 })
-export class StepperPageComponent {
+export class TabPageComponent {
   isScrolled$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   selectedTab : string = 'usage'
-  activeStepIndex : number = 0;
-  stepperData : stepperDataDTO[] = [
-    {
-      title: 'First step',
-      isCompleted: true,
-      isDisable: true
-    },
-    {
-      title: 'Second step',
-      isCompleted: false,
-      isDisable: true
-    },
-    {
-      title: 'Third step',
-      isCompleted: false,
-      isDisable: true
-    },
-  ]
+  selectedTabChildren : string = 'First tab'
 
   yourCode: string = `
     <app-stepper 
@@ -58,7 +36,7 @@ export class StepperPageComponent {
     </app-stepper>
   `;
 
-  codeHtmlStepper: string = `
+  codeHtmlTab: string = `
     <div class="flex justify-between px-6 py-4 w-full">
         <div class="flex">
             <div *ngFor="let step of stepperData; index as stepperIndex" class="flex">
@@ -99,7 +77,7 @@ export class StepperPageComponent {
     </div>
   `;
 
-  codeTsStepper: string = `
+  codeTsTab: string = `
     export interface stepperDataDTO {
       title:string;
       isCompleted : boolean;
@@ -168,57 +146,12 @@ export class StepperPageComponent {
     Prism.highlightAll();
   }
 
-  onClickStepIndex(index : number){
-    if(index === 0){
-
-    }
-  }
-
-  onChangeStep(index: number){
-    if(index === 0){
-      this.stepperData[1] = { 
-        ...this.stepperData[1], 
-        isCompleted: false,
-        isDisable: true,
-      };
-      this.stepperData[2] = { 
-        ...this.stepperData[2], 
-        isCompleted: false,
-        isDisable: true,
-      };
-    }
-
-    if(index === 1){
-      this.stepperData[1] = { 
-        ...this.stepperData[1], 
-        isCompleted: true,
-        isDisable: true,
-      };
-      this.stepperData[2] = { 
-        ...this.stepperData[2], 
-        isCompleted: false,
-        isDisable: true,
-      };
-    }
-
-    if(index === 2){
-      this.stepperData[1] = { 
-        ...this.stepperData[1], 
-        isCompleted: true,
-        isDisable: true,
-      };
-      this.stepperData[2] = { 
-        ...this.stepperData[2], 
-        isCompleted: true,
-        isDisable: true,
-      };
-    }
-
-    this.activeStepIndex = index
-  }
-
   onSelectedTab(tab:string){
     this.selectedTab = tab
   } 
+
+  onSelectedTabChildren(tab:string){
+    this.selectedTabChildren = tab
+  }
 
 }

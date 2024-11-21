@@ -84,6 +84,11 @@ export class SidebarComponent implements AfterViewChecked {
       icon: 'ph-duotone:gauge',
       name: 'Stepper'
     },
+    {
+      route: 'component/tab',
+      icon: 'ph-duotone:gauge',
+      name: 'Tab'
+    },
   ]
 
   _settingMenu = [

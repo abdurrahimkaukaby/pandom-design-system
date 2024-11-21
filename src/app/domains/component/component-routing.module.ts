@@ -8,6 +8,7 @@ import { CardPageComponent } from './components/card-page/card-page.component';
 import { DatePickerPageComponent } from './components/date-picker-page/date-picker-page.component';
 import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb-page.component';
 import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
+import { TabPageComponent } from './components/tab-page/tab-page.component';
 
 const routes: Routes = [
     {
@@ -119,6 +120,20 @@ const routes: Routes = [
             label: 'Stepper Component',
             parents: [
                 {route: '/stepper', label: 'Stepper'}
+            ]
+            }
+        }
+    },
+    {
+        path: '',
+        children: [
+            { path: 'tab', component: TabPageComponent },
+        ],
+        data: {
+            breadcrumb: {
+            label: 'Tab Component',
+            parents: [
+                {route: '/tab', label: 'Tab'}
             ]
             }
         }
