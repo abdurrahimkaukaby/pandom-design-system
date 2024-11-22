@@ -1,8 +1,8 @@
 <aside
-  class="relative justify-between z-30 transition-all border-r bg-surface-surface-accent h-full"
+  class="relative justify-between z-30 transition-all border-r bg-surface-surface-accent"
   [ngClass]="{ 
-    'w-[264px]' : isSidebarActive,
-    'w-[72px]' : !isSidebarActive && !isMasterData,
+    'w-[264px] h-full' : isSidebarActive,
+    'w-[72px] border-b' : !isSidebarActive && !isMasterData,
   }"
 >
     <div class="flex-col flex justify-between bg-dbx-neutral-50 rounded-xl h-full overflow-auto no-scrollbar">
@@ -11,7 +11,7 @@
                 [ngClass]="!isSidebarActive ? 'px-2' : 'w-64 px-3'"
                 class="absolute top-4 transition-all z-50 pb-2 pt-2 inline-flex items-end justify-end  text-sm font-bold rounded-lg bg-white ">
                 <button
-                    (click)="toggleSidebar()"
+       P             (click)="toggleSidebar()"
                     type="button"
                     [ngClass]="!isSidebarActive ? '' : ''"
                     class="transition-all pb-2 pt-2 inline-flex items-center justify-end px-3 text-sm font-bold rounded-lg bg-white hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -25,16 +25,17 @@
             <!-- start of logo -->
             <div
                 [ngClass]="{
-                    'pl-4 justify-between' : isSidebarActive,
-                    'justify-center' : !isSidebarActive,
+                    'pl-4 justify-between border-b-[1px] h-[61px]' : isSidebarActive,
+                    'justify-center h-[60px]' : !isSidebarActive,
                     'hidden' : isMasterData,
                     }"
-                class="flex items-center w-full border-b-[1px] border-[#E4E4E7] h-[61px]">
+                class="flex items-center w-full border-[#E4E4E7]">
                 
                 <div class="flex gap-2 items-center">
                     <img
+                        (click)="isSidebarActive? null : toggleSidebar()"
                         [src]="isSidebarActive?'../../../../assets/images/pandom-logo-mini.png':'../../../../assets/images/pandom-logo-mini.png'"
-                        [class]="isSidebarActive?'w-11 h-11':'w-11 h-11 mx-3'"
+                        [class]="isSidebarActive?'w-11 h-11':'w-11 h-11 mx-3 cursor-pointer'"
                         alt="no image"
                         class="transition-all"
                     />
@@ -69,6 +70,7 @@
             <!-- end of logo -->
 
             <ul 
+                *ngIf="isSidebarActive"
                 [ngClass]="{
                     'px-4': isSidebarActive,
                     'px-2': !isSidebarActive,
@@ -162,6 +164,7 @@
             </ul>
         </div>
         <div 
+            *ngIf="isSidebarActive"
             [ngClass]="isSidebarActive? 'px-4':'px-2'"
             class="flex flex-col justify-center mt-auto pt-2 gap-1">
                 <div 
