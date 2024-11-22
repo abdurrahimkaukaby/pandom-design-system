@@ -1,6 +1,7 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivityLogDTO } from './models/activity-log.dto';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexYAxis, ApexGrid } from 'ng-apexcharts';
+import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -17,7 +18,7 @@ export type ChartOptions = {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   @ViewChild("chart") chart: ChartComponent
   public chartOptions: Partial<ChartOptions>
@@ -25,7 +26,9 @@ export class HomeComponent {
   chartCategory = signal('mechanical')
   categories = ['mechanical', 'electrical', 'instrument']
 
-  constructor() {
+  constructor(
+    private _sidebar: SidebarService,
+  ) {
     this.chartOptions = {
       grid: {
         strokeDashArray: 2,
@@ -127,6 +130,10 @@ export class HomeComponent {
       createdAt: ''
     },
   ]  
+
+
+  ngOnInit(): void {
+  }
 
   onChangeCategory(category: string){
     this.chartCategory.set(category)

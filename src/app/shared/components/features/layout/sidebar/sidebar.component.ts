@@ -157,6 +157,11 @@ export class SidebarComponent implements AfterViewChecked {
           this.isMasterData = v
         })
       ).subscribe()
+
+      if(this.getBaseUrl(this.router.url).includes('home') || this.getBaseUrl(this.router.url).includes('')){
+        
+        this.toggleSidebar();
+      }
   }
 
   ngAfterViewChecked(): void {
@@ -242,6 +247,10 @@ export class SidebarComponent implements AfterViewChecked {
 
   onSelectSubMasterData(subMasterData : string){
     this._sidebar.setSubMasterData(subMasterData)
+  }
+
+  getBaseUrl(url: string): string {
+    return url.substring(1, url.length);
   }
 
 }
