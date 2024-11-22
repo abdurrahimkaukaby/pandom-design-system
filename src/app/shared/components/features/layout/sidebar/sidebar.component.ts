@@ -80,6 +80,11 @@ export class SidebarComponent implements AfterViewChecked {
       name: 'Date Picker'
     },
     {
+      route: 'component/dropdown',
+      icon: 'ph-duotone:gauge',
+      name: 'Dropdown'
+    },
+    {
       route: 'component/stepper',
       icon: 'ph-duotone:gauge',
       name: 'Stepper'

@@ -1,17 +1,17 @@
 import { Component, HostListener } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as Prism from 'prismjs';
 import { AccordionAnimation } from '../../../../core/const/animation.const';
+import * as Prism from 'prismjs';
 
 @Component({
-  selector: 'app-tab-page',
-  templateUrl: './tab-page.component.html',
-  styleUrl: './tab-page.component.css',
+  selector: 'app-dropdown-page',
+  templateUrl: './dropdown-page.component.html',
+  styleUrl: './dropdown-page.component.css',
   animations: [
     AccordionAnimation
   ],
 })
-export class TabPageComponent {
+export class DropdownPageComponent {
   isScrolled$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   selectedTab : string = 'usage'
   selectedTabChildren : string = 'First tab'

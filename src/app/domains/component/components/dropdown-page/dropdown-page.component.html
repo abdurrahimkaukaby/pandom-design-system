@@ -1,0 +1,168 @@
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Dropdown"
+                imageUrl="../../../../assets/images/breadcrumb-illu.png"
+                subtitle="A dropdown item is an action a user can perform displayed in a group.">
+            </app-page-title>
+        </div>
+    </div>
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            The Tab Bar component is a graphical user interface element used for displaying multiple views or screens in a single window or page. It allows users to switch between different tabs, each representing a different view, with only one tab visible at a time.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+
+        <span class="text-text-text-secondary text-sm">Use default for the default dropdown menu appearance. The default menu will scroll after its height exceeds the pre-defined amount.</span>
+        
+        <app-code-highlighter [codeHtml]="yourCode">
+            <div class="flex w-full p-4 bg-background-background-subtle gap-8 rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Default dropdown
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Default dropdown with custom style
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown [isSelectedIcon]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Default dropdown with custom style and selection icon
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Labelled </span>
+
+        <span class="text-text-text-secondary text-sm">Use default for the default dropdown menu appearance. The default menu will scroll after its height exceeds the pre-defined amount.</span>
+        
+        <app-code-highlighter [codeHtml]="yourCode">
+            <div class="flex w-full p-4 bg-background-background-subtle gap-8 rounded-t-[4px]">
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown label="Dropdown label" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Labelled dropdown
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown label="Dropdown label" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Labelled dropdown with custom style
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+        <span class="text-2xl font-medium mt-6">Searchbar dropdown </span>
+
+        <span class="text-text-text-secondary text-sm">Use default for the default dropdown menu appearance. The default menu will scroll after its height exceeds the pre-defined amount.</span>
+        
+        <app-code-highlighter [codeHtml]="yourCode" class="pb-[400px]">
+            <div class="flex w-full p-4 bg-background-background-subtle gap-8 rounded-t-[4px]">
+                
+                <div class="flex flex-col gap-2 mt-6">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown id="2" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Searchbar dropdown
+                    </span>
+                </div>
+
+                <div class="flex flex-col gap-2 mt-6">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown id="3" [isSearch]="true" [isSelectedIcon]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Searchbar dropdown
+                    </span>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-dropdown id="1" label="Dropdown label" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    </div>
+                    <span class="text-text-text-caption text-xs mt-4 ml-[2px]">
+                        Searchbar dropdown with label
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the tab component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your desired path"/tab</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlTab" 
+            [codeTs]="codeTsTab">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="tabs"
+            description="Used to set tabs data."
+            type="string[ ]"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8 bg-transparent p-0 border-0"
+            title="selectedTab"
+            description="Used to control the selected/current tab."
+            type="string"
+        >
+        </app-props-wrapper>
+        
+        <app-props-wrapper
+            class="mt-8 pb-[400px]"
+            title="onSelectTabEmit"
+            description="Used to emit if the tab selected."
+            type="EventEmitter : string"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>

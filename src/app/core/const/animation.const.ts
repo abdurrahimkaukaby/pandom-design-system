@@ -32,5 +32,7 @@ export const FadeInOutAnimation =
       style({ opacity: 0 }),
       animate('0.1s', style({ opacity: 1 })),
     ]),
-    transition(':leave', [animate('0.1s', style({ opacity: 0 }))]),
+    transition(':leave', [
+      animate('0.1s', style({ opacity: 0 }))
+    ]),
   ])
