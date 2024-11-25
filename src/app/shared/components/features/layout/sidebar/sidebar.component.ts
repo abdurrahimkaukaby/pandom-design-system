@@ -46,7 +46,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
   ],
 })
-export class SidebarComponent implements AfterViewChecked {
+export class SidebarComponent implements AfterViewInit {
 
   _sidebarMenu = [
     {
@@ -158,14 +158,16 @@ export class SidebarComponent implements AfterViewChecked {
         })
       ).subscribe()
 
-      if(this.getBaseUrl(this.router.url).includes('home') || this.getBaseUrl(this.router.url).includes('')){
+  }
+
+  ngAfterViewInit(): void {
+    // this.routeActive = this.activatedRoute.snapshot.data['breadcrumb']['label']
+    if(this.router.url){
+      if(this.getBaseUrl(this.router.url)?.includes('home') || this.getBaseUrl(this.router.url)?.includes('')){
         
         this.toggleSidebar();
       }
-  }
-
-  ngAfterViewChecked(): void {
-    // this.routeActive = this.activatedRoute.snapshot.data['breadcrumb']['label']
+    }
   }
 
   onActiveMasterDataCheck(event){
@@ -250,7 +252,7 @@ export class SidebarComponent implements AfterViewChecked {
   }
 
   getBaseUrl(url: string): string {
-    return url.substring(1, url.length);
+    return url? url?.substring(1, url.length) : ''
   }
 
 }

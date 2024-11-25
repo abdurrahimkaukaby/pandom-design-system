@@ -370,7 +370,7 @@ export class DatePickerPageComponent implements AfterViewInit {
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: any) {
     const verticalOffset =
-      window.pageYOffset ||
+      window.scrollY ||
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
