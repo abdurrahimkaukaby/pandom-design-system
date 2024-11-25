@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivityLogDTO } from './models/activity-log.dto';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexYAxis, ApexGrid } from 'ng-apexcharts';
 import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
@@ -18,7 +18,7 @@ export type ChartOptions = {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent{
+export class HomeComponent implements AfterViewInit {
 
   verticalScroll : number = 0
 
@@ -26,15 +26,24 @@ export class HomeComponent{
     private _sidebar: SidebarService,
   ) {
   }
+  
+  @ViewChild('scrollableDiv', { static: true }) scrollableDiv!: ElementRef<HTMLDivElement>;
 
-  @HostListener('window:scroll', ['$event']) // for window scroll events
-  onScroll(event: any) {
-    this.verticalScroll =
-      window.scrollY ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+  ngAfterViewInit(): void {
+    if (!this.scrollableDiv) {
+      console.error('Scrollable div not found!');
+      return;
+    }
+    
+    console.log('Scrollable div found:', this.scrollableDiv.nativeElement);
+    this.scrollableDiv.nativeElement.addEventListener('scroll', this.onScroll);
+  }
+  
+  onScroll = (event: Event): void => {
+    const target = event.target as HTMLElement;
+    this.verticalScroll = target.scrollTop;
+    console.log('Scroll position:', this.verticalScroll);
+    
   }
 
-  
 }
