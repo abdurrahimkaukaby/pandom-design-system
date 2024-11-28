@@ -45,7 +45,5 @@ export class HomeComponent implements AfterViewInit {
     console.log('Scroll position:', this.verticalScroll);
     
   }
-
-
   
 }
