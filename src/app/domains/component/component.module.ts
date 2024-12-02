@@ -18,6 +18,7 @@ import { DatePickerPageComponent } from './components/date-picker-page/date-pick
 import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
 import { TabPageComponent } from './components/tab-page/tab-page.component';
 import { DropdownPageComponent } from './components/dropdown-page/dropdown-page.component';
+import { InputPageComponent } from './components/input-page/input-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DropdownPageComponent } from './components/dropdown-page/dropdown-page.
     StepperPageComponent,
     TabPageComponent,
     DropdownPageComponent,
+    InputPageComponent,
   ],
   imports: [
     CommonModule,
