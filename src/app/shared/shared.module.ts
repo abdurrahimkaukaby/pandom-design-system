@@ -49,6 +49,7 @@ import { PropsWrapperComponent } from './components/ui/props-wrapper/props-wrapp
 import { CardBasicComponent } from './components/ui/card-basic/card-basic.component';
 import { DatePickerRangeComponent } from "./components/ui/date-picker-range/date-picker-range.component";
 import { DatePickerComponent } from "./components/ui/date-picker/date-picker.component";
+import { ComponentCardComponent } from './components/ui/component-card/component-card.component';
 
 @NgModule({
     declarations: [
@@ -96,6 +97,7 @@ import { DatePickerComponent } from "./components/ui/date-picker/date-picker.com
       PropsWrapperComponent,
       CardBasicComponent,
       DatePickerComponent,
+      ComponentCardComponent,
     ],
     imports: [
       RouterModule,
@@ -149,6 +151,7 @@ import { DatePickerComponent } from "./components/ui/date-picker/date-picker.com
       PropsWrapperComponent,
       CardBasicComponent,
       DatePickerComponent,
+      ComponentCardComponent,
 
     ],
     providers: [

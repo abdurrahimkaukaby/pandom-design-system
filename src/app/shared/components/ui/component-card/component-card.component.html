@@ -1,0 +1,16 @@
+<div class="flex flex-col rounded-md border">
+    <div class="flex cursor-pointer items-center justify-between rounded-t-md bg-etma-neutral-50 hover:bg-gradient-to-r hover:from-etma-neutral-50 hover:to-etma-blue-800 p-4 px-8 border-b text-xl font-medium gap-1 group duration-200 hover:py-5">
+        <span class="">
+            {{title}}
+        </span> 
+        <div class="flex gap-1">
+            <div class="flex h-4 w-4 rounded-full bg-etma-neutral-200 group-hover:animate-pulse duration-150"></div>
+            <div class="flex h-4 w-4 rounded-full bg-etma-neutral-200 group-hover:bg-etma-blue-400 group-hover:animate-pulse duration-150"></div>
+            <div class="flex h-4 w-4 rounded-full bg-etma-neutral-200 group-hover:bg-etma-blue-600 group-hover:animate-pulse duration-150"></div>
+        </div>
+            
+    </div>
+    <div class="flex items-center justify-center p-8 h-64">
+        <ng-content></ng-content>
+    </div>
+</div>

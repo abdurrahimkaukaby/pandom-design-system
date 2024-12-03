@@ -3,7 +3,7 @@ import { ActivityLogDTO } from './models/activity-log.dto';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexYAxis, ApexGrid } from 'ng-apexcharts';
 import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
 import { AccordionAnimation, FadeInOutAnimation, SlideAnimation } from '../../core/const/animation.const';
-import { Accordion } from 'flowbite';
+import { stepperDataDTO } from '../../shared/components/ui/stepper/stepper.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -20,14 +20,38 @@ export type ChartOptions = {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   animations: [
-    SlideAnimation,
+    AccordionAnimation,
     FadeInOutAnimation,
-    AccordionAnimation
-  ]
+    SlideAnimation
+  ],
 })
 export class HomeComponent implements AfterViewInit {
 
   verticalScroll : number = 0
+
+  activeStepIndex : number = 0;
+  stepperData : stepperDataDTO[] = [
+    {
+      title: 'First step',
+      isCompleted: false,
+      isDisable: false
+    },
+    {
+      title: 'Second step',
+      isCompleted: false,
+      isDisable: false
+    },
+    {
+      title: 'Third step',
+      isCompleted: false,
+      isDisable: false
+    },
+  ]
+
+  selectedTabChildren : string = 'First tab'
+  onSelectedTabChildren(tab:string){
+    this.selectedTabChildren = tab
+  }
 
   constructor(
     private _sidebar: SidebarService,
@@ -54,6 +78,6 @@ export class HomeComponent implements AfterViewInit {
   }
 
 
-  
+    
   
 }
