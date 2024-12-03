@@ -7,7 +7,7 @@
 </app-page-title> -->
 
 <div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar">
-    <div class="flex h-[1800px] w-[1000px] relative mx-auto bg-etma-neutral-50">
+    <div class="flex h-[1800px] w-[1000px] relative mx-auto bg-etma-danger-50">
         <img 
             src="../../../assets/images/sun.png" 
             alt="alt"
@@ -17,6 +17,15 @@
                 'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
                 'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
                 'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
+        >
+        <img 
+            src="../../../assets/images/mount.png" 
+            alt="alt"
+            [ngClass]="verticalScroll > 1100 ? 'blur-sm' : ''"
+            class="absolute w-[600px] h-[600px]"
+            [style]="
+                'top:' + (verticalScroll > 1000? 1300 : verticalScroll + 250) + 'px;'+
+                'right:' + ((verticalScroll/1.2) - 250) + 'px;'"
         >
         <img 
             src="../../../assets/images/mount.png" 
@@ -31,7 +40,7 @@
             alt="alt"
             class="absolute"
             [style]="
-                'top:' + (verticalScroll > 600? (verticalScroll > 1000? 940 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
+                'top:' + (verticalScroll > 600? (verticalScroll > 1000? 970 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
                 'left:' + ((verticalScroll/10)-300) + 'px;'+
                 'width:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'+
                 'height:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'"

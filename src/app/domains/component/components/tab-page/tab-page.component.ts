@@ -21,7 +21,6 @@ export class TabPageComponent {
         [activeStepIndex]="activeStepIndex"
         [stepperData]="stepperData"
         (onEmitStep)="onClickStepIndex($event)"
-        class="w-full">
         <div class="flex gap-2">
             <app-button
                 [disableTerm]="activeStepIndex === 0"
