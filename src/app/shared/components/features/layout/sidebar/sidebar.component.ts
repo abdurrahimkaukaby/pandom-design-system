@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Inject, Output, signal } from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Inject, Output, signal } from '@angular/core';
 import { ShowHideType, SidebarService } from './sidebar.service';
 import { BehaviorSubject, catchError, EMPTY, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,7 +46,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
   ],
 })
-export class SidebarComponent implements AfterViewInit {
+export class SidebarComponent implements AfterViewChecked {
 
   _sidebarMenu = [
     {
@@ -112,6 +112,8 @@ export class SidebarComponent implements AfterViewInit {
 
   public subMenu!: SidebarChildrenGroupMenu[];
   public activeBasePath: string = '';
+  currentRoute: string = ''
+
   isSidebarActive: boolean = true;
   isMenuActive: boolean = true;
   isHomeActive: boolean = true;
@@ -160,14 +162,17 @@ export class SidebarComponent implements AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewChecked(): void {
     // this.routeActive = this.activatedRoute.snapshot.data['breadcrumb']['label']
-    if(this.router.url){
-      if(this.getBaseUrl(this.router.url)?.includes('home') || this.getBaseUrl(this.router.url)?.includes('')){
+    if(this.currentRoute !== this.router.url){
+      
+      if(this.getBaseUrl(this.router.url)?.includes('home')){
+        console.log('troute => ', this.getBaseUrl(this.router.url));
         
         this.toggleSidebar();
       }
     }
+    this.currentRoute = this.router.url
   }
 
   onActiveMasterDataCheck(event){

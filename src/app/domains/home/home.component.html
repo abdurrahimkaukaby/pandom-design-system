@@ -6,13 +6,49 @@
 >
 </app-page-title> -->
 
-<div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto">
-    <div class="flex h-[1800px] w-[1000px] relative mx-auto">
+<div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar">
+    <div class="flex h-[1800px] w-[1000px] relative mx-auto bg-etma-neutral-50">
         <img 
             src="../../../assets/images/sun.png" 
             alt="alt"
-            class="absolute top-96 w-40 h-40 "
+            class="absolute"
+            [style]="
+                'top:' + (verticalScroll > 1000? 1200 :((verticalScroll + verticalScroll*0.13) + 100)) + 'px;'+
+                'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
+                'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
+                'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
         >
+        <img 
+            src="../../../assets/images/mount.png" 
+            alt="alt"
+            class="absolute w-[1000px] h-[1000px]"
+            [style]="
+                'top:' + (verticalScroll > 1000? 1000 : verticalScroll + 10) + 'px;'+
+                'left:' + (verticalScroll/2) + 'px;'"
+        >
+        <img 
+            src="../../../assets/images/mountain.png" 
+            alt="alt"
+            class="absolute"
+            [style]="
+                'top:' + (verticalScroll > 600? (verticalScroll > 1000? 940 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
+                'left:' + ((verticalScroll/10)-300) + 'px;'+
+                'width:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'+
+                'height:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'"
+        >
+        <img 
+            src="../../../assets/images/temple.png" 
+            alt="alt"
+            class="absolute"
+            [style]="
+                'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
+                'left:' + ((verticalScroll/3)-200) + 'px;'+
+                'width:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'+
+                'height:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'"
+        >
+        <span @slide *ngIf="verticalScroll > 1000" class="absolute top-[1550px] left-[430px] text-9xl z-[60] font-extrabold text-etma-blue-600">
+            PANDOM
+        </span>
     </div>
 </div>
 

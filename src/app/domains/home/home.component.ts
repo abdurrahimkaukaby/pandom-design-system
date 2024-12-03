@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, signal, Vie
 import { ActivityLogDTO } from './models/activity-log.dto';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexYAxis, ApexGrid } from 'ng-apexcharts';
 import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
+import { AccordionAnimation, FadeInOutAnimation, SlideAnimation } from '../../core/const/animation.const';
+import { Accordion } from 'flowbite';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -16,7 +18,12 @@ export type ChartOptions = {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  animations: [
+    SlideAnimation,
+    FadeInOutAnimation,
+    AccordionAnimation
+  ]
 })
 export class HomeComponent implements AfterViewInit {
 
