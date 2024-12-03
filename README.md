@@ -1,12 +1,12 @@
 
 # PANDOM (Design System)
 
-Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability.
+Pandom is an open-source angular UI component library built on the utility-first principles of Tailwind CSS, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability.
 
 
 ## Overview
 
-Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
+Pandom is an open-source angular UI component library built on the utility-first principles of Tailwind CSS, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
 
 ## System Requirements
 
