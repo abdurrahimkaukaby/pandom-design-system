@@ -10,6 +10,7 @@ import { BreadcrumbPageComponent } from './components/breadcrumb-page/breadcrumb
 import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
 import { TabPageComponent } from './components/tab-page/tab-page.component';
 import { DropdownPageComponent } from './components/dropdown-page/dropdown-page.component';
+import { InputPageComponent } from './components/input-page/input-page.component';
 
 const routes: Routes = [
     {
@@ -135,6 +136,20 @@ const routes: Routes = [
             label: 'Stepper Component',
             parents: [
                 {route: '/stepper', label: 'Stepper'}
+            ]
+            }
+        }
+    },
+    {
+        path: '',
+        children: [
+            { path: 'input', component: InputPageComponent },
+        ],
+        data: {
+            breadcrumb: {
+            label: 'Input Component',
+            parents: [
+                {route: '/input', label: 'Input'}
             ]
             }
         }

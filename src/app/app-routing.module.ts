@@ -22,6 +22,19 @@ const routes: Routes = [
       import('./domains/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'getting-started',
+    title: 'PANDOM | Getting started',
+    data: {
+      breadcrumb: {
+        label: 'Getting started',
+        parents: []
+      }
+    },
+    // canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./domains/getting-started/getting-started.module').then((m) => m.GettingStartedModule),
+  },
+  {
     path: 'component',
     title: 'PANDOM | component',
     data: {

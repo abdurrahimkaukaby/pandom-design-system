@@ -6,7 +6,7 @@
 >
 </app-page-title> -->
 
-<div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar">
+<div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar scroll-smooth">
     <div 
         [ngClass]="verticalScroll < 100 ? 'bg-etma-blue-50' : 'bg-etma-neutral-50'"
         class="flex h-[1800px] w-[1000px] relative mx-auto duraiton-300">
@@ -41,10 +41,10 @@
                 'top:' + (verticalScroll > 1000? 1300 : verticalScroll + 250) + 'px;'+
                 'right:' + ((verticalScroll/1.2) - 250) + 'px;'"
         >
-        <span @fadeInOut *ngIf="verticalScroll < 100" class="absolute top-[20px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200">
+        <span *ngIf="verticalScroll < 100" class="absolute top-[50px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200 opacity-40">
             PANDOM
         </span> 
-        <span *ngIf="verticalScroll < 100" class="absolute top-[50px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200 opacity-40">
+        <span @fadeInOut *ngIf="verticalScroll < 100" class="absolute top-[20px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200">
             PANDOM
         </span> 
         <img 
@@ -96,7 +96,7 @@
 </div>
 <div 
 class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
-    <span class="flex absolute items-center justify-center w-[1000px] mx-auto text-center top-[-80px] text-blue-400 animate-pulse">- scroll me -</span>
+    <span class="pointer-events-none flex absolute items-center justify-center w-[1000px] mx-auto text-center top-[-90px] text-blue-400 animate-pulse">- scroll me -</span>
     <span
         class="flex text-center text-neutral-500">
         Pandom is an open-source angular UI component library built on the utility-first principles of Tailwind CSS, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
@@ -109,10 +109,13 @@ class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
     <div class="grid grid-cols-2 mt-32 pb-[400px] gap-4">
 
         <app-component-card title="Avatar">
-            <div class="flex gap-2">
+            <div class="flex items-center gap-2">
+                <app-avatar title="H" mode="compact"></app-avatar>
                 <app-avatar title="HA" mode="normal"></app-avatar>
-                <app-avatar color="primary" title="H" mode="normal" icon="ph-regular:codepen-logo" rounded="full"></app-avatar>
+                <app-avatar color="success" title="H" mode="normal" icon="ph-regular:codepen-logo" rounded="full"></app-avatar>
+                <app-avatar color="error" title="H" mode="normal" icon="ph-regular:codepen-logo"></app-avatar>
                 <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+                <app-avatar color="warning" title="H" mode="compact" textSize="xs" icon="ph-regular:codepen-logo"></app-avatar>
             </div>
         </app-component-card>
 
@@ -120,11 +123,14 @@ class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
             <div class="flex gap-2" >
                 <app-badge icon="ph-fill:check-fat" color="success" text="badge"></app-badge>
                 <app-badge text="badge" color="warning" icon="ph-duotone:key"></app-badge>
+                <app-badge text="denied" color="error"></app-badge>
+                <app-badge text="need application" color="primary"></app-badge>
             </div>
         </app-component-card>
 
         <app-component-card title="Breadcrumb">
-            <div class="flex gap-2" >
+            <div class="flex flex-col gap-2" >
+                <app-breadcrumb routeIcon="/component/breadcrumb" [isSidebarToggle]="false" [parents]="[{route:'Parent page', label:'Parent page'},{route:'Parent page', label:'Parent page'}]" label="Children page" icon="ph-duotone:users"></app-breadcrumb>
                 <app-breadcrumb 
                     [isSidebarToggle]="false"
                     routeIcon="/component/breadcrumb"
@@ -146,9 +152,12 @@ class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
         </app-component-card>
 
         <app-component-card title="Button">
-            <div class="flex gap-2" >
-                <app-button>Button</app-button>
+            <div class="flex items-center gap-2" >
+                <app-button iconRight="ph-fill:eraser">Button</app-button>
+                <app-button color="secondary" iconLeft="ph-regular:swap">Button</app-button>
+                <app-button color="danger" >Button</app-button>
                 <app-button color="primary" iconRight="ph-fill:eraser"></app-button>
+                <app-button color="warning" iconRight="ph-fill:eraser" mode="compact"></app-button>
             </div>
         </app-component-card>
 
@@ -161,15 +170,17 @@ class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
             </app-card-basic>
         </app-component-card>
 
-        <app-component-card title="Date picker">
+        <app-component-card title="Date-picker">
             <div class="flex gap-2" >
                 <app-date-picker></app-date-picker>
+                <app-date-picker [monthPicker]="true"></app-date-picker>
             </div>
         </app-component-card>
 
         <app-component-card title="Dropdown">
             <div class="flex gap-2" >
-                <app-dropdown id="1" label="Dropdown label" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                <app-dropdown label="Dropdown" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                <app-dropdown id="1" label="Dropdown search" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
             </div>
         </app-component-card>
 

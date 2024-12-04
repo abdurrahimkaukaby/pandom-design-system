@@ -1,1 +1,109 @@
-<p>input-page works!</p>
+<app-headerbar class="fixed z-50"></app-headerbar>
+
+<div class="flex flex-col w-full items-center justify-center relative">
+    <div class="static z-30 flex w-full items-center justify-center border-b bg-surface-surface-subtle">
+        <div class="flex w-[1000px] items-center">
+            <app-page-title
+                class="flex w-full"
+                [border]="false"
+                title="Input"
+                imageUrl="../../../../assets/images/breadcrumb-illu.png"
+                subtitle="Option for your step by step user action">
+            </app-page-title>
+        </div>
+    </div>
+    <div [ngClass]="(this.isScrolled$ | async)? 'bg-surface-surface-subtle' : 'bg-gradient-to-br from-surface-surface-hover to-surface-surface-subtle'" (scroll)="this.onScroll($event)" class="flex w-full items-center justify-center border-b sticky top-14 z-20 shadow-sm-light duration-300">
+        <div class="flex w-[1000px] items-center">
+            <app-tab [tabs]="['usage','guide']" [selectedTab]="selectedTab" (onSelectTabEmit)="onSelectedTab($event)"></app-tab>
+        </div>
+    </div>
+    <div @accordion *ngIf="selectedTab === 'usage'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="mt-6">
+            The Stepper component is a UI element that helps users navigate through a process or workflow by breaking it down into smaller, sequential steps.
+        </span>
+
+        <span class="text-2xl font-medium mt-6">Default </span>
+        
+        <app-code-highlighter [codeHtml]="yourCode" class="pb-[400px]">
+            <div class="flex w-full p-4 bg-background-background-subtle justify-between rounded-t-[4px]">
+                <div class="flex flex-col gap-2 w-full">
+                    <div class="flex gap-2 items-center w-full">
+                        <app-stepper 
+                            [activeStepIndex]="activeStepIndex"
+                            [stepperData]="stepperData"
+                            (onEmitStep)="onClickStepIndex($event)"
+                            class="w-full">
+                            <div class="flex gap-2">
+                                <app-button
+                                    [disableTerm]="activeStepIndex === 0"
+                                    (click)="activeStepIndex === 0? null : onChangeStep(activeStepIndex - 1)"
+                                    color="secondary">
+                                    Back
+                                </app-button>
+                                <app-button
+                                    [disableTerm]="activeStepIndex === 2"
+                                    iconRight="ph-fill:caret-right"
+                                    (click)="activeStepIndex === 2? null : onChangeStep(activeStepIndex + 1)"
+                                >
+                                    {{activeStepIndex === 2? 'Finish' : 'Next'}}
+                                </app-button>
+                            </div>
+                        </app-stepper>
+                    </div>
+                    <span class="text-text-text-caption text-xs">
+                        Default stepper
+                    </span>
+                </div>
+            </div>
+        </app-code-highlighter>
+
+    </div>
+    <div @accordion *ngIf="selectedTab === 'guide'" class="flex flex-col w-[1000px] p-6 text-text-text-primary gap-2">
+        
+        <span class="text-2xl font-medium mt-6">Installation </span>
+        
+        <span class="text-text-text-secondary text-sm">generate the stepper component</span>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="">Angular CLI</span>
+            <span class="text-etma-neutral-800 font-normal rounded-[4px] bg-etma-neutral-100 px-2 py-1" >ng g c "your-desired-path"/stepper</span>
+        </div>
+        <span class="text-text-text-secondary text-sm">insert code to the component file and you may need to change the color to your desired color</span>
+
+        <app-code-highlighter
+            [buttonExpand]="false"
+            [codeHtml]="codeHtmlStepper" 
+            [codeTs]="codeTsStepper">
+        </app-code-highlighter>
+
+        <hr class="mt-6">
+    
+        <span class="text-2xl font-medium mt-6">Props </span>
+
+        <app-props-wrapper
+            class="mt-8"
+            title="stepperData"
+            description="Used to control the data of steps aand its function."
+            type="stepperDataDTO[ ] : {title:string, isCompleted : boolean, isDisable : boolean}[ ]"
+        >
+        </app-props-wrapper>
+
+        <app-props-wrapper
+            class="mt-8 bg-transparent p-0 border-0"
+            title="activeStepIndex"
+            description="Used to control the state of current step."
+            type="number"
+        >
+        </app-props-wrapper>
+        
+        <app-props-wrapper
+            class="mt-8 pb-[400px]"
+            title="onEmitStep"
+            description="Used to emit if the step clicked(if only the isDisable on stepperData is false)."
+            type="EventEmitter : number"
+        >
+        </app-props-wrapper>
+
+    </div>
+
+</div>

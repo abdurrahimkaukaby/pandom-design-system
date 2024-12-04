@@ -85,6 +85,11 @@ export class SidebarComponent implements AfterViewChecked {
       name: 'Dropdown'
     },
     {
+      route: 'component/input',
+      icon: 'ph-duotone:gauge',
+      name: 'Input'
+    },
+    {
       route: 'component/stepper',
       icon: 'ph-duotone:gauge',
       name: 'Stepper'
