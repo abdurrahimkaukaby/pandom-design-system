@@ -96,6 +96,14 @@
 </div>
 <div 
 class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
+    <img 
+        src="../../../assets/images/background-temple.png" 
+        alt="alt"
+        class="absolute -z-10 blur-xl "
+        [style]="
+            'width:'+ (2500 +(verticalScroll*1)) + 'px;'+
+            'height:'+ (1500 +(verticalScroll*0.5)) + 'px;'"
+    >
     <span class="pointer-events-none flex absolute items-center justify-center w-[1000px] mx-auto text-center top-[-90px] text-blue-400 animate-pulse">- scroll me -</span>
     <span
         class="flex text-center text-neutral-500 px-10">
