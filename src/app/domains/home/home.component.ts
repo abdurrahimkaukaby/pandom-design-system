@@ -27,6 +27,7 @@ export type ChartOptions = {
 })
 export class HomeComponent implements AfterViewInit {
 
+  verticalScroll1 : number = 0
   verticalScroll : number = 0
 
   activeStepIndex : number = 0;
@@ -59,6 +60,7 @@ export class HomeComponent implements AfterViewInit {
   }
   
   @ViewChild('scrollableDiv', { static: true }) scrollableDiv!: ElementRef<HTMLDivElement>;
+  @ViewChild('scrollableDiv1', { static: true }) scrollableDiv1!: ElementRef<HTMLDivElement>;
 
   ngAfterViewInit(): void {
     if (!this.scrollableDiv) {
@@ -68,13 +70,26 @@ export class HomeComponent implements AfterViewInit {
     
     console.log('Scrollable div found:', this.scrollableDiv.nativeElement);
     this.scrollableDiv.nativeElement.addEventListener('scroll', this.onScroll);
+
+    if (!this.scrollableDiv1) {
+      console.error('Scrollable div not found!');
+      return;
+    }
+    
+    console.log('Scrollable div found:', this.scrollableDiv1.nativeElement);
+    this.scrollableDiv1.nativeElement.addEventListener('scroll', this.onScroll1);
   }
   
   onScroll = (event: Event): void => {
     const target = event.target as HTMLElement;
     this.verticalScroll = target.scrollTop;
     console.log('Scroll position:', this.verticalScroll);
-    
+  }
+
+  onScroll1 = (event: Event): void => {
+    const target = event.target as HTMLElement;
+    this.verticalScroll1 = target.scrollTop;
+    console.log('Scroll position:', this.verticalScroll1);
   }
 
 

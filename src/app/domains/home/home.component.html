@@ -1,219 +1,221 @@
 <app-headerbar class="fixed z-50"></app-headerbar>
+<div #scrollableDiv1>
 
-<!-- <app-page-title
-    title="Welcome to PANDOM design system"
-    subtitle="Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability."
->
-</app-page-title> -->
-
-<div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar scroll-smooth">
-    <div 
-        [ngClass]="verticalScroll < 100 ? 'bg-etma-blue-50' : 'bg-etma-neutral-50'"
-        class="flex h-[1800px] w-[1000px] relative mx-auto duraiton-300">
-        
-        <img 
-            src="../../../assets/images/sun.png" 
-            alt="alt"
-            class="absolute blur-xl"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1200 :((verticalScroll + verticalScroll*0.13) + 100)) + 'px;'+
-                'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
-                'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
-                'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
-        >
-        <img 
-            src="../../../assets/images/sun.png" 
-            alt="alt"
-            [ngClass]="verticalScroll > 1100 ? 'blur-[2px]' : ''"
-            class="absolute"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1200 :((verticalScroll + verticalScroll*0.13) + 100)) + 'px;'+
-                'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
-                'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
-                'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
-        >
-        <img 
-            src="../../../assets/images/mount.png" 
-            alt="alt"
-            [ngClass]="verticalScroll > 1100 ? 'blur-[2px]' : ''"
-            class="absolute w-[600px] h-[600px]"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1300 : verticalScroll + 250) + 'px;'+
-                'right:' + ((verticalScroll/1.2) - 250) + 'px;'"
-        >
-        <span *ngIf="verticalScroll < 100" class="absolute top-[50px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200 opacity-40">
-            PANDOM
-        </span> 
-        <span @fadeInOut *ngIf="verticalScroll < 100" class="absolute top-[20px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200">
-            PANDOM
-        </span> 
-        <img 
-            src="../../../assets/images/mount.png" 
-            alt="alt"
-            [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
-            class="absolute w-[1000px] h-[1000px]"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1000 : verticalScroll + 10) + 'px;'+
-                'left:' + (verticalScroll/2) + 'px;'"
-        >
-        
-        <img 
-            src="../../../assets/images/mountain.png" 
-            alt="alt"
-            [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
-            class="absolute"
-            [style]="
-                'top:' + (verticalScroll > 600? (verticalScroll > 1000? 970 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
-                'left:' + ((verticalScroll/10)-300) + 'px;'+
-                'width:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'+
-                'height:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'"
-        >
-        <img 
-            src="../../../assets/images/temple.png" 
-            alt="alt"
-            class="absolute blur-xl"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
-                'left:' + ((verticalScroll/3)-200) + 'px;'+
-                'width:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'+
-                'height:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'"
-        >
-        <img 
-            src="../../../assets/images/temple.png" 
-            alt="alt"
-            [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
-            class="absolute"
-            [style]="
-                'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
-                'left:' + ((verticalScroll/3)-200) + 'px;'+
-                'width:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'+
-                'height:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'"
-        >
-        <span @slide *ngIf="verticalScroll > 1000" class="absolute top-[1490px] left-[212px] text-[156px] z-[60] font-[1000] text-etma-blue-900">
-            PANDOM
-        </span>
-    </div>
-</div>
-<div 
-class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
-    <img 
-        src="../../../assets/images/background-temple.png" 
-        alt="alt"
-        class="absolute -z-10 blur-xl "
-        [style]="
-            'width:'+ (2500 +(verticalScroll*1)) + 'px;'+
-            'height:'+ (1500 +(verticalScroll*0.5)) + 'px;'"
+    <!-- <app-page-title
+        title="Welcome to PANDOM design system"
+        subtitle="Pandom is an open-source design system and UI component library built on the utility-first principles of Tailwind CSS and Flowbite, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability."
     >
-    <span class="pointer-events-none flex absolute items-center justify-center w-[1000px] mx-auto text-center top-[-90px] text-blue-400 animate-pulse">- scroll me -</span>
-    <span
-        class="flex text-center text-neutral-500 px-10">
-        Pandom is an open-source angular UI component library built on the utility-first principles of Tailwind CSS, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
-    </span>
-    <span
-        class="text-center text-neutral-900 text-7xl mt-32 font-extrabold px-10">
-        Create <span class="text-etma-danger-700">Angular</span> projects faster with customizable components built on top of <span class="text-etma-blue-600">Tailwind CSS</span>
-    </span>
-    
-    <div class="grid grid-cols-2 mt-32 pb-[400px] gap-4">
-
-        <app-component-card title="Avatar">
-            <div class="flex items-center gap-2">
-                <app-avatar title="H" mode="compact"></app-avatar>
-                <app-avatar title="HA" mode="normal"></app-avatar>
-                <app-avatar color="success" title="H" mode="normal" icon="ph-regular:codepen-logo" rounded="full"></app-avatar>
-                <app-avatar color="error" title="H" mode="normal" icon="ph-regular:codepen-logo"></app-avatar>
-                <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
-                <app-avatar color="warning" title="H" mode="compact" textSize="xs" icon="ph-regular:codepen-logo"></app-avatar>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Badge">
-            <div class="flex gap-2" >
-                <app-badge icon="ph-fill:check-fat" color="success" text="badge"></app-badge>
-                <app-badge text="badge" color="warning" icon="ph-duotone:key"></app-badge>
-                <app-badge text="denied" color="error"></app-badge>
-                <app-badge text="need application" color="primary"></app-badge>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Breadcrumb">
-            <div class="flex flex-col gap-2" >
-                <app-breadcrumb routeIcon="/component/breadcrumb" [isSidebarToggle]="false" [parents]="[{route:'Parent page', label:'Parent page'},{route:'Parent page', label:'Parent page'}]" label="Children page" icon="ph-duotone:users"></app-breadcrumb>
-                <app-breadcrumb 
-                    [isSidebarToggle]="false"
-                    routeIcon="/component/breadcrumb"
-                    [parents]="[
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                        {route:'Parent page', label:'Parent page'},
-                    ]" 
-                    label="Children page" 
-                    icon="ph-duotone:users">
-                </app-breadcrumb>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Button">
-            <div class="flex items-center gap-2" >
-                <app-button iconRight="ph-fill:eraser">Button</app-button>
-                <app-button color="secondary" iconLeft="ph-regular:swap">Button</app-button>
-                <app-button color="danger" >Button</app-button>
-                <app-button color="primary" iconRight="ph-fill:eraser"></app-button>
-                <app-button color="warning" iconRight="ph-fill:eraser" mode="compact"></app-button>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Card">
-            <app-card-basic 
-                title="Card title" 
-                message="Card messages or subtitles to give users instructions or to request confirmation." 
-                primaryButtonText="Primary button" 
-                secondaryButtonText="Secondary button">
-            </app-card-basic>
-        </app-component-card>
-
-        <app-component-card title="Date-picker">
-            <div class="flex gap-2" >
-                <app-date-picker></app-date-picker>
-                <app-date-picker [monthPicker]="true"></app-date-picker>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Dropdown">
-            <div class="flex gap-2" >
-                <app-dropdown label="Dropdown" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
-                <app-dropdown id="1" label="Dropdown search" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Stepper">
-            <div class="flex gap-2" >
-                <app-stepper 
-                    [activeStepIndex]="activeStepIndex"
-                    [stepperData]="stepperData"
-                    class="w-full">
-                </app-stepper>
-            </div>
-        </app-component-card>
-
-        <app-component-card title="Tab">
-            <div class="flex gap-2" >
-                <app-tab 
-                    [selectedTab]="selectedTabChildren"
-                    [tabs]="['First tab','Second tab','Third tab']"
-                    (onSelectTabEmit)="onSelectedTabChildren($event)">
-                </app-tab>
-            </div>
-        </app-component-card>
+    </app-page-title> -->
+    <div #scrollableDiv class="flex-grow max-h-[800px] w-full items-center justify-center overflow-y-auto no-scrollbar scroll-smooth">
+        <div 
+            [ngClass]="verticalScroll < 100 ? 'bg-etma-blue-50' : 'bg-etma-neutral-50'"
+            class="flex h-[1800px] w-[1000px] relative mx-auto duraiton-300">
+            
+            <img 
+                src="../../../assets/images/sun.png" 
+                alt="alt"
+                class="absolute blur-xl"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1200 :((verticalScroll + verticalScroll*0.13) + 100)) + 'px;'+
+                    'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
+                    'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
+                    'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
+            >
+            <img 
+                src="../../../assets/images/sun.png" 
+                alt="alt"
+                [ngClass]="verticalScroll > 1100 ? 'blur-[2px]' : ''"
+                class="absolute"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1200 :((verticalScroll + verticalScroll*0.13) + 100)) + 'px;'+
+                    'left:' +(verticalScroll > 1000? 1000 : verticalScroll)+ 'px;'+
+                    'width:'+ (160 +(verticalScroll*0.14)) + 'px;'+
+                    'height:'+ (160 +(verticalScroll*0.14)) + 'px;'"
+            >
+            <img 
+                src="../../../assets/images/mount.png" 
+                alt="alt"
+                [ngClass]="verticalScroll > 1100 ? 'blur-[2px]' : ''"
+                class="absolute w-[600px] h-[600px]"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1300 : verticalScroll + 250) + 'px;'+
+                    'right:' + ((verticalScroll/1.2) - 250) + 'px;'"
+            >
+            <span *ngIf="verticalScroll < 100" class="absolute top-[50px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200 opacity-40">
+                PANDOM
+            </span> 
+            <span @fadeInOut *ngIf="verticalScroll < 100" class="absolute top-[20px] left-[-300px] text-[400px] font-[1000] text-etma-blue-200">
+                PANDOM
+            </span> 
+            <img 
+                src="../../../assets/images/mount.png" 
+                alt="alt"
+                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                class="absolute w-[1000px] h-[1000px]"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1000 : verticalScroll + 10) + 'px;'+
+                    'left:' + (verticalScroll/2) + 'px;'"
+            >
+            
+            <img 
+                src="../../../assets/images/mountain.png" 
+                alt="alt"
+                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                class="absolute"
+                [style]="
+                    'top:' + (verticalScroll > 600? (verticalScroll > 1000? 970 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
+                    'left:' + ((verticalScroll/10)-300) + 'px;'+
+                    'width:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'+
+                    'height:'+ (verticalScroll > 600? 1000 :(500 +(verticalScroll*0.9))) + 'px;'"
+            >
+            <img 
+                src="../../../assets/images/temple.png" 
+                alt="alt"
+                class="absolute blur-xl"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
+                    'left:' + ((verticalScroll/3)-200) + 'px;'+
+                    'width:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'+
+                    'height:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'"
+            >
+            <img 
+                src="../../../assets/images/temple.png" 
+                alt="alt"
+                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                class="absolute"
+                [style]="
+                    'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
+                    'left:' + ((verticalScroll/3)-200) + 'px;'+
+                    'width:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'+
+                    'height:'+ (verticalScroll > 1000? 300 :(100 +(verticalScroll*0.2))) + 'px;'"
+            >
+            <span @slide *ngIf="verticalScroll > 1000" class="absolute top-[1490px] left-[212px] text-[156px] z-[60] font-[1000] text-etma-blue-900">
+                PANDOM
+            </span>
+        </div>
     </div>
-
+    <div 
+    class="flex flex-col w-[1000px] relative mx-auto duraiton-300 mt-10">
+        <img 
+            src="../../../assets/images/background-temple.png" 
+            alt="alt"
+            class="absolute -z-10 blur-xl animate-pulse opacity-50"
+            [style]="
+                'width:'+ (2500 +(verticalScroll1*2)) + 'px;'+
+                'height:'+ (1500 +(verticalScroll1*1)) + 'px;'"
+        >
+        <span class="pointer-events-none flex absolute items-center justify-center w-[1000px] mx-auto text-center top-[-90px] text-blue-400 animate-pulse">- scroll me -</span>
+        <span
+            class="flex text-center text-neutral-500 px-10">
+            Pandom is an open-source angular UI component library built on the utility-first principles of Tailwind CSS, tailored specifically for Angular web development. It offers a fully customizable-utility first of UI components that prioritize flexibility and adaptability, allowing developers to seamlessly align components with their unique design systems.
+        </span>
+        <span
+            class="text-center text-neutral-900 text-7xl mt-32 font-extrabold px-10">
+            Create <span class="text-etma-danger-700">Angular</span> projects faster with customizable components built on top of <span class="text-etma-blue-600">Tailwind CSS</span>
+        </span>
+        
+        <div class="grid grid-cols-2 mt-32 pb-[400px] gap-4">
+    
+            <app-component-card title="Avatar">
+                <div class="flex items-center gap-2">
+                    <app-avatar title="H" mode="compact"></app-avatar>
+                    <app-avatar title="HA" mode="normal"></app-avatar>
+                    <app-avatar color="success" title="H" mode="normal" icon="ph-regular:codepen-logo" rounded="full"></app-avatar>
+                    <app-avatar color="error" title="H" mode="normal" icon="ph-regular:codepen-logo"></app-avatar>
+                    <app-avatar title="H" mode="normal" rounded="full" image="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"></app-avatar>
+                    <app-avatar color="warning" title="H" mode="compact" textSize="xs" icon="ph-regular:codepen-logo"></app-avatar>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Badge">
+                <div class="flex gap-2" >
+                    <app-badge icon="ph-fill:check-fat" color="success" text="badge"></app-badge>
+                    <app-badge text="badge" color="warning" icon="ph-duotone:key"></app-badge>
+                    <app-badge text="denied" color="error"></app-badge>
+                    <app-badge text="need application" color="primary"></app-badge>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Breadcrumb">
+                <div class="flex flex-col gap-2" >
+                    <app-breadcrumb routeIcon="/component/breadcrumb" [isSidebarToggle]="false" [parents]="[{route:'Parent page', label:'Parent page'},{route:'Parent page', label:'Parent page'}]" label="Children page" icon="ph-duotone:users"></app-breadcrumb>
+                    <app-breadcrumb 
+                        [isSidebarToggle]="false"
+                        routeIcon="/component/breadcrumb"
+                        [parents]="[
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                            {route:'Parent page', label:'Parent page'},
+                        ]" 
+                        label="Children page" 
+                        icon="ph-duotone:users">
+                    </app-breadcrumb>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Button">
+                <div class="flex items-center gap-2" >
+                    <app-button iconRight="ph-fill:eraser">Button</app-button>
+                    <app-button color="secondary" iconLeft="ph-regular:swap">Button</app-button>
+                    <app-button color="danger" >Button</app-button>
+                    <app-button color="primary" iconRight="ph-fill:eraser"></app-button>
+                    <app-button color="warning" iconRight="ph-fill:eraser" mode="compact"></app-button>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Card">
+                <app-card-basic 
+                    title="Card title" 
+                    message="Card messages or subtitles to give users instructions or to request confirmation." 
+                    primaryButtonText="Primary button" 
+                    secondaryButtonText="Secondary button">
+                </app-card-basic>
+            </app-component-card>
+    
+            <app-component-card title="Date-picker">
+                <div class="flex gap-2" >
+                    <app-date-picker></app-date-picker>
+                    <app-date-picker [monthPicker]="true"></app-date-picker>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Dropdown">
+                <div class="flex gap-2" >
+                    <app-dropdown label="Dropdown" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                    <app-dropdown id="1" label="Dropdown search" [isSearch]="true" [isCustomStyle]="true" [options]="[{title: 'first option', value: 'first value'},{title: 'second option', value: 'second value'},{title: 'third option', value: 'third value'}]"></app-dropdown>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Stepper">
+                <div class="flex gap-2" >
+                    <app-stepper 
+                        [activeStepIndex]="activeStepIndex"
+                        [stepperData]="stepperData"
+                        class="w-full">
+                    </app-stepper>
+                </div>
+            </app-component-card>
+    
+            <app-component-card title="Tab">
+                <div class="flex gap-2" >
+                    <app-tab 
+                        [selectedTab]="selectedTabChildren"
+                        [tabs]="['First tab','Second tab','Third tab']"
+                        (onSelectTabEmit)="onSelectedTabChildren($event)">
+                    </app-tab>
+                </div>
+            </app-component-card>
+        </div>
+    
+    </div>
 </div>
+
 <span class="fixed bottom-0 w-full text-sm text-right text-etma-neutral-500 py-1 px-4"
     >© created by Hilmy Abdurrahim | designed by Fahmi all
     right reserved | 2024 . version 1.0.0</span
