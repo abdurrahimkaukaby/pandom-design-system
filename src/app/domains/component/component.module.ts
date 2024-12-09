@@ -4,7 +4,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentComponent } from './component.component';
 import { AvatarPageComponent } from './components/avatar-page/avatar-page.component';
 import { BadgePageComponent } from './components/badge-page/badge-page.component';
@@ -41,7 +40,6 @@ import { InputPageComponent } from './components/input-page/input-page.component
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
-    NgApexchartsModule,
     // HighlightAuto,
     // HighlightLineNumbers
   ],

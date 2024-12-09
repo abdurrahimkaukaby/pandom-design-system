@@ -6,7 +6,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
-import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
-    NgApexchartsModule,
   ],
   providers: [
   ],

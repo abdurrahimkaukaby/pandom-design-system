@@ -1,20 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivityLogDTO } from './models/activity-log.dto';
-import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexStroke, ApexYAxis, ApexGrid } from 'ng-apexcharts';
 import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
 import { AccordionAnimation, FadeInOutAnimation, SlideAnimation } from '../../core/const/animation.const';
 import { stepperDataDTO } from '../../shared/components/ui/stepper/stepper.component';
 import { environment } from '../../environments/environment';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  grid: ApexGrid;
-  xaxis: ApexXAxis;
-  stroke: ApexStroke;
-};
 
 @Component({
   selector: 'app-home',

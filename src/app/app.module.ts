@@ -11,7 +11,6 @@ import { SidebarService } from './shared/components/features/layout/sidebar/side
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpBaseApiHeader } from './providers/interceptor/http-api.interceptor';
 import { AuthInterceptor } from './providers/interceptor/http-authorization.interceptor';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { HIGHLIGHT_OPTIONS, HighlightModule, provideHighlightOptions } from 'ngx-highlightjs';
 import { GettingStartedComponent } from './domains/getting-started/getting-started.component';
 
@@ -26,7 +25,6 @@ import { GettingStartedComponent } from './domains/getting-started/getting-start
     MatIconModule,
     SharedModule,
     HttpClientModule,
-    NgApexchartsModule,
     HighlightModule,
   ],
   providers: [
