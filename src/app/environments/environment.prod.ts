@@ -50,7 +50,7 @@ export const environment: EnvironmentInterface = {
   bucketname: 'material-movement',
   guidance: 'https://api.gmf-aeroasia.co.id/utils/guidance',
 
-  version: '1.0.0'
+  version: '1.0.1'
 };
 
 /*

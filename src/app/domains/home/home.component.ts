@@ -4,6 +4,7 @@ import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComp
 import { SidebarService } from '../../shared/components/features/layout/sidebar/sidebar.service';
 import { AccordionAnimation, FadeInOutAnimation, SlideAnimation } from '../../core/const/animation.const';
 import { stepperDataDTO } from '../../shared/components/ui/stepper/stepper.component';
+import { environment } from '../../environments/environment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -27,6 +28,7 @@ export type ChartOptions = {
 })
 export class HomeComponent implements AfterViewInit {
 
+  version = environment.version
   verticalScroll1 : number = 0
   verticalScroll : number = 0
 
