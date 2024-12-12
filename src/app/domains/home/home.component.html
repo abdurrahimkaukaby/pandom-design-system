@@ -50,7 +50,7 @@
             <img 
                 src="../../../assets/images/mount.png" 
                 alt="alt"
-                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                [ngClass]="verticalScroll < 100 ? '' : ''"
                 class="absolute w-[1000px] h-[1000px]"
                 [style]="
                     'top:' + (verticalScroll > 1000? 1000 : verticalScroll + 10) + 'px;'+
@@ -60,7 +60,7 @@
             <img 
                 src="../../../assets/images/mountain.png" 
                 alt="alt"
-                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                [ngClass]="verticalScroll < 100 ? '' : ''"
                 class="absolute"
                 [style]="
                     'top:' + (verticalScroll > 600? (verticalScroll > 1000? 970 : verticalScroll - 80) : (verticalScroll*0.47) + 240 ) + 'px;'+
@@ -81,7 +81,7 @@
             <img 
                 src="../../../assets/images/temple.png" 
                 alt="alt"
-                [ngClass]="verticalScroll < 100 ? 'blur-[2px]' : ''"
+                [ngClass]="verticalScroll < 100 ? '' : ''"
                 class="absolute"
                 [style]="
                     'top:' + (verticalScroll > 1000? 1450 : (verticalScroll*0.9) + 540 ) + 'px;'+
